@@ -1,0 +1,400 @@
+<resources>
+    <string name="facebook_app_id">255642823428638</string>
+    <string name="fb_login_protocol_scheme">fb255642823428638</string>
+    <string name="facebook_client_token">a07d69b4b34ad773ccf6126648037c40</string>
+
+    <string name="app_name">Provider</string>
+    <string name="roots_care">Roots Care</string>
+    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="no_data">No data found</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="read_more"><u>Read More</u></string>
+    <string name="read_less"><u>Read Less</u></string>
+    <string name="can_not_be_blank">Can not be blank</string>
+    <string name="submit">Submit</string>
+    <string name="select_time">Select Time</string>
+    <string name="please_select_day">Please select day</string>
+    <string name="please_add_time_for_all_slot">Please add time for all slot</string>
+    <string name="choose_name_for_this_file">Choose name for the file</string>
+    <string name="create_prescription_name">Enter prescription number</string>
+    <string name="transition_string">transition_name</string>
+    <string name="my_profile">My profile</string>
+    <string name="review_and_rating">Review &amp; rating</string>
+    <string name="doctor_profile">Doctor Profile</string>
+    <string name="my_appointment">My Appointment</string>
+    <string name="upcoming_appointment">Upcoming Appointment</string>
+    <string name="today_appointment">Today\'s Appointment</string>
+    <string name="new_appointment">New Appointment</string>
+    <string name="appointment_history">Appointment History</string>
+    <string name="my_schedule">My Schedule</string>
+    <string name="manage_schedule">Manage Schedule</string>
+    <string name="add_schedule">Add Your Schedule</string>
+    <string name="payment_history">Payment History</string>
+    <string name="edit_your_profile">Edit Your Profile</string>
+    <string name="price_list">Price List</string>
+    <string name="upload_prescription">Upload Prescription</string>
+    <string name="complete">Complete</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+
+    <string name="network_unavailable">Please Check Your Network Connection</string>
+    <string name="server_alert">Some server problem has been encountered</string>
+    <string name="permissions_needed">Camera and Microphone permissions needed. Please allow in App Settings for additional functionality.</string>
+    <string name="error_retrieving_access_token">Error retrieving token</string>
+    <string name="okay">OK</string>
+    <string name="agree">Agree</string>
+    <string name="do_not_agree">Don\'t Agree</string>
+    <string name="terms_agree">I Agree</string>
+    <string name="camera_cancel">Cancel</string>
+
+    <string name="heading_video_call">Video Consultation</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+
+    <string-array name="time_array">
+        <item>12:00 AM</item>
+        <item>12:30 AM</item>
+        <item> 01:00 AM</item>
+        <item>01:30 AM</item>
+        <item>02:00 AM</item>
+        <item> 02:30 AM</item>
+        <item> 03:00 AM</item>
+        <item> 03:30 AM</item>
+        <item> 04:00 AM</item>
+        <item> 04:30 AM</item>
+        <item>05:00 AM</item>
+        <item>05:30 AM</item>
+        <item> 06:00 AM</item>
+        <item> 06:30 AM</item>
+        <item> 07:00 AM</item>
+        <item> 07:30 AM</item>
+        <item> 08:00 AM</item>
+        <item> 08:30 AM</item>
+        <item> 09:00 AM</item>
+        <item> 09:30 AM</item>
+        <item> 10:00 AM</item>
+        <item> 10:30 AM</item>
+        <item> 11:00 AM</item>
+        <item> 11:30 AM</item>
+        <item> 12:00 PM</item>
+        <item> 12:30 PM</item>
+        <item> 01:00 PM</item>
+        <item> 01:30 PM</item>
+        <item> 02:00 PM</item>
+        <item> 02:30 PM</item>
+        <item> 03:00 PM</item>
+        <item> 03:30 PM</item>
+        <item> 04:00 PM</item>
+        <item> 04:30 PM</item>
+        <item>  05:00 PM</item>
+        <item> 05:30 PM</item>
+        <item> 06:00 PM</item>
+        <item> 06:30 PM</item>
+        <item> 07:00 PM</item>
+        <item> 07:30 PM</item>
+        <item>08:00 PM</item>
+        <item>08:30 PM</item>
+        <item>09:00 PM</item>
+        <item>09:30 PM</item>
+        <item>10:00 PM</item>
+        <item>10:30 PM</item>
+        <item> 11:00 PM</item>
+        <item> 11:30 PM</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enable_your_availability">Please enable you availability</string>
+    <string name="select_eligibility_radius">Please select eligibility radius</string>
+    <string name="choose_availability_location">Please choose availability location</string>
+    <string name="schedule_availability">Schedule Availability</string>
+    <string name="my_availability_schedule_">My Availability Schedule</string>
+    <string name="support_amp_more">Support &amp; More</string>
+    <string name="best_company_for_medical_home_healthcare">The Best Company\nfor Medical Services\n &amp; Home Healthcare</string>
+    <string name="language_preference">Language Preference</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="about_rootscare">About Rootscare</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="need_support">Need Support?</string>
+    <string name="review_amp_rating">Review &amp; Rating</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="profile_setting">Profile Setting</string>
+    <string name="account_amp_more">Account &amp; More</string>
+    <string name="logout">Logout</string>
+    <string name="setup_your_calendar_day_amp_more">Setup your calendar, day &amp; more</string>
+    <string name="setup_service_charges">Setup service charges</string>
+    <string name="pending_upcoming_ongoing_n_amp_past">Pending, Upcoming, Ongoing\n&amp; Past</string>
+    <string name="appointment_amp_schedules">Appointment &amp; Schedules</string>
+    <string name="transactions_amp_accounting">Transactions &amp; Accounting</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="select_user_type">Select User Type</string>
+    <string name="select_provider_type">Select Provider Type</string>
+    <string name="please_sign_in_to_continue">Please sign in to continue</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="email_address">Email Address</string>
+    <string name="continue_">Continue</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="did_not_recev_email">Didn\'t received email?</string>
+    <string name="not_receivd_code">Not received code?</string>
+    <string name="cant_login_help">Can\'t Login, Need help?</string>
+    <string name="swipe_right_to_left">Swipe right to left</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="accept_booking">Accept Booking</string>
+    <string name="hide_booking">Hide Booking</string>
+    <string name="add_availability_schedule">Add availability schedule</string>
+    <string name="this_refers_to_your_available_time_slot">This refers to your available time slot for patients/users to book you for their appointments.</string>
+    <string name="save_schedule">Save Schedule</string>
+    <string name="point_your_availability_for_appointment">Point your availability for Appointment</string>
+    <string name="_30_min_slots">30 Min Slots</string>
+    <string name="_2_4_6_8_12_hours">2,4,6,8,12 Hours</string>
+    <string name="booking_preferences">Booking Preferences</string>
+    <string name="add_service_radius">Add Service Radius</string>
+    <string name="set_the_kilometre_distance_radius_for_your_service_where_you_prefer_to_provide_service_and_not_outside">Set the kilometre distance Radius for your service. Where you prefer to provide service and not outside</string>
+    <string name="enter_address">Enter address</string>
+    <string name="point_your_service_location">Point Your Service Location</string>
+    <string name="sign_up">Sign up</string>
+    <string name="register_to_open_your_account">Register to open your Account</string>
+    <string name="sent_code_subtext">We have sent the code verification to your Email</string>
+    <string name="create_new_pwd_subtext">Your new password must be different from previous used passwords.</string>
+    <string name="forgot_password_subtext">Enter the email associated with your account and we\'ll send an email with instruction to reset your password.</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="create_account">Create Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="must_be_at_least_8_characters">Must be at least 8 characters.</string>
+    <string name="must_be_at_least_11_characters">Must be at least 8 characters.</string>
+    <string name="not_more_than_11_characters">Please type minimum 8 or 11 digits Health registration ID</string>
+    <string name="id_number_must_be_10">Must be between 10 to 15 characters or digits</string>
+    <string name="id_must_start_from_1_or_2">ID Number must be start from 1 or 2</string>
+    <string name="id_must_start_from_7">Id number must start with 7</string>
+
+    <string name="both_password_must_matched">Both passwords must match.</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_here">Login Here</string>
+    <string name="identity_number">Identity Number</string>
+    <string name="provide_id_number">Provide ID Number</string>
+    <string name="upload_photocopy_of_id">Upload Photocopy of ID</string>
+    <string name="no_attachment">No Attachment</string>
+    <string name="experience_certificates">Experience &amp; Certificates</string>
+    <string name="highest_qualification">Highest Qualification</string>
+    <string name="qualification">Qualification</string>
+    <string name="upload_certificate">Upload Certificate</string>
+    <string name="year_of_experiences">Years of Experience</string>
+    <string name="year_of_establish">Year of Establishment</string>
+    <string name="speciality_experience_amp_certificates">Speciality, Experience &amp; Certificates</string>
+    <string name="speciality">Speciality</string>
+    <string name="scfhs_registration_id">Health Registration ID</string>
+    <string name="moh_licence">MOH Licence</string>
+    <string name="moh_licence_number">MOH Licence Number</string>
+    <string name="company_registration_certificate">Company Registration Certificate</string>
+    <string name="registration_number">Registration Number</string>
+    <string name="select_a_topic">Select a Topic:</string>
+    <string name="select_a_day">Select Day</string>
+    <string name="write_your_issue_in_details_here">Write your issue in details here.</string>
+    <string name="upload_document">Upload Document</string>
+    <string name="attach_image_pdf_or_video_upto_25mb">Attach Image, PDF or Video upto 25MB.</string>
+    <string name="thank_you">Thank You</string>
+    <string name="successful">Successful</string>
+    <string name="close">Close</string>
+    <string name="congratulations_submission_text">Congratulations, Roots Care Submission is successfully done.</string>
+    <string name="congratulations_transaction_text">Congratulations, Roots Care Transaction is successfully done.</string>
+    <string name="tasks_you_as_wish_service_text">Select the Tasks you as wish to provide service.</string>
+    <string name="hours_you_as_wish_service_text">Select the Hours you as wish to provide service.</string>
+    <string name="booking_duration">Booking Duration</string>
+    <string name="as_selected">As Selected</string>
+    <string name="list_of_tasks">List of Tasks</string>
+    <string name="hourly_slot">Hourly Slot</string>
+    <string name="rate_">Rate</string>
+    <string name="price">Price</string>
+    <string name="please_select_topic">Please select a topic</string>
+    <string name="select_atleast_one_slot">Please select at least one task and price to continue</string>
+    <string name="slot_must_have_valid_price">Selected slot must have a valid price</string>
+    <string name="check_network_connection">Please check your network connection.</string>
+    <string name="transaction_and_more">Transaction &amp; More</string>
+    <string name="accept_or_disable_your_booking">Accept or Disable your booking</string>
+    <string name="booking_eligibility_radius">Booking Eligibility Radius</string>
+    <string name="current_location">Current Location</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="connected_bank_account">Connected Bank Account</string>
+    <string name="bank">Bank:</string>
+    <string name="a_c_name">A/C Name:</string>
+    <string name="ac_num">A/C No:</string>
+    <string name="address">Address</string>
+    <string name="address_with_colon">Address:</string>
+    <string name="bank_account">Bank Account</string>
+    <string name="add_bank">Add Bank</string>
+     <string name="id">Id</string>
+    <string name="date">Date</string>
+    <string name="amount">Amount</string>
+    <string name="payment">Payment</string>
+    <string name="status">Status</string>
+    <string name="type_text">Type</string>
+    <string name="add_bank_details">Add Bank Details</string>
+    <string name="bank_detail_text_info">This bank account will be used to withdraw your available funds. You must add a valid bank account details with the same name which verifies its you the owner who receiving the money and not third person</string>
+    <string name="bank_name_">Bank Name</string>
+    <string name="account_name">Account Name</string>
+    <string name="account_number">Account Number</string>
+    <string name="confirm_account_number">Confirm Account Number</string>
+    <string name="ibn_code">IBN Code</string>
+    <string name="bank_account_address">Bank Account Address</string>
+    <string name="you_agree_text_add_bank"><![CDATA[By adding an account, you agree on all the information provided are correct & genuine.]]></string>
+    <string name="rated">Rated</string>
+    <string name="time">Time</string>
+    <string name="patient">Patient</string>
+    <string name="booked">Booked:</string>
+    <string name="booked_on">Booked On:</string>
+    <string name="view_details">View Details</string>
+    <string name="video_call">Video Call</string>
+    <string name="hospital">Hospital</string>
+    <string name="hospital_name">Hospital Name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit">Edit</string>
+    <string name="experience">Experience</string>
+    <string name="bookings">Bookings</string>
+    <string name="rating">Rating</string>
+    <string name="important_details">Important Details</string>
+    <string name="document">Document</string>
+    <string name="swift_optional_number">Swift Number(Optional)</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="post_your_issue_text">Post your issue here, we will call you in 24-48 business hours. Or you if you have anything urgent call us at +44 8978 6363 00 number.</string>
+    <string name="non_editable">Non Editable</string>
+    <string name="add_more_speciality">Add More Speciality</string>
+    <string name="add_more_qualifications">Add More Qualifications</string>
+    <string name="about">About</string>
+    <string name="upload_photocopy_of_reg_id">Upload Photocopy of Reg. ID</string>
+    <string name="upload_photocopy_of_licen">Upload Photocopy of license</string>
+    <string name="full_name">Full Name</string>
+    <string name="appointment_date">Appointment Date</string>
+    <string name="appointment_schedule">Appointment Schedule</string>
+    <string name="appointment_time">Appointment Time</string>
+    <string name="prescription">Prescription</string>
+    <string name="booking_id">Booking ID:</string>
+    <string name="patient_details">Patient Details</string>
+    <string name="open_google_map">Open Google Map</string>
+    <string name="call">Call</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="enter_otp_to_complete">Enter OTP to Complete</string>
+    <string name="otp_already_successfully">OTP already entered successfully</string>
+    <string name="distance_fare">Distance Fare</string>
+    <string name="not_rated_yet">Not Rated Yet</string>
+    <string name="profile">Profile</string>
+    <string name="appointment_details">Appointment Details</string>
+    <string name="appointment">Appointment</string>
+    <string name="warninig">Warning</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="do_realy_want_to_reject_appointment">Are you sure to reject this appointment?</string>
+    <string name="do_realy_want_to_accept_appointment">Are you sure to accept this appointment?</string>
+    <string name="registration">Registration</string>
+    <string name="notification">Notification</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_again">Send Again</string>
+    <string name="registered_email">Registered Email</string>
+    <string name="open_email_check_inbox_or_spam">Open your email app, check inbox or spam.</string>
+    <string name="otp_verification_code">OTP Verification Code</string>
+    <string name="post_issue">Post Issue</string>
+    <string name="netork_status">Network Status</string>
+    <string name="review">Review</string>
+    <string name="search">Search</string>
+    <string name="end_time_should_be_greater">End time should be greater than start time</string>
+    <string name="provider">Provider</string>
+    <string name="fee">Fee</string>
+    <string name="admin">Admin</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="by_creating_agree_">By creating an account, you agree to our</string>
+    <string name="online_and_home_consultation">Online &amp; Home Visit Consultation</string>
+    <string name="min_15_slots">15 Min Slots</string>
+    <string name="min_45_slots">45 Min Slots</string>
+    <string name="switch_to_enable_task">Switch on the task if you wish to provide service</string>
+    <string name="head_txt_add_radius_for_doctor">Add Service Radius for Home Visit Consultation</string>
+    <string name="kilometer_desc_for_doctor">Set the Kilometre Distance Radius for your Home visit Consultation service, where you prefer to provide service and not outside.</string>
+    <string name="online_cons">Online Consultation</string>
+    <string name="home_visit_cons">Home Visit Consultation</string>
+    <string name="use_mobile_number_note">Please enter valid mobile number</string>
+    <string name="patient_symptom">Patient Symptom</string>
+    <string name="view">View</string>
+    <string name="download">Download</string>
+    <string name="prescription_downloaded_success">Prescription is downloaded successfully</string>
+    <string name="symptom_description">Symptom description</string>
+    <string name="provide_email">Please provide email</string>
+    <string name="enter_hospital_name">Please enter your hospital name</string>
+    <string name="enter_your_name">Please enter name</string>
+    <string name="enter_valid_email">Please enter valid email id</string>
+    <string name="enter_mobile_number">Please enter mobile number</string>
+    <string name="select_dob">Please select your dob</string>
+    <string name="select_gender">Please select gender</string>
+    <string name="enter_password">Please enter password!</string>
+    <string name="enter_cnf_pwd">Please enter confirm password</string>
+    <string name="pwd_not_matched">Password and confirm password not matched</string>
+    <string name="provide_id_proof">Please provide ID Proof</string>
+    <string name="provide_speciality">Please provide Speciality</string>
+    <string name="provide_qualification">Please provide Qualification</string>
+    <string name="provide_experience">Please provide Experience</string>
+    <string name="provide_qualification_proof">Please provide Qualification Proof</string>
+    <string name="provide_scfhs_reg_id">Please provide health Registration ID</string>
+    <string name="provide_scfhs_proof">Please provide health Registration Proof</string>
+    <string name="no_more_data_available">No More data available</string>
+    <string name="select_action">Select Action</string>
+    <string name="select_photo_from_gallary">Select photo from gallery</string>
+    <string name="capture_photo">Capture photo from camera</string>
+    <string name="permission_granted">Permissions granted.</string>
+    <string name="permission_denied">Permissions denied.</string>
+    <string name="re_upload">Re-Upload</string>
+    <string name="search_for_area_street_name">Search for area, street name..</string>
+    <string name="using_gps_of_your_device">Using GPS of your device</string>
+    <string name="manage_location">Manage Location</string>
+    <string name="video_consultation">Video Consultation</string>
+
+    <string name="edit_hospital">Edit Hospital</string>
+    <string name="doctors_appointment">Doctors appointment</string>
+    <string name="lab_appointments">Lab Appointments</string>
+    <string name="manage_doctor_amp_lab">Manage Doctor &amp; Lab</string>
+    <string name="appointments_doctors_amp_lab">Appointments, Doctors, &amp; Lab</string>
+    <string name="manage_all_lab_bookings">Manage all Lab Bookings</string>
+    <string name="create_manage_doctor_amp_lab"><![CDATA[Create, manage - Doctor & Lab]]></string>
+    <string name="sure_to_logout">Are you sure you want to logout?</string>
+    <string name="create_new">Create New</string>
+    <string name="delete_this_doctor">Delete This Doctor</string>
+    <string name="disable_this_doctor">Disable This Doctor</string>
+    <string name="edit_doctor">Edit Doctor</string>
+    <string name="edit_or_create_doctor_profile_desc">Edit or create Doctor profile under hospital authority, hospitals can manage doctors.</string>
+    <string name="established">Established</string>
+    <string name="doctors">Doctors</string>
+    <string name="departments">Departments</string>
+    <string name="no_important_doc_found">No important document found!</string>
+    <string name="no_depart_found">No department found</string>
+    <string name="hosp_can_do_for_doc">Hospital can create doctors under their account as many as they want, but each doctors will be verified by admin before they start taking booking in Rootscare App.</string>
+    <string name="hosp_can_do_for_lab">Hospital can create Lab under their account. Hospital can edit lab information and can receive bookings in Hospital app.</string>
+    <string name="create_doctor">Create Doctor</string>
+    <string name="create_lab">Create Lab</string>
+    <string name="edit_lab">Edit Lab</string>
+    <string name="edit_or_create_lab_desc">Edit or create Lab profile under hospital authority, hospitals can manage doctors.</string>
+    <string name="lab_name">Lab Name</string>
+    <string name="disable_this_lab">Disable This Lab</string>
+    <string name="del_this_lab">Delete This Lab</string>
+    <string name="enter_lab_name">Enter lab name</string>
+    <string name="lab_test">Lab Test</string>
+    <string name="select_depart">Select department</string>
+    <string name="add_more">Add More</string>
+    <string name="search_by_order_id">Search by Order ID</string>
+    <string name="done">Done</string>
+    <string name="provide_address">Please provide address</string>
+    <string name="provide_year_of_establishment">Please select year of establishment</string>
+    <string name="select">Select</string>
+    <string name="where_do_you_want_to_give_your_medical_service">Where do you want to give your Medical service?</string>
+    <string name="provide_service_area">Provide your service area</string>
+    <string name="user_type">User Type</string>
+    <string name="update">Update</string>
+    <string name="update_patient">Update Patient</string>
+</resources>

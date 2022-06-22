@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/common_bg"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewBack"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:padding="5dp"
+                        android:src="@drawable/back_white_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageViewLogo"
+                        app:layout_constraintEnd_toStartOf="@+id/imageViewLogo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/imageViewLogo" />
+
+
+                    <ImageView
+                        android:id="@+id/imageViewLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:src="@drawable/logo_with_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_registration_setp_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:id="@+id/txt_image_select_name"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/login_edit_bg"
+                            android:hint="Profile Image"
+
+                            android:padding="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textColor="@color/text_hint_color"
+                            android:textColorHint="@color/text_hint_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_reg_image_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_alignTop="@+id/txt_image_select_name"
+                            android:layout_alignBottom="@+id/txt_image_select_name"
+                            android:layout_toEndOf="@+id/txt_image_select_name"
+                            android:background="@drawable/blue_booking_bg">
+
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/blue_booking_bg"
+                                android:drawableEnd="@drawable/upload_icon"
+                                android:gravity="center"
+                                android:padding="@dimen/_3sdp"
+                                android:text="UPLOAD"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dp12"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCertificate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="20"
+                                android:text="Add Certificates"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/imageViewaddCertificate"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/add_btn_bg" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewCertificates"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_3sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:padding="@dimen/_4sdp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <!--<RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:id="@+id/txt_certificate"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/login_edit_bg"
+                            android:hint="Highest Certificate"
+                            android:padding="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textColor="@color/text_hint_color"
+                            android:textColorHint="@color/text_hint_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_reg_certificate_upload"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/txt_certificate"
+                            android:background="@drawable/blue_booking_bg">
+
+                            <com.rootscare.customviews.neusatextview.MyNeusaExtraBoldTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/blue_booking_bg"
+                                android:drawableEnd="@drawable/upload_icon"
+                                android:gravity="center"
+                                android:padding="@dimen/dp15"
+                                android:text="UPLOAD"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dp12"
+                                android:textStyle="bold"
+
+                                />
+                        </LinearLayout>
+
+
+                        <com.rootscare.customviews.MyCustomButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_toEndOf="@+id/txt_certificate"
+                            android:background="@drawable/reg_add_more"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_reg_highest_qualification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:hint="Highest Qualification"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyTextView
+                        android:id="@+id/txt_reg_passing_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:drawableEnd="@drawable/down_arrow_white"
+                        android:hint="Passing Year"
+                        android:maxLength="4"
+                        android:padding="@dimen/dp12"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_reg_institute"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:hint="Institute"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/dp12" />-->
+
+                    <com.rootscare.customviews.MyCustomButton
+                        android:id="@+id/btn_rooscare_serviceprovider_registration_steptwo_continue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/square_bg"
+                        android:drawableEnd="@drawable/btn"
+                        android:padding="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Continue"
+                        android:textColor="@color/text_hint_color"
+                        android:textSize="@dimen/dp14" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/dp5"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginHorizontal="@dimen/dp8"
+            android:background="@drawable/rounded_grey_bg_search_loc"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/search_for_area_street_name"
+            android:maxLines="1"
+            android:padding="@dimen/dp10"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/txt_dash_heading"
+            android:textColorHint="@color/colorTxtGrey1"
+            android:textSize="@dimen/dp15"
+            app:layout_constraintBottom_toBottomOf="@+id/img_back_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_back_arrow"
+            app:layout_constraintTop_toTopOf="@+id/img_back_arrow" />
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginEnd="@dimen/dp5"
+            android:background="@drawable/ic_back_green_rect"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/search_new_white"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_search"
+            app:layout_constraintEnd_toEndOf="@+id/edt_search"
+            app:layout_constraintTop_toTopOf="@+id/edt_search" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cns_currLoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_search">
+
+            <ImageView
+                android:id="@+id/imlc"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/dp6"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/ic_baseline_my_location_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvh_lc"
+                style="@style/AppTheme.TextRegular"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/dp8"
+                android:gravity="center_vertical"
+                android:text="@string/current_location"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp15"
+                app:layout_constraintBottom_toBottomOf="@+id/imlc"
+                app:layout_constraintStart_toEndOf="@+id/imlc"
+               app:layout_constraintTop_toTopOf="@+id/imlc" />
+
+            <TextView
+                android:id="@+id/tv_gps_location"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp4"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="1"
+                android:text="@string/using_gps_of_your_device"
+                android:textColor="@color/txt_sub_heading"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintStart_toStartOf="@+id/tvh_lc"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_lc" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/dp16"
+                android:background="@color/colorTxtGrey1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_gps_location"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gps_location" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

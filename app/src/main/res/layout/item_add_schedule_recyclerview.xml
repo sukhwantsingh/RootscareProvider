@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data></data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--<com.rootscare.customviews.MyEditTextView
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/edt_add_schedule_slot"
+                android:layout_weight="1"
+                android:hint="Slot"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/_10ssp"
+                android:textColorHint="@color/txt_color"
+                android:gravity="center"
+                android:background="@drawable/edit_comm_bg"/>-->
+            <com.rootscare.customviews.MyTextView
+                android:id="@+id/edt_add_schedule_starttime"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_comm_bg"
+                android:gravity="center"
+                android:hint="Start Time"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/txt_color"
+                android:textColorHint="@color/txt_color"
+                android:textSize="@dimen/_10ssp" />
+
+            <com.rootscare.customviews.MyTextView
+                android:id="@+id/edt_add_schedule_endtime"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_comm_bg"
+                android:gravity="center"
+                android:hint="End time"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/txt_color"
+                android:textColorHint="@color/txt_color"
+                android:textSize="@dimen/_10ssp" />
+
+            <ImageView
+                android:id="@+id/img_remove"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_weight="0.1"
+                android:padding="@dimen/_1sdp"
+                android:src="@drawable/remove" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>

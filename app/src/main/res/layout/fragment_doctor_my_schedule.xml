@@ -1,0 +1,1521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="curRef"
+            type="com.rootscare.serviceprovider.ui.doctor.doctormyschedule.FragmentDoctorMyschedule" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Online Appointments"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold" />
+                           <LinearLayout
+                               android:id="@+id/llScheduleForOnlineAppointments"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="@dimen/_10sdp"
+                               android:background="@color/white"
+                               android:orientation="vertical"
+                               android:paddingTop="@dimen/_10sdp"
+                               android:paddingBottom="@dimen/_10sdp">
+
+                               <com.rootscare.customviews.MyTextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:paddingHorizontal="@dimen/_10sdp"
+                                   android:text="Add availability schedule"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_13ssp"
+                                   android:textStyle="bold" />
+
+
+                               <com.rootscare.customviews.MyTextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:layout_marginTop="@dimen/_10sdp"
+                                   android:paddingHorizontal="@dimen/_10sdp"
+                                   android:text="This refers to your available time slot for patients/users to book you for their appointments."
+                                   android:textColor="@color/colorTxtGrey"
+                                   android:textSize="@dimen/_11ssp"
+                                   android:textStyle="bold" />
+                               <com.rootscare.customviews.MyTextView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="@dimen/_10sdp"
+                                   android:paddingHorizontal="@dimen/_10sdp"
+                                   android:text="Accept or Disable your booking"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_12ssp"
+                                   android:textStyle="bold" />
+                               <RadioGroup
+                                   android:id="@+id/rbBookingt"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:orientation="horizontal"
+                                   android:paddingHorizontal="@dimen/_10sdp"
+                                   android:weightSum="1">
+
+                                   <RadioButton
+                                       android:id="@+id/rbAcceptt"
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight=".5"
+                                       android:text="Accept Booking"
+                                       android:textColor="@color/colorTxtGrey"
+                                       android:textSize="@dimen/_12ssp"
+                                       android:theme="@style/RadioButtonTheme" />
+
+                                   <RadioButton
+                                       android:id="@+id/rbHidet"
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight=".5"
+                                       android:foregroundTint="@color/colorPrimary"
+                                       android:text="Hide Booking"
+                                       android:textColor="@color/colorTxtGrey"
+                                       android:textSize="@dimen/_12ssp"
+                                       android:theme="@style/RadioButtonTheme" />
+                               </RadioGroup>
+                               <LinearLayout
+                                   android:id="@+id/llHideAcceptt"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:orientation="vertical"
+                                   android:visibility="gone">
+
+
+                                   <com.rootscare.customviews.MyTextView
+                                       android:id="@+id/tvh_bokingPrefoa"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginTop="@dimen/_10sdp"
+                                       android:paddingHorizontal="@dimen/_10sdp"
+                                       android:text="Booking Preferences"
+                                       android:textColor="@color/black"
+                                       android:textSize="@dimen/_12ssp"
+                                       android:textStyle="bold" />
+
+                                   <LinearLayout
+                                       android:id="@+id/ll_bokingPrefoa"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:orientation="horizontal"
+                                       android:paddingHorizontal="@dimen/_10sdp"
+                                       android:weightSum="1">
+
+                                       <RadioButton
+                                           android:id="@+id/rbTaskt"
+                                           android:layout_width="0dp"
+                                           android:layout_height="wrap_content"
+                                           android:layout_weight=".5"
+                                           android:clickable="false"
+                                           android:text="30 Min Slots"
+                                           android:textColor="@color/colorTxtGrey"
+                                           android:textSize="@dimen/_12ssp"
+                                           android:theme="@style/RadioButtonTheme" />
+
+                                       <RadioButton
+                                           android:id="@+id/rbHourst"
+                                           android:layout_width="0dp"
+                                           android:layout_height="wrap_content"
+                                           android:layout_weight=".5"
+                                           android:clickable="false"
+                                           android:text="2,4,6,8,12 Hours"
+                                           android:textColor="@color/colorTxtGrey"
+                                           android:textSize="@dimen/_12ssp"
+                                           android:theme="@style/RadioButtonTheme" />
+                                   </LinearLayout>
+
+                                   <com.rootscare.customviews.MyTextView
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginTop="@dimen/_10sdp"
+                                       android:paddingHorizontal="@dimen/_10sdp"
+                                       android:text="Point your availability for Appointment"
+                                       android:textColor="@color/black"
+                                       android:textSize="@dimen/_12ssp"
+                                       android:textStyle="bold" />
+
+                                   <LinearLayout
+                                           android:id="@+id/llOnet"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:layout_marginTop="@dimen/_10sdp"
+                                           android:orientation="horizontal"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sMont"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvMont"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="MON"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+                                                  <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvMonStartt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvMonEndt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+
+                                       </LinearLayout>
+
+                                   <LinearLayout
+                                           android:id="@+id/llTwot"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_gravity="center"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sTuet"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvTuet"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="TUE"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvTueStartt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvTueEndt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+
+                                       </LinearLayout>
+
+                                  <LinearLayout
+                                           android:id="@+id/llWedt"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sWedt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvWedt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="WED"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvWedStartt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvWedEndt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+
+                                       </LinearLayout>
+
+                                   <LinearLayout
+                                           android:id="@+id/llThut"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sThurt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvThut"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="THU"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvThurStartt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvThurEndt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+                                       </LinearLayout>
+
+                                   <LinearLayout
+                                           android:id="@+id/llFrit"
+                                            android:paddingVertical="@dimen/_5sdp"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sfrit"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvFrit"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="FRI"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvFriStartt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvFriEndt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+                                       </LinearLayout>
+
+                                   <LinearLayout
+                                           android:id="@+id/llSatt"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sSatt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvSatt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="SAT"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvStartSatt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvEndSatt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+
+                                       </LinearLayout>
+
+                                   <LinearLayout
+                                           android:id="@+id/llSunt"
+                                           android:paddingVertical="@dimen/_5sdp"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center_vertical"
+                                           android:orientation="horizontal"
+                                           android:paddingHorizontal="@dimen/_10sdp">
+
+                                           <Switch
+                                               android:id="@+id/sSunt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+
+                                               android:theme="@style/RadioButtonTheme" />
+
+                                           <com.rootscare.customviews.MyTextView
+                                               android:id="@+id/tvSunt"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:gravity="center"
+                                               android:text="SUN"
+                                               android:textColor="@color/colorPrimary"
+                                               android:textSize="@dimen/dp12"
+                                               android:textStyle="bold" />
+
+
+                                           <LinearLayout
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:gravity="end">
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvStartSunt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:layout_marginRight="@dimen/_10sdp"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 AM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+
+
+                                               <com.rootscare.customviews.MyTextView
+                                                   android:id="@+id/tvEndSunt"
+                                                   android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="center"
+                                                   android:background="@drawable/schedule_bg_slot"
+                                                   android:drawableRight="@drawable/drop_down_new"
+                                                   android:drawablePadding="@dimen/_4sdp"
+                                                   android:gravity="center"
+                                                   android:paddingHorizontal="@dimen/_4sdp"
+                                                   android:paddingVertical="@dimen/_4sdp"
+                                                   android:text="08:30 PM"
+                                                   android:textColor="@color/black"
+                                                   android:textSize="@dimen/dp12"
+                                                   android:textStyle="bold" />
+                                           </LinearLayout>
+
+                                       </LinearLayout>
+
+                               </LinearLayout>
+
+                           </LinearLayout>
+
+                           <com.rootscare.customviews.MyCustomButton
+                               android:id="@+id/btnSaveona"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentBottom="true"
+                               android:layout_marginHorizontal="@dimen/_30sdp"
+                               android:layout_marginTop="@dimen/_10sdp"
+                               android:layout_marginBottom="@dimen/_10sdp"
+                               android:background="@drawable/square_bg"
+                               android:padding="@dimen/_10sdp"
+                               android:paddingBottom="@dimen/_5sdp"
+                               android:text="Save Schedule"
+                               android:textColor="@color/text_hint_color"
+                               android:textSize="@dimen/_14ssp"
+                               app:layout_constraintBottom_toBottomOf="parent" />
+                    <TextView
+                        android:id="@+id/tvh_hva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Home Visit Appointment"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:id="@+id/llScheduleLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Add availability schedule"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13ssp"
+                            android:textStyle="bold" />
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="This refers to your available time slot for patients/users to book you for their appointments."
+                            android:textColor="@color/colorTxtGrey"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold" />
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Accept or Disable your booking"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/rbBooking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:weightSum="1">
+
+                            <RadioButton
+                                android:id="@+id/rbAccept"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:text="Accept Booking"
+                                android:textColor="@color/colorTxtGrey"
+                                android:textSize="@dimen/_12ssp"
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <RadioButton
+                                android:id="@+id/rbHide"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:text="Hide Booking"
+                                android:textColor="@color/colorTxtGrey"
+                                android:textSize="@dimen/_12ssp"
+                                android:theme="@style/RadioButtonTheme" />
+                        </RadioGroup>
+                        <LinearLayout
+                            android:id="@+id/llHideAccept"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+
+                            <com.rootscare.customviews.MyTextView
+                                android:id="@+id/tvh_bokingPrefha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:text="Booking Preferences"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:id="@+id/llbokingPrefhva"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:weightSum="1">
+
+                                <RadioButton
+                                    android:id="@+id/rbTask"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".5"
+                                    android:clickable="false"
+                                    android:text="30 Min Slots"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rbHours"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".5"
+                                    android:clickable="false"
+                                    android:text="2,4,6,8,12 Hours"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+                            </LinearLayout>
+
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:text="Point your availability for Appointment"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:id="@+id/llOne"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sMon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvMon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="MON"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvMonStart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvMonEnd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llTwo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sTue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvTue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="TUE"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvTueStart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvTueEnd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llWed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sWed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvWed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="WED"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvWedStart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvWedEnd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llThu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sThur"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvThu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="THU"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvThurStart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvThurEnd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llFri"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sfri"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvFri"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="FRI"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvFriStart"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvFriEnd"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llSat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sSat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvSat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="SAT"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvStartSat"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvEndSat"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llSun"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_5sdp">
+
+                                <Switch
+                                    android:id="@+id/sSun"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <com.rootscare.customviews.MyTextView
+                                    android:id="@+id/tvSun"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="SUN"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp12"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end">
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvStartSun"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+
+
+                                    <com.rootscare.customviews.MyTextView
+                                        android:id="@+id/tvEndSun"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/schedule_bg_slot"
+                                        android:drawableRight="@drawable/drop_down_new"
+                                        android:drawablePadding="@dimen/_4sdp"
+                                        android:gravity="center"
+                                        android:paddingHorizontal="@dimen/_4sdp"
+                                        android:paddingVertical="@dimen/_4sdp"
+                                        android:text="08:30 PM"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/dp12"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llAddRadiusService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:visibility="gone">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Add Service Radius"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13ssp"
+                            android:textStyle="bold" />
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Set the kilometre distance Radius for your service. Where you prefer to provide service and not outside"
+                            android:textColor="@color/colorTxtGrey"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold" />
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Booking Eligibility Radius"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/rbRadiusService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/dp8">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                                <RadioButton
+                                    android:id="@+id/rb15km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".25"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="15km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb30km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="30km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb50km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="50km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb75km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="75km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                                <RadioButton
+                                    android:id="@+id/rb100km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".25"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="100km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb125km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="125km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb150km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="150km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                                <RadioButton
+                                    android:id="@+id/rb200km"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp8"
+                                    android:layout_weight=".25"
+                                    android:foregroundTint="@color/colorPrimary"
+                                    android:onClick="@{(v)-> curRef.selectRadiusRadio(v)}"
+                                    android:text="200km"
+                                    android:textColor="@color/colorTxtGrey"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:theme="@style/RadioButtonTheme" />
+
+                            </LinearLayout>
+                        </RadioGroup>
+
+
+                    </LinearLayout>
+
+
+                    <com.rootscare.customviews.MyCustomButton
+                        android:id="@+id/btnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginHorizontal="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/square_bg"
+                        android:padding="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Save Schedule"
+                        android:textColor="@color/text_hint_color"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

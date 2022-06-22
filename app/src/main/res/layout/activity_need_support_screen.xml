@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_30sdp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp16" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dimen_16dp" />
+
+            <include
+                android:id="@+id/top_toolbar"
+                layout="@layout/common_header" />
+
+            <View
+                android:id="@+id/vgtop"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@color/new_bg_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_toolbar" />
+
+            <TextView
+                android:id="@+id/tvh_needsupport"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:drawablePadding="@dimen/dp8"
+                android:paddingVertical="@dimen/dp14"
+                android:text="@string/need_support"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp14"
+                app:drawableStartCompat="@drawable/ic_need_support"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/vgtop" />
+
+            <View
+                android:id="@+id/vl5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@color/divider_support_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_needsupport" />
+
+            <TextView
+                android:id="@+id/tvsh1"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="0dp"
+                android:paddingVertical="@dimen/dp8"
+                android:text="@string/post_your_issue_text"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/vl5" />
+
+            <TextView
+                android:id="@+id/tvh_st"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/dp12"
+                android:text="@string/select_a_topic"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp14"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvsh1" />
+
+            <TextView
+                android:id="@+id/tv_select_topic"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/dp4"
+                android:background="@drawable/round_dropdown_background"
+                android:gravity="center_vertical"
+                android:hint="Select issue"
+                android:padding="@dimen/dp12"
+                android:textColor="@color/txt_dash_heading"
+                android:textColorHint="@color/txt_dash_heading"
+                android:textSize="@dimen/dp15"
+                app:drawableEndCompat="@drawable/ic_dropdown_arrow"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_st" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_desc"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tv_select_topic">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_regular"
+                    android:gravity="start"
+                    android:hint="@string/write_your_issue_in_details_here"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:minHeight="@dimen/_130sdp"
+                    android:textColor="@color/txt_dash_heading"
+                    android:textSize="@dimen/dp15" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--
+              Will do in 2nd phase
+              <RelativeLayout
+                    android:id="@+id/rl_btm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/gr"
+                    app:layout_constraintStart_toEndOf="@+id/gl"
+                    app:layout_constraintTop_toBottomOf="@+id/til_desc">
+
+                    <TextView
+                        android:id="@+id/tvh_uplaod_doc"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="@string/upload_document"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        android:id="@+id/tv_noattachement"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/tvh_uplaod_doc"
+                        android:gravity="end"
+                        android:paddingStart="@dimen/dp8"
+                        android:paddingEnd="@dimen/dimen_0dp"
+                        android:text="@string/no_attachment"
+                        android:textColor="@color/colorTxtGrey1"
+                        android:textSize="@dimen/dp14" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvh_attchimvdetc"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/attach_image_pdf_or_video_upto_25mb"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintStart_toStartOf="@+id/rl_btm"
+                    app:layout_constraintTop_toBottomOf="@+id/rl_btm" />
+    -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit"
+                style="@style/AppTheme.BtnMediumBlue"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textSize="@dimen/dp14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/til_desc"
+                app:layout_constraintVertical_bias=".9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

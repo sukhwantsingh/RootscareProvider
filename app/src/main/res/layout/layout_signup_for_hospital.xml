@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp4"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tvh_moh_license"
+            style="@style/AppTheme.TextMedium"
+            android:gravity="center_vertical"
+            android:text="@string/moh_licence"
+            android:textColor="@color/txt_dash_heading"
+            android:textSize="@dimen/dp15" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_hosp_moh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_regular"
+                android:hint="@string/moh_licence_number"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="25"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp15" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp2">
+
+            <TextView
+                android:id="@+id/tvh_hosp_upload_photocopy"
+                style="@style/AppTheme.TextMedium"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingVertical="@dimen/dp5"
+                android:text="@string/upload_photocopy_of_id"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/tv_hosp_no_attachment_photocopy"
+                style="@style/AppTheme.TextRegular"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_toEndOf="@+id/tvh_hosp_upload_photocopy"
+                android:gravity="end"
+                android:singleLine="true"
+                android:text="@string/no_attachment"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvh_hosp_certificates"
+            style="@style/AppTheme.TextMedium"
+            android:layout_marginTop="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="@string/company_registration_certificate"
+            android:textColor="@color/txt_dash_heading"
+            android:textSize="@dimen/dp15" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_hosp_registration_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_regular"
+                android:hint="@string/registration_number"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp15" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp2">
+
+            <TextView
+                android:id="@+id/tvh_hosp_upload_certificate"
+                style="@style/AppTheme.TextMedium"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="@string/upload_certificate"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/tv_hosp_attachement_certificate"
+                style="@style/AppTheme.TextRegular"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_toEndOf="@+id/tvh_hosp_upload_certificate"
+                android:gravity="end"
+                android:singleLine="true"
+                android:text="@string/no_attachment"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

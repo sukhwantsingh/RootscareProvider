@@ -1,0 +1,7 @@
+package com.rootscare.serviceprovider.ui.labtechnician.labtechnicianmyappointment.subfragment
+
+import com.rootscare.serviceprovider.ui.base.BaseViewModel
+import com.rootscare.serviceprovider.ui.labtechnician.labtechnicianmyappointment.FragmentLabtechnicianMyAppointmentNavigator
+
+class FragmentLabTechnicianMyAppointmentDetailsViewModel : BaseViewModel<FragmentLabTechnicianMyAppointmentDetailsNavigator>() {
+}

@@ -1,0 +1,4 @@
+package com.rootscare.serviceprovider.ui.labtechnician.labtechnicianmyappointment.subfragment
+
+interface FragmentLabTechnicianMyAppointmentDetailsNavigator {
+}

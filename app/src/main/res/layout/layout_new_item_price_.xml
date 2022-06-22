@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_item_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp2"
+        android:background="@color/price_bg_item"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/dp16">
+
+        <LinearLayout
+            android:id="@+id/llsw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/edtPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Switch
+                android:id="@+id/sw_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp14" />
+
+            <TextView
+                android:id="@+id/tv_task"
+                style="@style/AppTheme.TextRegular"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp5"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/dp14"
+                tools:text="Muscle Injection Lorium ispsum " />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtPrice"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@color/price_bg"
+            android:digits="0123456789"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center"
+            android:hint="@string/price"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="6"
+            android:padding="@dimen/dp3"
+            android:singleLine="true"
+            android:textColor="@color/price_txt_heading"
+            android:textSize="@dimen/dp12"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/llsw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/llsw"
+            tools:text="12345" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_item_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp2"
+        android:background="@color/price_bg_item"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/dp16"
+        android:paddingVertical="@dimen/dp8">
+
+        <TextView
+            android:id="@+id/tv_heading"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="Bank Withdrawal"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintEnd_toStartOf="@+id/tvPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/AppTheme.TextRegular"
+            android:text="-650 SAR"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_heading" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/AppTheme.TextRegular"
+            android:text="05-Jan-22"
+            android:textColor="@color/colorTxtGrey1"
+            android:textSize="@dimen/dp10"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="@+id/tv_heading"
+            app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

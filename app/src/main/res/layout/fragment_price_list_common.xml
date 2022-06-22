@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/ll_mainlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvh1"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="match_parent"
+                android:paddingVertical="@dimen/dp12"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16"
+                android:textColor="@color/price_txt_heading"
+                android:textSize="@dimen/dp15" />
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_below="@+id/tvh1"
+                android:background="@color/divider_support_more"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16" />
+
+            <RelativeLayout
+                android:id="@+id/rl_bkd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v1"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16">
+
+                <TextView
+                    android:id="@+id/tvh_bdc"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_centerVertical="true"
+                    android:text="@string/booking_duration"
+                    android:textColor="@color/price_txt_heading"
+                    android:textSize="@dimen/dp14" />
+
+
+                <RadioButton
+                    android:id="@+id/rd_30min_slots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:checked="true"
+                    android:fontFamily="@font/rubik_medium"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:text="@string/_30_min_slots"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/tv_booking_duration_hourly"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/tvh_bdc"
+                    android:gravity="end"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:paddingStart="@dimen/dp8"
+                    android:paddingEnd="@dimen/dimen_0dp"
+                    android:text="@string/as_selected"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp14"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/v2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_below="@+id/rl_bkd"
+                android:background="@color/divider_support_more"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16" />
+
+            <RelativeLayout
+                android:id="@+id/rl_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v2"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/dp16"
+                android:paddingEnd="@dimen/dp16">
+
+                <TextView
+                    android:id="@+id/tvhlt"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_centerVertical="true"
+                    android:text="@string/list_of_tasks"
+                    android:textColor="@color/price_txt_heading"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/tv_rate"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/tvhlt"
+                    android:gravity="end"
+                    android:paddingStart="@dimen/dp8"
+                    android:paddingEnd="@dimen/dimen_0dp"
+                    android:textColor="@color/price_txt_heading"
+                    android:textSize="@dimen/dp14"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pricelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btnSubmit"
+                android:layout_below="@+id/rl_heading"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/layout_new_item_price_" />
+
+            <TextView
+                android:id="@+id/tv_no_date"
+                style="@style/AppTheme.TextRegular"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dp3"
+                android:gravity="center"
+                android:text="@string/no_data"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"
+                android:layout_above="@+id/btnSubmit"
+                android:layout_below="@+id/rl_heading" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                style="@style/AppTheme.BtnMediumBlue"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/dp16"
+                android:layout_marginBottom="@dimen/dp20"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

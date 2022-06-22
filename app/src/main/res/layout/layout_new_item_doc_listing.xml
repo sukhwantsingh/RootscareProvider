@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdview_appoitment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp4"
+        app:cardElevation="@dimen/dp2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp16">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                android:layout_width="@dimen/dp77"
+                android:layout_height="@dimen/dp77"
+                app:civ_border_color="@color/indicator_color"
+                app:civ_border_width="@dimen/dp1"
+                android:src="@drawable/profile_no_image" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp8"
+                android:layout_toStartOf="@+id/tv_editprofile"
+                android:layout_toEndOf="@+id/img_profile"
+                android:textColor="@color/txt_color_profile_desc"
+                android:textSize="@dimen/dp16"
+                android:text="Demo Name" />
+
+            <TextView
+                android:id="@+id/tv_editprofile"
+                style="@style/AppTheme.TextRegular"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@drawable/rd_border_grey_edit_profle"
+                android:clickable="true"
+                android:drawablePadding="@dimen/dp8"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/dp8"
+                android:paddingVertical="@dimen/dp5"
+                android:text="@string/edit"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp14"
+                android:visibility="visible"
+                app:drawableStartCompat="@drawable/ico_edit" />
+
+            <TextView
+                android:id="@+id/tvh_speciality_header"
+                style="@style/AppTheme.TextRegular"
+                android:layout_below="@+id/tv_username"
+                android:layout_alignStart="@+id/tv_username"
+                android:layout_marginTop="@dimen/dp3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp14"
+                android:text="Demo spciality" />
+
+            <LinearLayout
+                android:id="@+id/ll_em_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvh_speciality_header"
+                android:layout_alignStart="@+id/tv_username"
+                android:layout_alignBottom="@+id/img_profile"
+                android:layout_marginTop="@dimen/dp6"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvemail"
+                    style="@style/AppTheme.TextRegular"
+                    android:drawablePadding="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp11"
+                    app:drawableStartCompat="@drawable/ico_email"
+                    android:text="anant@outlook.com" />
+
+                <TextView
+                    android:id="@+id/tvphn"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:drawablePadding="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp11"
+                    android:singleLine="true"
+                    app:drawableStartCompat="@drawable/ico_call"
+                    android:text="8989555556" />
+
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cns_cba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_em_phone"
+                android:paddingTop="@dimen/dp8"
+                app:layout_goneMarginBottom="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/tvh_bank"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:text="@string/experience"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvh_acname"
+                    style="@style/AppTheme.TextRegular"
+                    android:text="@string/bookings"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintEnd_toStartOf="@+id/tvh_acnum"
+                    app:layout_constraintStart_toEndOf="@+id/tvh_bank"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
+
+                <TextView
+                    android:id="@+id/tvh_acnum"
+                    style="@style/AppTheme.TextRegular"
+                    android:text="@string/rating"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvh_acname"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_acname" />
+
+                <TextView
+                    android:id="@+id/tv_bank_name"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="12 YR"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_name"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_ac_name"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_bank"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ac_name" />
+
+                <TextView
+                    android:id="@+id/tv_ac_name"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="0"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_num"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_ac_num"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_acname"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ac_num" />
+
+
+                <TextView
+                    android:id="@+id/tv_ac_num"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:drawableStart="@drawable/ico_star"
+                    android:drawablePadding="@dimen/dp3"
+                    android:gravity="bottom"
+                    android:text="0.0"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_acnum"
+                    app:layout_constraintTop_toBottomOf="@+id/tvh_acnum" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

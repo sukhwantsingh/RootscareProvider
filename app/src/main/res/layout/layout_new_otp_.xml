@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp50"
+            android:layout_marginEnd="@dimen/dp20"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageViewBack"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_arrow_back_black"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewLogo"
+                    app:layout_constraintEnd_toStartOf="@+id/imageViewLogo"
+                    app:layout_constraintHorizontal_bias=".0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/imageViewLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_rc_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvh1"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:text="@string/otp_verification_code"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp20" />
+
+            <TextView
+                android:id="@+id/tvsh1"
+                style="@style/AppTheme.TextRegular"
+                android:layout_marginTop="@dimen/dp2"
+                android:text="@string/sent_code_subtext"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp24"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.chaos.view.PinView
+                    android:id="@+id/firstPinView"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/txt_dash_heading"
+                    android:textSize="@dimen/dp18"
+                    android:textStyle="bold"
+                    app:cursorColor="@color/txt_dash_heading"
+                    app:cursorWidth="1dp"
+                    app:hideLineWhenFilled="false"
+                    app:itemCount="4"
+                    app:itemHeight="@dimen/dp48"
+                    app:itemRadius="8dp"
+                    app:itemSpacing="@dimen/dp24"
+                    app:itemWidth="@dimen/dp48"
+                    app:lineColor="#DFDFDF"
+                    app:lineWidth="2dp"
+                    app:viewType="rectangle" />
+
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_rootscare_login"
+                style="@style/AppTheme.BtnMediumBlue"
+                android:layout_marginTop="@dimen/dp30"
+                android:layout_marginBottom="@dimen/dp8"
+                android:background="@drawable/square_bg"
+                android:text="@string/submit"
+                android:textAllCaps="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp16"
+                android:visibility="visible">
+
+                <TextView
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/not_receivd_code"
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/txt_send_again"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="@string/send_again"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp14" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/vl4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dp30"
+                android:background="@color/divider_support_more"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_privacyp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:visibility="visible">
+
+                <TextView
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/cant_login_help"
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/txt_post_issue"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingVertical="@dimen/dp5"
+                    android:text="@string/post_issue"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp14" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

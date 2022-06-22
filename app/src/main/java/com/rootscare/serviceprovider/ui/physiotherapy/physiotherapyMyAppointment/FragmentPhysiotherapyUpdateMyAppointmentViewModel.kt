@@ -1,0 +1,5 @@
+package com.rootscare.serviceprovider.ui.physiotherapy.physiotherapyMyAppointment
+
+import com.rootscare.serviceprovider.ui.base.BaseViewModel
+
+class FragmentPhysiotherapyUpdateMyAppointmentViewModel : BaseViewModel<FragmentPhysiotherapyUpdateMyAppointmentNavigator>()

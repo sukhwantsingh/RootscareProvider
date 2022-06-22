@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cns_restl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_35dp"
+            android:background="@drawable/white_upper_corners"
+            android:elevation="@dimen/_6sdp"
+            android:paddingTop="@dimen/_40sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp16" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dimen_16dp" />
+
+            <TextView
+                android:id="@+id/tvh_needsupport"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp14"
+                android:text="@string/thank_you"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp30"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvsh1"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/successful"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp14"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_needsupport" />
+
+
+            <TextView
+                android:id="@+id/tvsh2"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp8"
+                android:text="@string/congratulations_submission_text"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvsh1" />
+
+            <TextView
+                android:id="@+id/tv_close"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="@dimen/dp12"
+                android:background="@drawable/round_border_nav_menu"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/dp12"
+                android:paddingVertical="@dimen/dp8"
+                android:text="@string/close"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvsh2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp8"
+            android:src="@drawable/ic_success_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

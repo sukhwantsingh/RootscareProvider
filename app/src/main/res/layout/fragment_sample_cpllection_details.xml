@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.rootscare.customviews.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_14ssp"
+                        android:textColor="@color/txt_color"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="Thankyou for booking"/>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/crdview_appoitment_list"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+                        android:elevation="@dimen/_20sdp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_30sdp"
+                            android:id="@+id/ll_mainlayout"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Order Id: "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:id="@+id/order_id"
+                                  />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Patient Name: "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:id="@+id/name"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Age: "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:id="@+id/years"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Contact Number : "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:id="@+id/contact_number"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Email : "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:id="@+id/address"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Appointment date : "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:id="@+id/appointent_date"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Appointment Time : "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:id="@+id/apointment_time"
+                                   />
+
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Prescription : "/>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/priscription"
+                                    android:layout_marginStart="@dimen/_80sdp"
+                                    android:src="@drawable/prescription_img"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:text="Amount : "/>
+                                <com.rootscare.customviews.MyTextView
+                                    android:layout_width="0dp"
+                                    android:id="@+id/fee"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/_10ssp"
+                                   />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

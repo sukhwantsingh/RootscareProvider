@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data></data>
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp8"
+        android:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_quali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_regular"
+                android:hint="@string/qualification"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/txt_dash_heading"
+                android:textSize="@dimen/dp15" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp2">
+
+            <TextView
+                android:id="@+id/tvh_bc_upload_photocopy"
+                style="@style/AppTheme.TextRegular"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp5"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingVertical="@dimen/dp5"
+                android:text="@string/upload_document"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/tv_bc_na_id"
+                style="@style/AppTheme.TextRegular"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/no_attachment"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+     <ScrollView
+            android:layout_width="match_parent"
+             android:fillViewport="true"
+            android:layout_height="match_parent">
+         <include
+             android:id="@+id/layout_new_dashboard"
+             layout="@layout/layout_home_new_for_providers" />
+<!--
+         <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cardView_caregiverhome_manage_profile"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:cardElevation="@dimen/_4sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_mainlayout"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/manage_profile_bg"/>
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Manage Profile"
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:background="@drawable/home_btn_bg"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cardView_caregiverhome_my_appointment"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:cardElevation="@dimen/_4sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/my_appointment_bg"/>
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="My Appointment"
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:background="@drawable/home_btn_bg"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cardView_my_schedule"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:cardElevation="@dimen/_4sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/my_schedule"/>
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="My Schedule"
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:background="@drawable/home_btn_bg"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cardView_caregiverhome_my_schedule"
+                    android:layout_marginTop="@dimen/dp15"
+                    app:cardElevation="@dimen/_4sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/my_schedule"/>
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="My Price List"
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:background="@drawable/home_btn_bg"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:id="@+id/cardView_caregiverhome_review_and_rating"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:layout_marginBottom="@dimen/dp15"
+                    app:cardElevation="@dimen/_4sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/rate_and_review"/>
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Rate &amp; Review"
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/dp16"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:background="@drawable/home_btn_bg"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>-->
+        </ScrollView>
+
+</layout>

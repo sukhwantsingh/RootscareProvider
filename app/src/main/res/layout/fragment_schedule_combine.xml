@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="curRef"
+            type="com.rootscare.serviceprovider.ui.scheduless.ScheduleFragmentCombine" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnSave"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:elevation="@dimen/dp2"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp2">
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/add_availability_schedule"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15" />
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/this_refers_to_your_available_time_slot"
+                        android:textColor="@color/colorTxtGrey1"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp12"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/accept_or_disable_your_booking"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15" />
+
+                    <RadioGroup
+                        android:id="@+id/rbBooking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:paddingTop="@dimen/dp4"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/rbAccept"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight=".5"
+                            android:fontFamily="@font/rubik_regular"
+                            android:text="@string/accept_booking"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:textSize="@dimen/dp14" />
+
+                        <RadioButton
+                            android:id="@+id/rbHide"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight=".5"
+                            android:fontFamily="@font/rubik_regular"
+                            android:text="@string/hide_booking"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:textSize="@dimen/dp14" />
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:id="@+id/llHideAccept"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dp2"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:weightSum="1"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvh_bokingPrefha"
+                                style="@style/AppTheme.TextRegular"
+                                android:layout_width="0dp"
+                                android:layout_weight=".5"
+                                android:paddingHorizontal="@dimen/dp10"
+                                android:text="@string/booking_preferences"
+                                android:textColor="@color/txt_dash_heading"
+                                android:textSize="@dimen/dp15" />
+
+                            <TextView
+                                android:id="@+id/tvh_bokingPrefha2"
+                                style="@style/AppTheme.TextRegular"
+                                android:layout_width="0dp"
+                                android:layout_weight=".5"
+                                android:paddingHorizontal="@dimen/dp6"
+                                android:textColor="@color/txt_dash_heading"
+                                android:textSize="@dimen/dp15" />
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:id="@+id/llbokingPrefhva"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:weightSum="1">
+
+                            <RadioButton
+                                android:id="@+id/rbTask"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight=".5"
+                                android:clickable="false"
+                                android:fontFamily="@font/rubik_regular"
+                                android:text="@string/_30_min_slots"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rbHours"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight=".5"
+                                android:clickable="false"
+                                android:fontFamily="@font/rubik_regular"
+                                android:text="@string/_2_4_6_8_12_hours"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:text="@string/point_your_availability_for_appointment"
+                            android:textColor="@color/txt_dash_heading"
+                            android:textSize="@dimen/dp15" />
+
+                        <LinearLayout
+                            android:id="@+id/llOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sMon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvMon"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="MON"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvMonStart"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableEnd="@drawable/drop_down_new"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp5"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvMonEnd"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sTue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvTue"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="TUE"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvTueStart"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvTueEnd"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llWed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sWed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvWed"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="WED"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvWedStart"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+                                <TextView
+                                    android:id="@+id/tvWedEnd"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llThu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sThur"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvThu"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="THU"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+
+                                <TextView
+                                    android:id="@+id/tvThurStart"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvThurEnd"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llFri"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sfri"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvFri"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="FRI"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvFriStart"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvFriEnd"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llSat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sSat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvSat"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="SAT"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+
+                                <TextView
+                                    android:id="@+id/tvStartSat"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvEndSat"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llSun"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp5">
+
+                            <Switch
+                                android:id="@+id/sSun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+
+                                android:theme="@style/RadioButtonTheme" />
+
+                            <TextView
+                                android:id="@+id/tvSun"
+                                style="@style/AppTheme.TextMedium"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="SUN"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dp14" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+
+
+                                <TextView
+                                    android:id="@+id/tvStartSun"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/dp10"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 AM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+
+
+                                <TextView
+                                    android:id="@+id/tvEndSun"
+                                    style="@style/AppTheme.TextMedium"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/schedule_bg_slot"
+                                    android:drawableRight="@drawable/drop_down_new"
+
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp4"
+                                    android:paddingVertical="@dimen/dp4"
+                                    android:text="08:30 PM"
+                                    android:textColor="@color/txt_color"
+                                    android:textSize="@dimen/dp12" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAddRadiusService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dimen_2dp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/dimen_1dp"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    tools:visibility="visible"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvh_add_radius"
+                        style="@style/AppTheme.TextRegular"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/add_service_radius"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15" />
+
+                    <TextView
+                        android:id="@+id/tvsh_add_radius"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/set_the_kilometre_distance_radius_for_your_service_where_you_prefer_to_provide_service_and_not_outside"
+                        android:textColor="@color/colorTxtGrey1"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp12"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/point_your_service_location"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15" />
+
+
+                    <EditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp6"
+                        android:background="@drawable/round_rect_grey_border"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:fontFamily="@font/rubik_regular"
+                        android:gravity="start"
+                        android:hint="@string/enter_address"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/colorTxtGrey1"
+                        android:padding="@dimen/dp10"
+                        android:textSize="@dimen/dp14" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_gravity="end"
+                            android:layout_marginHorizontal="@dimen/dp10"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:onClick="@{()->curRef.onGoogleSearchCalled()}"
+                            android:paddingVertical="@dimen/dp4"
+                            android:text="@string/search"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:layout_alignTop="@+id/tvcl"
+                            android:layout_alignBottom="@+id/tvcl"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14" />
+
+                        <TextView
+                            android:id="@+id/tvcl"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_gravity="end"
+                            android:layout_marginHorizontal="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:clickable="true"
+                            android:layout_alignParentEnd="true"
+                            android:drawableStart="@drawable/ic_navi"
+                            android:drawablePadding="@dimen/dp4"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:onClick="@{()->curRef.onManageLocation()}"
+                            android:paddingVertical="@dimen/dp4"
+                            android:text="@string/manage_location"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp14"
+                        android:paddingHorizontal="@dimen/dp10"
+                        android:text="@string/booking_eligibility_radius"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15" />
+
+                    <RadioGroup
+                        android:id="@+id/rbRadiusService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/dp5">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <RadioButton
+                                android:id="@+id/rb15km"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="15km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb30km"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="30km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb50km"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="50km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb75km"
+                                android:layout_width="0dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="75km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+
+                            android:weightSum="1">
+
+                            <RadioButton
+                                android:id="@+id/rb100km"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="100km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb125km"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="125km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb150km"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="150km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                            <RadioButton
+                                android:id="@+id/rb200km"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp8"
+                                android:layout_weight=".25"
+                                android:fontFamily="@font/rubik_regular"
+                                android:foregroundTint="@color/colorPrimary"
+                                android:onClick="@{(v)->curRef.selectRadiusRadio(v)}"
+                                android:text="200km"
+                                android:textColor="@color/colorTxtGrey1"
+                                android:textSize="@dimen/dp14" />
+
+                        </LinearLayout>
+                    </RadioGroup>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            style="@style/AppTheme.BtnMediumBlue"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp20"
+            android:text="@string/save_schedule"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+</layout>

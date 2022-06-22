@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_header_batch_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_white"
+            android:orientation="vertical">
+
+            <com.rootscare.customviews.MyTextView
+                android:id="@+id/txt_exam_student_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="Add Hospital/Clinis"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp14" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_main_contain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_header_batch_title"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hospital/Clinic Name : "
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <com.rootscare.customviews.MyEditTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/commonbg_edit"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/etHospitalName"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Address : "
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <com.rootscare.customviews.MyEditTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="5"
+                    android:id="@+id/etAddress"
+                    android:background="@drawable/commonbg_edit"
+                    android:inputType="text"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_main_contain"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/btn_negative"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_textview_blue_solid_background"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/btn_positive"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/green_rectangle"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="Add"
+                android:textColor="@color/background_white"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

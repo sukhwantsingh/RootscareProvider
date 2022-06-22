@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1380C9"
+            android:paddingBottom="@dimen/_30sdp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp16" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dp16" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@color/modified_black_1"
+                app:civ_border_color="@color/circle_img_border"
+                app:civ_border_width="@dimen/dimen_2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:src="@drawable/ic_na_camera_round"
+                app:civ_border_color="@color/circle_img_border"
+                app:civ_border_width="@dimen/dimen_2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image" />
+
+            <TextView
+                android:id="@+id/txt_sidemenu_name"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/dp8"
+                android:gravity="center"
+                android:textColor="@color/background_white"
+                android:textSize="@dimen/dp16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                tools:text="ILS Hospital" />
+
+            <TextView
+                android:id="@+id/txt_sidemenue_email"
+                style="@style/AppTheme.TextRegular"
+                android:gravity="center"
+                android:textColor="@color/txt_lb"
+                android:textSize="@dimen/dp14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_sidemenu_name"
+                tools:text="Ils.hospital@outlook.com" />
+
+            <TextView
+                android:id="@+id/tvh_appnsch"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:text="@string/appointments_doctors_amp_lab"
+                android:textColor="@color/background_white"
+                android:textSize="@dimen/dp16"
+                app:layout_constraintStart_toStartOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/txt_sidemenue_email" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnl_ap_sch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/round_border_nav_menu"
+                android:paddingEnd="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/gr"
+                app:layout_constraintStart_toStartOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_appnsch">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_appointment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/dp14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_myap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:src="@drawable/ic_nav_myappoint"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_myappont"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/doctors_appointment"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintStart_toEndOf="@+id/iv_myap"
+                        app:layout_constraintTop_toTopOf="@+id/iv_myap" />
+
+
+                    <TextView
+                        android:id="@+id/tvsh_myappont"
+                        style="@style/AppTheme.TextRegular"
+                        android:text="@string/pending_upcoming_ongoing_n_amp_past"
+                        android:textColor="@color/nav_txt_sh_color"
+                        android:textSize="@dimen/dp11"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_myappont"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_myappont" />
+
+                    <ImageView
+                        android:id="@+id/ivar1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvsh_myappont"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_myappont" />
+
+                    <View
+                        android:id="@+id/vl1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:layout_marginVertical="@dimen/dp14"
+                        android:background="@color/nav_round_border_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvsh_myappont"
+                        app:layout_constraintTop_toBottomOf="@+id/tvsh_myappont" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_lab_appointment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cns_appointment">
+
+                    <ImageView
+                        android:id="@+id/iv_prc_lt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:src="@drawable/ic_nav_price_list"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_pricelist"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/lab_appointments"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintStart_toEndOf="@+id/iv_prc_lt"
+                        app:layout_constraintTop_toTopOf="@+id/iv_prc_lt" />
+
+
+                    <TextView
+                        android:id="@+id/tvsh_prlt"
+                        style="@style/AppTheme.TextRegular"
+                        android:text="@string/manage_all_lab_bookings"
+                        android:textColor="@color/nav_txt_sh_color"
+                        android:textSize="@dimen/dp11"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_pricelist"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_pricelist" />
+
+                    <ImageView
+                        android:id="@+id/ivar2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvsh_prlt"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_pricelist" />
+
+                    <View
+                        android:id="@+id/vl2"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:layout_marginVertical="@dimen/dp14"
+                        android:background="@color/nav_round_border_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvsh_prlt"
+                        app:layout_constraintTop_toBottomOf="@+id/tvsh_prlt" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_manage_doc_lab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingTop="@dimen/dp14"
+                    android:paddingBottom="@dimen/dp16"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cns_lab_appointment">
+
+
+                    <ImageView
+                        android:id="@+id/iv_schedule_avlblty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:src="@drawable/ic_nav_calendar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_schdle_ablty"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/manage_doctor_amp_lab"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintStart_toEndOf="@+id/iv_schedule_avlblty"
+                        app:layout_constraintTop_toTopOf="@+id/iv_schedule_avlblty" />
+
+
+                    <TextView
+                        android:id="@+id/tvsh_sch_ablty"
+                        style="@style/AppTheme.TextRegular"
+                         android:text="@string/create_manage_doctor_amp_lab"
+                        android:textColor="@color/nav_txt_sh_color"
+                        android:textSize="@dimen/dp11"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_schdle_ablty"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_schdle_ablty" />
+
+                    <ImageView
+                        android:id="@+id/ivar3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvsh_sch_ablty"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_schdle_ablty" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvh_account_more"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/dp16"
+                android:text="@string/account_amp_more"
+                android:textColor="@color/background_white"
+                android:textSize="@dimen/dp16"
+                app:layout_constraintStart_toStartOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/cnl_ap_sch" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnl_acc_more"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/round_border_nav_menu"
+                android:paddingEnd="@dimen/dimen_0dp"
+                app:layout_constraintEnd_toEndOf="@+id/gr"
+                app:layout_constraintStart_toStartOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_account_more">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_profile_setting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/dp14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_nav_setting"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_profile_setting"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/profile_setting"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                        app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+                    <ImageView
+                        android:id="@+id/ivar4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvh_profile_setting"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_profile_setting" />
+
+
+                    <View
+                        android:id="@+id/vl11"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:layout_marginVertical="@dimen/dp14"
+                        android:background="@color/nav_round_border_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_profile_setting"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_profile_setting" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_transaction_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/dp14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cns_profile_setting">
+
+                    <ImageView
+                        android:id="@+id/iv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_nav_transaction"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_transaction_history"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/transaction_history"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_2"
+                        app:layout_constraintStart_toEndOf="@+id/iv_2"
+                        app:layout_constraintTop_toTopOf="@+id/iv_2" />
+
+                    <ImageView
+                        android:id="@+id/ivar5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvh_transaction_history"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_transaction_history" />
+
+
+                    <View
+                        android:id="@+id/vl21"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:layout_marginVertical="@dimen/dp14"
+                        android:background="@color/nav_round_border_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_transaction_history"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_transaction_history" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_review_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/dp14"
+                    android:paddingTop="@dimen/dp14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cns_transaction_history">
+
+                    <ImageView
+                        android:id="@+id/iv_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_nav_star"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_rating_review"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/review_amp_rating"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_3"
+                        app:layout_constraintStart_toEndOf="@+id/iv_3"
+                        app:layout_constraintTop_toTopOf="@+id/iv_3" />
+
+                    <ImageView
+                        android:id="@+id/ivar6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvh_rating_review"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_rating_review" />
+
+                    <View
+                        android:id="@+id/vl3"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:layout_marginVertical="@dimen/dp14"
+                        android:background="@color/nav_round_border_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvh_rating_review"
+                        app:layout_constraintTop_toBottomOf="@+id/tvh_rating_review" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cns_support_more"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingVertical="@dimen/dp14"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cns_review_rating">
+
+                    <ImageView
+                        android:id="@+id/iv_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_nav_support_more"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvh_support_more"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:text="@string/support_amp_more"
+                        android:textColor="@color/background_white"
+                        android:textSize="@dimen/dp15"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_4"
+                        app:layout_constraintStart_toEndOf="@+id/iv_4"
+                        app:layout_constraintTop_toTopOf="@+id/iv_4" />
+
+                    <ImageView
+                        android:id="@+id/ivar7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:alpha=".6"
+                        android:src="@drawable/ic_right_arrrow_keyb_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvh_support_more"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvh_support_more" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp16"
+                android:background="@drawable/round_border_nav_menu"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingVertical="@dimen/dp14"
+                app:layout_constraintEnd_toEndOf="@+id/gr"
+                app:layout_constraintStart_toStartOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/cnl_acc_more">
+
+                <ImageView
+                    android:id="@+id/iv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:src="@drawable/ic_nav_logout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvh_logout"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:text="@string/logout"
+                    android:textColor="@color/txt_lb"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/cnl_acc_more" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvh_version"
+                style="@style/AppTheme.TextRegular"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="RC Version 1.0"
+                android:textColor="@color/txt_lb"
+                android:textSize="@dimen/dp14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gr"
+                app:layout_constraintStart_toEndOf="@+id/gl"
+                app:layout_constraintTop_toBottomOf="@+id/ll_logout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

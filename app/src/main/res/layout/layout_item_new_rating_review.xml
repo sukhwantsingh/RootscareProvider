@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cns_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@color/white"
+        android:elevation="@dimen/dp1"
+        android:paddingHorizontal="@dimen/dp12"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingTop="@dimen/dp12">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:src="@drawable/profile_no_image"
+            app:civ_border_color="@color/indicator_color"
+            app:civ_border_width="1px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_review_text"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/dp14"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_user"
+            app:layout_constraintTop_toTopOf="@+id/iv_user"
+            tools:text="It was an amazing experience &amp; the consultation was so friendly that I have discussed everything which ended up troubleshooting real problem." />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp2"
+            android:background="@color/divider_support_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_review_text"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user" />
+
+
+        <TextView
+            android:id="@+id/tvh_h1"
+            style="@style/AppTheme.TextRegular"
+            android:paddingVertical="@dimen/dp10"
+            android:text="@string/rated"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintStart_toStartOf="@+id/v1"
+            app:layout_constraintTop_toBottomOf="@+id/v1" />
+
+        <RatingBar
+            android:id="@+id/rat_bar"
+            style="@style/fooRatingBar"
+            android:theme="@style/fooRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp16"
+            android:numStars="5"
+            android:elevation="0dp"
+            android:stepSize="1.0"
+            android:shadowColor="@color/transparent"
+            android:progressTint="@color/yellow_pending"
+            app:layout_constraintBottom_toBottomOf="@+id/tvh_h1"
+            app:layout_constraintStart_toEndOf="@+id/tvh_h1"
+            app:layout_constraintTop_toTopOf="@+id/tvh_h1" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            style="@style/AppTheme.TextMedium"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/dp10"
+            android:textColor="@color/indicator_color"
+            android:textSize="@dimen/dp14"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rat_bar"
+            app:layout_constraintTop_toTopOf="@+id/rat_bar"
+            tools:text="ORD876543" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

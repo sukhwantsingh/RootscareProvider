@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg"
+        android:orientation="vertical">
+        <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crdview_doctorappoitment_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_20sdp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_mainlayout"
+                        android:orientation="vertical">
+                        <com.rootscare.customviews.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Mark Pierce"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginStart="@dimen/dp12"
+                        android:layout_marginEnd="@dimen/dp12"
+                        android:textColor="@color/txt_color"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_14ssp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginEnd="@dimen/dp12"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:orientation="horizontal">
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:textColor="@color/txt_color"
+                                android:text="Patient Name : "/>
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txt_patient_name"
+                                android:textSize="@dimen/_11ssp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:textColor="@color/txt_color"
+                                android:text="Mr. Singh"/>
+                        </LinearLayout><LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginEnd="@dimen/dp12"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:orientation="horizontal">
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:textColor="@color/txt_color"
+                                android:text="Booking Date : "/>
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txt_booking_date"
+                                android:textSize="@dimen/_11ssp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:textColor="@color/txt_color"
+                                android:text="15 Feb 2020"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginEnd="@dimen/dp12"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:orientation="horizontal">
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:textColor="@color/txt_color"
+                                android:text="Time : "/>
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_11ssp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:textColor="@color/txt_color"
+                                android:text="10:30 AM"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginEnd="@dimen/dp12"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:orientation="horizontal">
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:textColor="@color/txt_color"
+                                android:text="Phone Number : "/>
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_11ssp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:textColor="@color/txt_color"
+                                android:text="1234567890"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginEnd="@dimen/dp12"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:orientation="horizontal">
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                android:textColor="@color/txt_color"
+                                android:text="Appointment Date : "/>
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_11ssp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:textColor="@color/txt_color"
+                                android:text="15 Feb 2020"/>
+                        </LinearLayout>
+                        <Button
+                            android:id="@+id/btn_rootscare_booking_physiotherapy"
+                            android:layout_width="@dimen/_180sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:padding="@dimen/_7sdp"
+                            android:background="@drawable/rounded_blue_btn"
+                            android:drawableStart="@drawable/online_chat_bg"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
+                            android:text="Online Chat"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp" />
+                        <Button
+                            android:layout_width="@dimen/_180sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp12"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginBottom="@dimen/_50sdp"
+                            android:padding="@dimen/_7sdp"
+                            android:background="@drawable/rounded_green_btn"
+                            android:drawableStart="@drawable/online_vedio_bg"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
+                            android:text="Vedio Chat"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_rootscare_review_and_rating"
+                    android:text="Review And Rating"
+                    android:textSize="@dimen/dp12"
+                    android:textStyle="bold"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColor="@color/text_hint_color"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:drawableEnd="@drawable/btn"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/square_bg"
+                    android:layout_marginTop="@dimen/_20sdp"/>
+            </LinearLayout>
+    </ScrollView>
+
+
+    </LinearLayout>
+</layout>

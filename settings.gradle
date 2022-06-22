@@ -1,0 +1,2 @@
+rootProject.name='Roots Care Service Provider'
+include ':app', ':imagecropper'

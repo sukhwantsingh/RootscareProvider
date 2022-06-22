@@ -1,0 +1,329 @@
+{
+  "status": true,
+  "code": 200,
+  "data": [
+    {
+      "id": 27,
+      "role_name": "father",
+      "role_type": 0,
+      "company": "CMPNY1",
+      "colour": "#0000FF",
+      "order": "1",
+      "user_id": 109,
+      "created_at": "2021-01-12T09:22:06.000000Z",
+      "updated_at": "2021-01-12T09:22:06.000000Z",
+      "deleted_at": null,
+      "planning": {
+        "id": 31,
+        "mission": null,
+        "vision": null,
+        "type": 0,
+        "client_role_id": 27,
+        "year": "2021",
+        "quarter": "1",
+        "created_at": "2021-02-05T11:41:41.000000Z",
+        "updated_at": "2021-02-05T11:41:41.000000Z",
+        "deleted_at": null,
+        "objective": [
+          {
+            "id": 92,
+            "content_obj": "object 1",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 31,
+            "created_at": "2021-02-05T11:41:41.000000Z",
+            "updated_at": "2021-02-05T11:44:40.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 90,
+                "key_result": "key result",
+                "metrics": "Dollars",
+                "objective_id": 92,
+                "created_at": "2021-02-05T11:41:53.000000Z",
+                "updated_at": "2021-02-05T11:44:40.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 91,
+                "key_result": "key 2",
+                "metrics": "Deals",
+                "objective_id": 92,
+                "created_at": "2021-02-05T11:42:08.000000Z",
+                "updated_at": "2021-02-05T11:44:40.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 92,
+                "key_result": "key result 3",
+                "metrics": "next metrics",
+                "objective_id": 92,
+                "created_at": "2021-02-05T11:42:28.000000Z",
+                "updated_at": "2021-02-05T11:44:40.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 93,
+            "content_obj": "objetuve 2",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 31,
+            "created_at": "2021-02-05T11:41:41.000000Z",
+            "updated_at": "2021-02-05T11:44:40.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 93,
+                "key_result": "key result obj 2",
+                "metrics": "Dollars",
+                "objective_id": 93,
+                "created_at": "2021-02-05T11:44:22.000000Z",
+                "updated_at": "2021-02-05T11:44:40.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 94,
+                "key_result": "key result obj 21",
+                "metrics": "Deals",
+                "objective_id": 93,
+                "created_at": "2021-02-05T11:44:34.000000Z",
+                "updated_at": "2021-02-05T11:44:40.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 94,
+            "content_obj": null,
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 31,
+            "created_at": "2021-02-05T11:41:41.000000Z",
+            "updated_at": "2021-02-05T11:44:40.000000Z",
+            "deleted_at": null,
+            "key_result": [],
+            "major_action": []
+          }
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "role_name": "mother",
+      "role_type": 0,
+      "company": null,
+      "colour": "#9BFF6B",
+      "order": "2",
+      "user_id": 109,
+      "created_at": "2021-02-05T11:43:09.000000Z",
+      "updated_at": "2021-02-05T11:43:09.000000Z",
+      "deleted_at": null,
+      "planning": {
+        "id": 32,
+        "mission": null,
+        "vision": null,
+        "type": 0,
+        "client_role_id": 37,
+        "year": "2021",
+        "quarter": "1",
+        "created_at": "2021-02-05T11:44:56.000000Z",
+        "updated_at": "2021-02-05T11:44:56.000000Z",
+        "deleted_at": null,
+        "objective": [
+          {
+            "id": 95,
+            "content_obj": "mother obj 1",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 32,
+            "created_at": "2021-02-05T11:44:56.000000Z",
+            "updated_at": "2021-02-05T11:45:57.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 97,
+                "key_result": "mother obj key 1",
+                "metrics": "Deals",
+                "objective_id": 95,
+                "created_at": "2021-02-05T11:45:44.000000Z",
+                "updated_at": "2021-02-05T11:45:57.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 98,
+                "key_result": "mother key obj 2",
+                "metrics": "Deals",
+                "objective_id": 95,
+                "created_at": "2021-02-05T11:45:57.000000Z",
+                "updated_at": "2021-02-05T11:45:57.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 96,
+            "content_obj": "mother obj 2",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 32,
+            "created_at": "2021-02-05T11:44:56.000000Z",
+            "updated_at": "2021-02-05T11:45:57.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 95,
+                "key_result": "mother key result 1",
+                "metrics": "Deals",
+                "objective_id": 96,
+                "created_at": "2021-02-05T11:45:18.000000Z",
+                "updated_at": "2021-02-05T11:45:57.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 96,
+                "key_result": "mother key result 2",
+                "metrics": "Deals",
+                "objective_id": 96,
+                "created_at": "2021-02-05T11:45:29.000000Z",
+                "updated_at": "2021-02-05T11:45:57.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 97,
+            "content_obj": null,
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 32,
+            "created_at": "2021-02-05T11:44:56.000000Z",
+            "updated_at": "2021-02-05T11:45:57.000000Z",
+            "deleted_at": null,
+            "key_result": [],
+            "major_action": []
+          }
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "role_name": "brother",
+      "role_type": 0,
+      "company": null,
+      "colour": "#D82FFE",
+      "order": "3",
+      "user_id": 109,
+      "created_at": "2021-02-05T11:43:20.000000Z",
+      "updated_at": "2021-02-05T11:43:20.000000Z",
+      "deleted_at": null,
+      "planning": {
+        "id": 33,
+        "mission": null,
+        "vision": null,
+        "type": 0,
+        "client_role_id": 38,
+        "year": "2021",
+        "quarter": "1",
+        "created_at": "2021-02-05T11:46:13.000000Z",
+        "updated_at": "2021-02-05T11:46:13.000000Z",
+        "deleted_at": null,
+        "objective": [
+          {
+            "id": 98,
+            "content_obj": "brother obj 1",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 33,
+            "created_at": "2021-02-05T11:46:13.000000Z",
+            "updated_at": "2021-02-05T11:47:55.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 99,
+                "key_result": "brothee obj key 1",
+                "metrics": "Time metrics",
+                "objective_id": 98,
+                "created_at": "2021-02-05T11:46:28.000000Z",
+                "updated_at": "2021-02-05T11:47:55.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 100,
+                "key_result": "brother key result 2",
+                "metrics": "Deals",
+                "objective_id": 98,
+                "created_at": "2021-02-05T11:46:57.000000Z",
+                "updated_at": "2021-02-05T11:47:55.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 99,
+            "content_obj": "objective 2",
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 33,
+            "created_at": "2021-02-05T11:46:13.000000Z",
+            "updated_at": "2021-02-05T11:47:55.000000Z",
+            "deleted_at": null,
+            "key_result": [
+              {
+                "id": 101,
+                "key_result": "brother obj 2 key result 1",
+                "metrics": "Deals",
+                "objective_id": 99,
+                "created_at": "2021-02-05T11:47:37.000000Z",
+                "updated_at": "2021-02-05T11:47:55.000000Z",
+                "deleted_at": null,
+                "type": 0
+              },
+              {
+                "id": 102,
+                "key_result": "brother obj 2 key 2",
+                "metrics": "Time metrics",
+                "objective_id": 99,
+                "created_at": "2021-02-05T11:47:55.000000Z",
+                "updated_at": "2021-02-05T11:47:55.000000Z",
+                "deleted_at": null,
+                "type": 0
+              }
+            ],
+            "major_action": []
+          },
+          {
+            "id": 100,
+            "content_obj": null,
+            "score": "0.0",
+            "project_id": null,
+            "planning_id": 33,
+            "created_at": "2021-02-05T11:46:13.000000Z",
+            "updated_at": "2021-02-05T11:47:55.000000Z",
+            "deleted_at": null,
+            "key_result": [],
+            "major_action": []
+          }
+        ]
+      }
+    }
+  ],
+  "message": "Roles details"
+}

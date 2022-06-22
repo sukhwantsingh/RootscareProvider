@@ -1,0 +1,6 @@
+package com.rootscare.serviceprovider.ui.caregiver.caregivermyschedule
+
+import com.rootscare.serviceprovider.ui.babySitter.babySitterMySchedule.FragmentBabySitterUpdateMyScheduleNavigator
+import com.rootscare.serviceprovider.ui.base.BaseViewModel
+
+class FragmentCaregiverUpdateMyScheduleViewModel : BaseViewModel<FragmentBabySitterUpdateMyScheduleNavigator>()

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppBaseTheme23" parent="AppBaseTheme21">
+        <!--
+        Change the status bar content color
+   1. if its true:  It means status bar content will be seen through white background
+   2. if its false:  It means status bar content will be seen through dark background
+   -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- This theme will be used by default when we reach to the APi level 23+  -->
+    <style name="AppTheme" parent="AppBaseTheme23" />
+
+    <style name="AppTheme.PrimaryStatus">
+        <!-- Change the status bar background color  -->
+        <item name="android:statusBarColor">@color/color_tab_text_selected</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+
+</resources>

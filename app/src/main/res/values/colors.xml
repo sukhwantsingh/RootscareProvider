@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    <color name="colorPrimary">#6200EE</color>-->
+    <!--    <color name="colorPrimaryDark">#3700B3</color>-->
+    <!--    <color name="colorAccent">#03DAC5</color>-->
+
+
+    <color name="colorPrimary">#0168B3</color>
+    <color name="colorPrimaryDark">#0168B3</color>
+    <color name="colorAccent">#70BE58</color>
+
+
+    <color name="red">#F34F87</color>
+
+
+    <!-- Toggle Switch colors-->
+    <color name="blue">#123256</color>
+    <color name="gray">#444444</color>
+    <color name="gray_light_dark">#838080</color>
+    <color name="gray_light">#BBBBBB</color>
+    <color name="gray_very_light">#DDDDDD</color>
+    <color name="gray_very_light_new">#F5F5F5</color>
+
+
+    <color name="colorView">#b7b5b5</color>
+    <color name="login_bg_color">#f2f2f2</color>
+    <color name="background">#f2f2f2</color>
+
+    <color name="background_white">#ffffff</color>
+    <color name="transparent_white">#99ffffff</color>
+
+    <color name="bottom_bar">#D6E8F9</color>
+
+    <color name="sky_grad_1">#056172</color>
+    <color name="sky_grad_2">#10778A</color>
+    <color name="sky_grad_3">#238B9E</color>
+    <color name="sky_grad_4">#3BA7BB</color>
+    <color name="sky_grad_5">#5EC3D6</color>
+    <color name="sky_grad_6">#8DDFEE</color>
+    <color name="sky_grad_7">#B2F0FC</color>
+    <color name="green">#309F1C</color>
+    <color name="green_light_1">#D3F8E6</color>
+    <color name="sky_light">#E3F8FD</color>
+    <color name="sky_light_new">#497b84</color>
+
+    <color name="sky_light_1">#2cbfd9</color>
+    <color name="mof_blue">#0D9EFF</color>
+    <color name="sky">#2cbfd9</color>
+    <color name="sky_blue">#00ADEF</color>
+    <color name="light_blue">#f2f9fa</color>
+    <color name="colorfooter">#d4eaee</color>
+
+    <color name="colorAccentLight">#31B1C9</color>
+
+    <color name="text_hint_color">#D2F2F5</color>
+    <color name="text_green_color">#BAF884</color>
+
+    <color name="modified_black_1">#525252</color>
+
+    <color name="profile_header_bg">#3AA9FE</color>
+    <color name="rootscare_text_and_view_color">#EAEDEF</color>
+    <color name="review_star">#ffa800</color>
+    <color name="orange">#B87F12</color>
+
+    <color name="common_bg">#F1F2F4</color>
+    <color name="home_page_view_color">#CCE3E0</color>
+    <color name="transparentBlack">#66000000</color>
+    <color name="colorTxtGrey">#757575</color>
+    <color name="colorTxtGrey1">#8F98A7</color>
+    <color name="grey_border_">#E2E7EE</color>
+    <color name="txt_color">#515C6F</color>
+    <color name="indicator_color">#0888D1</color>
+    <color name="new_bg_grey">#F1F2F4</color>
+    <color name="color_tab_text_normal">#8F98A7</color>
+    <color name="color_tab_text_selected">#0888D1</color>
+    <color name="circle_img_border">#91DCF8</color>
+    <color name="txt_lb">#38ABEC</color>
+    <color name="nav_round_border_color">#57A7DB</color>
+    <color name="nav_txt_sh_color">#D6D6D6</color>
+    <color name="divider_support_more">#DFDFDF</color>
+    <color name="lang_pref_select">#C5EAFF</color>
+    <color name="txt_dash_heading">#17181A</color>
+    <color name="drawable_down_arrow_tint">#515C6F</color>
+    <color name="price_txt_heading">#041A27</color>
+    <color name="price_bg">#E5E5E5</color>
+    <color name="price_bg_item">#FBFBFB</color>
+    <color name="txt_sub_heading">#6D737E</color>
+
+    <color name="yellow_pending">#F9D800</color>
+    <color name="green_paid">#4FB82A</color>
+    <color name="red_cancelled">#FF4E00</color>
+    <color name="txt_color_wi">#707070</color>
+    <color name="cba_bg">#E9F7FE</color>
+    <color name="light_blue_bg">#84CBFF</color>
+    <color name="txt_color_profile_desc">#354052</color>
+    <color name="view_div_dk">#CCCCCC</color>
+    <color name="black">#000000</color>
+    <color name="grey">#757575</color>
+    <color name="video_fab_bg">#515C6F</color>
+
+
+</resources>

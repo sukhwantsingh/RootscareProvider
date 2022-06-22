@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/dp4"
+        tools:context=".ui.transactionss.fragments.FragmentWithdrawal">
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/dp8"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="0dp"
+            android:visibility="visible"
+            android:weightSum="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center_vertical"
+                android:text="@string/id"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp14" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center_vertical"
+                android:text="@string/date"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp14" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/AppTheme.TextMedium"
+                    android:gravity="center_vertical"
+                    android:text="@string/provider"
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/tvh_provider_fee"
+                    style="@style/AppTheme.TextRegular"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/AppTheme.TextMedium"
+                    android:fontFamily="@font/rubik_medium"
+                    android:gravity="center_vertical"
+                    android:text="@string/admin"
+                    android:textColor="@color/txt_color"
+                    android:textSize="@dimen/dp14" />
+
+                <TextView
+                    android:id="@+id/tvh_admin_fee"
+                    style="@style/AppTheme.TextRegular"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/indicator_color"
+                    android:textSize="@dimen/dp10" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center_vertical"
+                android:text="@string/status"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp14" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_payment_history"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dp2"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp10"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/cns_chrge_fees"
+            app:layout_constraintTop_toBottomOf="@+id/ll_header"
+            tools:itemCount="20"
+            tools:listitem="@layout/layout_new_item_payment_hisotry" />
+
+        <TextView
+            android:id="@+id/tv_no_date"
+            style="@style/AppTheme.TextRegular"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/no_data"
+            android:textColor="@color/indicator_color"
+            android:visibility="gone"
+            android:textSize="@dimen/dp16"
+            app:layout_constraintBottom_toTopOf="@+id/cns_chrge_fees"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cns_chrge_fees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp2"
+            android:background="@color/cba_bg"
+            android:padding="@dimen/dp16"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_goneMarginBottom="@dimen/dp20">
+
+            <TextView
+                android:id="@+id/tvh_fees_charge"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="@+id/ibcross"
+                app:layout_constraintEnd_toStartOf="@+id/ibcross"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ibcross" />
+
+            <ImageView
+                android:id="@+id/ibcross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cross_"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvsh_fees_charges"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvh_fees_charge"
+                app:layout_constraintTop_toBottomOf="@+id/ibcross" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,7 @@
+package com.rootscare.serviceprovider.ui.caregiver.caregiverpaymenthistory
+
+import com.rootscare.serviceprovider.ui.babySitter.babySitterPaymentHistory.FragmentBabySitterPaymentHistoryNavigator
+import com.rootscare.serviceprovider.ui.base.BaseViewModel
+
+class FragmentCaregiverPaymentHistoryViewModel: BaseViewModel<FragmentBabySitterPaymentHistoryNavigator>() {
+}

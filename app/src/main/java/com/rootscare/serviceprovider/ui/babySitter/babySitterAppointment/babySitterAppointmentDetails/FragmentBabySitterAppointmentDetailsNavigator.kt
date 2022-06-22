@@ -1,0 +1,4 @@
+package com.rootscare.serviceprovider.ui.babySitter.babySitterAppointment.babySitterAppointmentDetails
+
+interface FragmentBabySitterAppointmentDetailsNavigator {
+}

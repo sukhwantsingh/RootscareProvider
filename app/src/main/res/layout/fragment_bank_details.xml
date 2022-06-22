@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/dp12">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Bank Details"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/et_bank_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:background="@drawable/commonbg_edit"
+                                android:hint="Bank Name"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textColorHint="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <EditText
+                                android:id="@+id/et_user_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:background="@drawable/commonbg_edit"
+                                android:hint="Your Name"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textColorHint="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <EditText
+                                android:id="@+id/et_account_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:background="@drawable/commonbg_edit"
+                                android:hint="Account Number"
+                                android:inputType="number"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textColorHint="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <EditText
+                                android:id="@+id/et_iran_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:background="@drawable/commonbg_edit"
+                                android:gravity="top"
+                                android:hint="IBAN Number"
+                                android:inputType="textVisiblePassword"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textColorHint="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <EditText
+                                android:id="@+id/et_swift_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:background="@drawable/commonbg_edit"
+                                android:gravity="top"
+                                android:hint="Swift Number(Optional)"
+                                android:inputType="textVisiblePassword"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textColorHint="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <com.rootscare.customviews.MyTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Message To Admin"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/et_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/commonbg_edit"
+                            android:gravity="top"
+                            android:hint="Write your message here(Optional)"
+                            android:inputType="text"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/txt_color"
+                            android:textColorHint="@color/txt_color"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_information"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:button="@drawable/checkbox_background"
+                            android:buttonTint="@color/colorTxtGrey"
+                            android:padding="@dimen/_5sdp"
+                            android:text="All the above information's are true, correct"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <com.rootscare.customviews.MyCustomButton
+                            android:id="@+id/btn_save"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_60sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginRight="@dimen/_60sdp"
+                            android:background="@drawable/square_bg"
+                            android:padding="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:text="Save"
+                            android:textColor="@color/text_hint_color"
+                            android:textSize="@dimen/dp14" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/common_bg"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewBack"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:padding="5dp"
+                        android:src="@drawable/back_white_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageViewLogo"
+                        app:layout_constraintEnd_toStartOf="@+id/imageViewLogo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/imageViewLogo" />
+
+
+                    <ImageView
+                        android:id="@+id/imageViewLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:src="@drawable/logo_with_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_registration_setp_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_reg_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:gravity="start"
+                        android:hint="Description"
+                        android:inputType="text"
+                        android:maxLines="5"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_reg_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:digits="0123456789"
+                        android:hint="Experience (In Years)"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                        android:textSize="@dimen/dp12" />
+                    <!--                    android:drawableEnd="@drawable/down_arrow_white"-->
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_rootscare_registration_availableTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:digits="0123456789"
+                        android:hint="Available Time (In hour)"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="@dimen/dp12"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_reg_fees"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:hint="Fees"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyTextView
+                        android:id="@+id/txt_reg_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:drawableEnd="@drawable/down_arrow_white"
+                        android:hint="Department"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/dp12" />
+
+                    <com.rootscare.customviews.MyEditTextView
+                        android:id="@+id/edt_license"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/login_edit_bg"
+                        android:hint="License No"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/text_hint_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textCursorDrawable="@drawable/custom_edit_text_cursor"
+                        android:textSize="@dimen/dp12" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_license_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <com.rootscare.customviews.MyTextView
+                            android:id="@+id/txt_image_select_name"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/login_edit_bg"
+                            android:hint="License Image"
+
+                            android:padding="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textColor="@color/text_hint_color"
+                            android:textColorHint="@color/text_hint_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_reg_image_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_alignTop="@+id/txt_image_select_name"
+                            android:layout_alignBottom="@+id/txt_image_select_name"
+                            android:layout_toEndOf="@+id/txt_image_select_name"
+                            android:background="@drawable/blue_booking_bg">
+
+                            <com.rootscare.customviews.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/blue_booking_bg"
+                                android:drawableEnd="@drawable/upload_icon"
+                                android:gravity="center"
+                                android:padding="@dimen/_3sdp"
+                                android:text="UPLOAD"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dp12"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <com.rootscare.customviews.MyCustomButton
+                        android:id="@+id/btn_rooscare_serviceprovider_registration_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/square_bg"
+                        android:drawableEnd="@drawable/btn"
+                        android:padding="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Submit"
+                        android:textColor="@color/text_hint_color"
+                        android:textSize="@dimen/dp14" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

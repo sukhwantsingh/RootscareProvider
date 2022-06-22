@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.rootscare.customviews.MyTextView
+        android:id="@+id/txtDropDownLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:padding="@dimen/_3sdp"
+        android:text="Strawberry"
+        android:textSize="@dimen/_10sdp" />
+
+</LinearLayout>

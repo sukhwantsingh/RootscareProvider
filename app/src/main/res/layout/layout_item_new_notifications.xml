@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cns_noti_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp6"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/white"
+        android:elevation="@dimen/dp2"
+        android:paddingEnd="@dimen/dp16">
+
+        <View
+            android:id="@+id/vl1"
+            android:layout_width="5dp"
+            android:layout_height="0dp"
+            android:background="@color/indicator_color"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_rocket"
+            android:layout_width="18dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp16"
+            android:src="@drawable/ic_rocket_unread"
+            app:layout_constraintStart_toEndOf="@+id/vl1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_notfication_text"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/dp16"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_rocket"
+            app:layout_constraintTop_toTopOf="@+id/iv_rocket"
+            tools:text="You have received an appointment request, click here to see more and accept the appointment." />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/divider_support_more"
+            app:layout_constraintEnd_toEndOf="@+id/tv_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_notfication_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_notfication_text" />
+
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/AppTheme.TextRegular"
+            android:paddingVertical="@dimen/dp10"
+            android:paddingEnd="@dimen/dp5"
+            android:text="@string/rated"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintStart_toStartOf="@+id/v1"
+            app:layout_constraintTop_toBottomOf="@+id/v1"
+            tools:text="11:25 AM . Today" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

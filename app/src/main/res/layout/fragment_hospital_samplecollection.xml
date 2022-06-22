@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_bg"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_select_hospital"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@drawable/search_for_common_bg"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:elevation="@dimen/_10sdp"
+                        >
+                        <com.rootscare.customviews.MyEditTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/dp8"
+                            android:paddingBottom="@dimen/dp8"
+                            android:id="@+id/txt_search_hospital_or_clinic"
+                            android:drawableEnd="@drawable/search"
+                            android:textSize="@dimen/_10ssp"
+                            android:hint="Name Of Patient"
+                            android:background="@drawable/search_for_common_bg"/>
+                    </androidx.cardview.widget.CardView>
+
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    >
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recyclerView_hospital_samplecollection_list"/>
+                    <com.rootscare.customviews.MyTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/dp16"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/no_data"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:id="@+id/tv_no_date"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

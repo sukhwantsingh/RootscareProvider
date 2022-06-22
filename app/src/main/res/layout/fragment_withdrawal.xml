@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/dp16"
+        tools:context=".ui.transactionss.fragments.FragmentWithdrawal">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gr"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimen_16dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_add_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="vlb,tvh_ba, tvh_add_bank" />
+
+        <TextView
+            android:id="@+id/tvhb"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:text="@string/available_balance"
+            android:textColor="@color/green_paid"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvh_price"
+            app:layout_constraintEnd_toStartOf="@+id/tvh_price"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toTopOf="@+id/tvh_price" />
+
+        <TextView
+            android:id="@+id/tvh_price"
+            style="@style/AppTheme.TextMedium"
+            android:paddingStart="@dimen/dp8"
+            android:paddingEnd="@dimen/dimen_0dp"
+            tools:text="5800 SAR"
+            android:textColor="@color/green_paid"
+            android:textSize="@dimen/dp20"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_withdrawal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/dp2"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/tvh_info"
+            app:layout_constraintTop_toBottomOf="@+id/tvh_price"
+            tools:itemCount="20"
+            tools:listitem="@layout/layout_new_item_withdrawble_" />
+
+        <TextView
+            android:id="@+id/tv_no_date"
+            style="@style/AppTheme.TextRegular"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@string/no_data"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tvh_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvh_price" />
+
+        <TextView
+            android:id="@+id/tvh_info"
+            style="@style/AppTheme.TextRegular"
+            android:layout_marginBottom="@dimen/dp5"
+            android:textColor="@color/indicator_color"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintBottom_toTopOf="@+id/tvsh_info"
+            app:layout_constraintStart_toEndOf="@+id/gl" />
+
+        <TextView
+            android:id="@+id/tvsh_info"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:layout_marginBottom="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:textColor="@color/txt_color_wi"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintBottom_toTopOf="@+id/cns_cba"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintStart_toEndOf="@+id/gl" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cns_cba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp8"
+            android:background="@color/cba_bg"
+            android:paddingStart="@dimen/dp16"
+            android:paddingTop="@dimen/dp8"
+            android:paddingEnd="@dimen/dp16"
+            android:paddingBottom="@dimen/dp16"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/tvh_add_bank"
+            app:layout_goneMarginBottom="@dimen/dp20">
+
+            <TextView
+                android:id="@+id/tvh_cba"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="0dp"
+                android:text="@string/connected_bank_account"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintBottom_toBottomOf="@+id/ibcross"
+                app:layout_constraintEnd_toStartOf="@+id/ibcross"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ibcross" />
+
+            <ImageView
+                android:id="@+id/ibcross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cross_"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvh_bank"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/dp12"
+                android:text="@string/bank"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="@+id/tvh_cba"
+                app:layout_constraintTop_toBottomOf="@+id/ibcross" />
+
+            <TextView
+                android:id="@+id/tvh_acname"
+                style="@style/AppTheme.TextMedium"
+                android:text="@string/a_c_name"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp10"
+                app:layout_constraintEnd_toStartOf="@+id/tvh_acnum"
+                app:layout_constraintStart_toEndOf="@+id/tvh_bank"
+                app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
+
+            <TextView
+                android:id="@+id/tvh_acnum"
+                style="@style/AppTheme.TextMedium"
+                android:text="@string/ac_num"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvh_acname"
+                app:layout_constraintTop_toTopOf="@+id/tvh_acname" />
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_marginTop="@dimen/dp2"
+                tools:text="Riyad Bank."
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ac_name"
+                app:layout_constraintStart_toStartOf="@+id/tvh_bank"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_bank" />
+
+            <TextView
+                android:id="@+id/tv_ac_name"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_marginTop="@dimen/dp2"
+                tools:text="Layth Ghass A."
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ac_num"
+                app:layout_constraintStart_toStartOf="@+id/tvh_acname"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_acname" />
+
+
+            <TextView
+                android:id="@+id/tv_ac_num"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/dp2"
+                tools:text="659825746"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvh_acnum"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_acnum" />
+
+            <TextView
+                android:id="@+id/tvh_Address"
+                style="@style/AppTheme.TextMedium"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="@string/address_with_colon"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="@+id/tv_bank_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_marginTop="@dimen/dp2"
+                tools:text="Riyad Bank, Public Shareholding Company, Capital of SAR 30 Billion, Commercial Register (1010001054), P.O. Box 22622 Riyadh 11416"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvh_Address"
+                app:layout_constraintTop_toBottomOf="@+id/tvh_Address" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvh_ba"
+            style="@style/AppTheme.TextRegular"
+            android:text="@string/bank_account"
+            android:textColor="@color/txt_dash_heading"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintBottom_toBottomOf="@+id/tvh_add_bank"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toTopOf="@+id/tvh_add_bank" />
+
+        <TextView
+            android:id="@+id/tvh_add_bank"
+            style="@style/AppTheme.TextMedium"
+            android:layout_marginEnd="@dimen/dp16"
+            android:layout_marginBottom="@dimen/dp12"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingVertical="@dimen/dp5"
+            android:text="@string/add_bank"
+            android:textColor="@color/indicator_color"
+            android:textSize="@dimen/dp14"
+            app:layout_constraintBottom_toTopOf="@+id/vlb"
+            app:layout_constraintEnd_toStartOf="@+id/gr" />
+
+        <View
+            android:id="@+id/vlb"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginBottom="@dimen/dp20"
+            android:background="@color/divider_support_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintStart_toEndOf="@+id/gl" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

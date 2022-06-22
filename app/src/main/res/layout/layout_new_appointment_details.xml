@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.models.ModelAppointmentDetails.Result" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/top_toolbar"
+                layout="@layout/common_header" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdview_appoitment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dp16">
+
+                    <TextView
+                        android:id="@+id/tvhtop"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp16"
+                        android:singleLine="true"
+                        android:text="@string/booking_id"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp15" />
+
+                    <TextView
+                        android:id="@+id/tv_orderid"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:layout_toStartOf="@+id/tv_status_"
+                        android:layout_toEndOf="@+id/tvhtop"
+                        android:singleLine="true"
+                        android:text="@{data.order_id}"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp16"
+                        tools:text="ORD876543" />
+
+                    <TextView
+                        android:id="@+id/tv_status_"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp16"
+                        android:paddingHorizontal="@dimen/dp6"
+                        android:paddingVertical="@dimen/dp3"
+                        android:text="@{data.acceptance_status}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp12"
+                        app:backgroundStatusColor="@{data.acceptance_status}" />
+
+                    <View
+                        android:id="@+id/vtop"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/tvhtop"
+                        android:layout_marginHorizontal="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:background="@color/divider_support_more" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="@dimen/dp77"
+                        android:layout_height="@dimen/dp77"
+                        android:layout_below="@+id/vtop"
+                        android:layout_marginStart="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:src="@drawable/profile_no_image"
+                        app:civ_border_color="@color/indicator_color"
+                        app:civ_border_width="@dimen/dp1"
+                        app:setCircularRemoteImage="@{data.provider_image}" />
+
+                    <TextView
+                        android:id="@+id/tv_user_type"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_alignTop="@+id/img_profile"
+                        android:layout_marginStart="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_toEndOf="@+id/img_profile"
+                        android:singleLine="true"
+                        android:text="@{data.service_type}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp15"
+                        tools:text="Doctor" />
+
+                    <TextView
+                        android:id="@+id/tvh_hospital_"
+                        style="@style/AppTheme.TextMedium"
+                        android:background="@color/price_bg"
+                        android:layout_marginStart="@dimen/dp4"
+                        android:paddingHorizontal="@dimen/dp5"
+                        android:paddingVertical="@dimen/dp4"
+                        android:text="@string/hospital"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp9"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_toEndOf="@+id/tv_user_type"
+                        android:layout_alignTop="@+id/tv_user_type"
+                        android:layout_marginHorizontal="@dimen/dp8"
+                        app:visibilityWithNullEmptyCheck="@{data.hospital_id}"
+                       />
+
+
+                    <TextView
+                        android:id="@+id/tv_username"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_below="@+id/tv_user_type"
+                        android:layout_alignStart="@+id/tv_user_type"
+                        android:layout_marginTop="@dimen/dp3"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{data.provider_name}"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp14"
+                        tools:text="Dr Name" />
+
+                    <TextView
+                        android:id="@+id/tvh_speciality_header"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_below="@+id/tv_username"
+                        android:layout_alignStart="@+id/tv_username"
+                        android:layout_marginTop="@dimen/dp3"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{data.speciality}"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp14"
+                        tools:text="Speciality" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cns_apsh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_profile"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:background="@color/cba_bg"
+                        android:padding="@dimen/dp16"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tv_1"
+                            style="@style/AppTheme.TextMedium"
+                            android:text="@string/appointment_schedule"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvh_bank"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="0dp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:text="@string/appointment_date"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintEnd_toStartOf="@+id/tvh_acname"
+                            app:layout_constraintStart_toStartOf="@+id/tv_1"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_1" />
+
+                        <TextView
+                            android:id="@+id/tvh_acname"
+                            style="@style/AppTheme.TextMedium"
+                            android:text="@string/appointment_time"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
+
+
+                        <TextView
+                            android:id="@+id/tv_bank_name"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_width="@dimen/dimen_0dp"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:text="@{data.app_date}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_ac_name"
+                            app:layout_constraintStart_toStartOf="@+id/tvh_bank"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_bank"
+                            tools:text="FRI, 17 FEB 2022" />
+
+                        <TextView
+                            android:id="@+id/tv_ac_name"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_width="@dimen/dimen_0dp"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:singleLine="true"
+                            android:text="@{data.app_time}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tvh_acname"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_acname"
+                            tools:text="9:30 - 10:00 am" />
+
+
+                        <TextView
+                            android:id="@+id/tv_schedule_type"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:background="@drawable/round_square_border_schedule_type_blue"
+                            android:paddingHorizontal="@dimen/dp8"
+                            android:paddingVertical="@dimen/dp3"
+                            android:text="@{data.task_type}"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toStartOf="@+id/tv_bank_name"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name"
+                            tools:text="Online Consultation" />
+
+
+                        <TextView
+                            android:id="@+id/tv_booking_pref"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_width="0dp"
+                            android:drawablePadding="@dimen/dp4"
+                            android:text="@{data.task_time}"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14"
+                            app:drawableStartCompat="@drawable/ic_clock_"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tv_ac_name"
+                            app:layout_constraintTop_toTopOf="@+id/tv_schedule_type"
+                            tools:text="02hrs" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cns_patient_syptm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cns_apsh"
+                        android:background="#FDF7EB"
+                        android:padding="@dimen/dp16"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/t_1"
+                            style="@style/AppTheme.TextMedium"
+                            android:text="@string/patient_symptom"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.exoplayer2.ui.PlayerView
+                            android:id="@+id/player_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_below="@+id/t_1"
+                            app:controller_layout_id="@layout/custom_playback_control"
+                            app:fastforward_increment="5000"
+                            app:hide_on_touch="false"
+                            app:rewind_increment="5000"
+                            app:show_timeout="0"
+                            app:shutter_background_color="@color/white" />
+
+                        <View
+                            android:id="@+id/vl"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/player_view"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:background="@color/divider_support_more" />
+
+                        <TextView
+                            android:id="@+id/t_syp"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_below="@+id/vl"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:text="@string/symptom_description"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14" />
+
+                        <TextView
+                            android:id="@+id/tv_symp_desc"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_below="@+id/t_syp"
+                            android:layout_marginTop="8dp"
+                            android:text="@{data.symptom_text}"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:textSize="@dimen/dp13"
+                            tools:text="sdhakdfhlaf dfhdslfhdfldhsfl hfdsfhdlhd flsdfhlsd fhflsdhfsdlfh lfsdhflsdh flfdshflsdhfsdl fhldhfsdlfh sdl" />
+
+                        <TextView
+                            android:id="@+id/tv_uploaded_sumptom"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/tv_symp_desc"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:layout_toStartOf="@+id/tv_upPres_view"
+                            android:clickable="true"
+                            android:drawableStart="@drawable/attachment"
+                            android:drawablePadding="@dimen/dp6"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="start"
+                            android:paddingVertical="6dp"
+                            android:text="@{data.patient_prescription}"
+                            android:textColor="@color/txt_dash_heading"
+                            android:textSize="@dimen/dp12"
+                            tools:text="Uploaded Presc" />
+
+                        <TextView
+                            android:id="@+id/tv_upPres_view"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_alignTop="@+id/tv_uploaded_sumptom"
+                            android:layout_alignParentEnd="true"
+                            android:paddingVertical="6dp"
+                            android:text="@string/view"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </RelativeLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cns_presc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cns_patient_syptm"
+                        android:paddingHorizontal="@dimen/dp16"
+                        android:paddingBottom="@dimen/dp16">
+
+                        <!--   app:visibilityWithNullEmptyCheck="@{data.patient_name}" -->
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/grp_presc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:constraint_referenced_ids="tv_presc_reUpload,v2,tv_presc_dowonload,tv_presc_date,tv_presc_name,tvh_presc,img_prescription"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tvh_presc"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:singleLine="true"
+                            android:text="@string/prescription"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/img_prescription"
+                            android:layout_width="@dimen/dp60"
+                            android:layout_height="@dimen/dp65"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_presc"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_presc" />
+
+                        <TextView
+                            android:id="@+id/tv_presc_name"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="0dp"
+                            android:layout_marginStart="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp3"
+                            android:singleLine="true"
+                            android:text="@{data.provider_prescription}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_presc_dowonload"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_presc_dowonload"
+                            app:layout_constraintStart_toEndOf="@+id/img_prescription"
+                            tools:text="rx-prescription.pdf" />
+
+                        <TextView
+                            android:id="@+id/tv_presc_date"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginTop="@dimen/dp3"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@{data.provider_upd}"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp10"
+                            app:layout_constraintStart_toStartOf="@+id/tv_presc_name"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_presc_name"
+                            tools:text="11/12/021" />
+
+                        <TextView
+                            android:id="@+id/tv_presc_dowonload"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:padding="@dimen/dp5"
+                            android:singleLine="true"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_prescription"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/img_prescription"
+                            android:text="@string/download" />
+
+                        <TextView
+                            android:id="@+id/tv_presc_reUpload"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:padding="@dimen/dp5"
+                            android:layout_marginTop="8dp"
+                            android:singleLine="true"
+                            android:textColor="@color/review_star"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_presc_dowonload"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="@string/re_upload" />
+
+                        <View
+                            android:id="@+id/v2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:background="@color/divider_support_more"
+                            app:layout_constraintTop_toBottomOf="@+id/img_prescription" />
+
+                        <TextView
+                            android:id="@+id/tv_"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:singleLine="true"
+                            android:text="@string/booked_on"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/v2" />
+
+                        <TextView
+                            android:id="@+id/tv_booked_on"
+                            style="@style/AppTheme.TextMedium"
+                            android:singleLine="true"
+                            android:text="@{data.booking_date}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_"
+                            tools:text="25 DEC 2021" />
+
+                        <View
+                            android:id="@+id/v3p"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:background="@color/divider_support_more"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_" />
+
+                        <TextView
+                            android:id="@+id/tvh_patient_details"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:singleLine="true"
+                            android:text="@string/patient_details"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/v3p" />
+
+                        <TextView
+                            android:id="@+id/tv_patient_nm"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:singleLine="true"
+                            android:text="@{data.patient_name}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_patient_details"
+                            tools:text="Sanjay Biswas" />
+
+                        <ImageView
+                            android:id="@+id/ivp_map_pin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:src="@drawable/ic_nav_map_pin"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_patient_nm" />
+
+
+                        <TextView
+                            android:id="@+id/tv_patient_address"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginStart="@dimen/dp8"
+                            android:text="@{data.patient_address}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toEndOf="@+id/ivp_map_pin"
+                            app:layout_constraintTop_toTopOf="@+id/ivp_map_pin"
+                            tools:text="patient Address" />
+
+                        <TextView
+                            android:id="@+id/tvh_open_gmap"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:paddingVertical="@dimen/dp5"
+                            android:singleLine="true"
+                            android:text="@string/open_google_map"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toStartOf="@+id/tv_patient_address"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_patient_address" />
+
+                        <TextView
+                            android:id="@+id/tpc"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:drawableStart="@drawable/ico_phn_dots"
+                            android:drawablePadding="@dimen/dp8"
+                            android:singleLine="true"
+                            android:text="@{data.patient_contact}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_open_gmap"
+                            tools:text="+044 6985 7423" />
+
+                        <TextView
+                            android:id="@+id/tvh_call"
+                            style="@style/AppTheme.TextSemiBold"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:padding="@dimen/dp5"
+                            android:singleLine="true"
+                            android:text="@string/call"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintBottom_toBottomOf="@+id/tpc"
+                            app:layout_constraintStart_toEndOf="@+id/tpc"
+                            app:layout_constraintTop_toTopOf="@+id/tpc" />
+
+
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/grp_enter_otp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:constraint_referenced_ids="edtOtp,iv_send_otp,tvh_enter_otp,vcldn" />
+
+                        <View
+                            android:id="@+id/vcldn"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:background="@color/divider_support_more"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_call" />
+
+                        <TextView
+                            android:id="@+id/tvh_enter_otp"
+                            style="@style/AppTheme.TextRegular"
+                            android:text="@string/enter_otp_to_complete"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintBottom_toBottomOf="@+id/edtOtp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/edtOtp" />
+
+                        <ImageView
+                            android:id="@+id/iv_send_otp"
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp30"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:background="@color/new_bg_grey"
+                            android:padding="@dimen/dp5"
+                            android:src="@drawable/ico_send_24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/vcldn" />
+
+                        <EditText
+                            android:id="@+id/edtOtp"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@color/new_bg_grey"
+                            android:digits="0123456789"
+                            android:fontFamily="@font/rubik_medium"
+                            android:gravity="center"
+                            android:hint="@string/enter_otp"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:padding="@dimen/dp3"
+                            android:singleLine="true"
+                            android:textColor="@color/price_txt_heading"
+                            android:textColorHint="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_send_otp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_send_otp"
+                            app:layout_constraintTop_toTopOf="@+id/iv_send_otp" />
+
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/grp_otp_success"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:constraint_referenced_ids="tvh_otp_filled,tvh_otp_succfully,vcldn2" />
+
+                        <View
+                            android:id="@+id/vcldn2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:background="@color/divider_support_more"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_call" />
+
+                        <TextView
+                            android:id="@+id/tvh_otp_succfully"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:text="@string/otp_already_successfully"
+                            android:textColor="@color/green_paid"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/vcldn2" />
+
+                        <TextView
+                            android:id="@+id/tvh_otp_filled"
+                            style="@style/AppTheme.TextRegular"
+                            android:text="@{data.OTP}"
+                            android:textColor="@color/green_paid"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvh_otp_succfully"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvh_otp_succfully"
+                            tools:text="4453" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cns_presc"
+                        android:background="@color/gray_very_light_new"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp16"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvh_payment"
+                            style="@style/AppTheme.TextMedium"
+                            android:text="@string/payment"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_payments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvh_payment"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/dp8"
+                            android:visibility="visible"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/layout_new_item_payment_splitting" />
+
+                        <View
+                            android:id="@+id/vcdiv"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/rv_payments"
+                            android:layout_marginTop="@dimen/dp4"
+                            android:background="@color/view_div_dk" />
+
+                        <TextView
+                            android:id="@+id/tvh_dis_fare"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/vcdiv"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:text="@string/distance_fare"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <TextView
+                            android:id="@+id/tv_dis_fare"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/vcdiv"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="@{data.distance_fee}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            tools:text="10 SAR" />
+
+                        <TextView
+                            android:id="@+id/tvh_vat"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/tvh_dis_fare"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="@{data.vat_percent}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <TextView
+                            android:id="@+id/tv_vat"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/tvh_dis_fare"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="@{data.vat}"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp12"
+                            tools:text="67.5 SAR" />
+
+                        <View
+                            android:id="@+id/v_final"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tvh_vat"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:background="@color/view_div_dk" />
+
+                        <TextView
+                            android:id="@+id/tv_total_price"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_below="@+id/v_final"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:text="@{data.price}"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14"
+                            tools:text="517.5 SAR" />
+
+
+                    </RelativeLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cns_cba"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_payment"
+                        android:paddingHorizontal="@dimen/dp16"
+                        android:paddingVertical="@dimen/dp12">
+
+                        <TextView
+                            android:id="@+id/tvh_wallet_price"
+                            style="@style/AppTheme.TextMedium"
+                            android:drawablePadding="@dimen/dp8"
+                            android:text="@{data.price}"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp16"
+                            app:drawableStartCompat="@drawable/ico_wallet"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="517.5 SAR" />
+
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/grp_accept_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:constraint_referenced_ids="btn_accept,ibcross" />
+
+                        <TextView
+                            android:id="@+id/btn_accept"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="@dimen/dp16"
+                            android:background="@drawable/ic_rectangle_523"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp10"
+                            android:text="@string/accept"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/ibcross"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <ImageView
+                            android:id="@+id/ibcross"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_cross_"
+                            app:layout_constraintBottom_toBottomOf="@+id/btn_accept"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/btn_accept" />
+
+                        <TextView
+                            android:id="@+id/btn_video_call"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="@dimen/dp8"
+                            android:background="@drawable/ic_rectangle_523"
+                            android:clickable="true"
+                            android:drawableStart="@drawable/ico_video_"
+                            android:drawablePadding="@dimen/dp8"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/dp10"
+                            android:paddingVertical="@dimen/dp10"
+                            android:text="@string/video_call"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp11"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btn_upload_presc"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/btn_upload_presc"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="wrap_content"
+                            android:background="@drawable/ic_rect_back_presc"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/dp8"
+                            android:paddingVertical="@dimen/dp8"
+                            android:text="@string/upload_prescription"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dp11"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvh_rated"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_marginEnd="@dimen/dp10"
+                            android:text="@string/not_rated_yet"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvh_wallet_price"
+                            app:layout_constraintEnd_toStartOf="@+id/rat_bar"
+                            app:layout_constraintTop_toTopOf="@+id/tvh_wallet_price"
+                            app:layout_goneMarginEnd="0dp" />
+
+                        <RatingBar
+                            android:id="@+id/rat_bar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            android:visibility="gone"
+                            android:theme="@style/fooRatingBar"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
+

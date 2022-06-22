@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- extend the base theme to add styles available only with API level 21+ -->
+    <style name="AppBaseTheme21" parent="AppBaseTheme">
+        <!-- Customize your theme here. -->
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">false</item>
+
+        <!-- Change the status bar background color  -->
+        <item name="android:statusBarColor">@color/white</item>
+
+    </style>
+
+    <!-- this theme will be used as the app theme when we reach api level 21 -->
+    <style name="AppTheme" parent="AppBaseTheme21" />
+
+    <style name="AppTheme.PrimaryStatus">
+        <!-- Change the status bar background color  -->
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+
+
+
+</resources>

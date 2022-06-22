@@ -1,0 +1,7 @@
+package com.rootscare.serviceprovider.ui.babySitter.babySitterReviewAndRating
+
+import com.rootscare.serviceprovider.ui.base.BaseViewModel
+import com.rootscare.serviceprovider.ui.nurses.nursesreviewandrating.FragmentNursesReviewAndRatingNavigator
+
+class FragmentBabySitterReviewAndRatingViewModel: BaseViewModel<FragmentBabySitterReviewAndRatingNavigator>() {
+}

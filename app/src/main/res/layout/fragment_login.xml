@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data> </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layoutDirection="ltr"
+                    android:src="@drawable/ic_rc_logo" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvh1"
+                        style="@style/AppTheme.TextMedium"
+                        android:text="@string/welcome_back"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp20" />
+
+                    <TextView
+                        android:id="@+id/tvsh1"
+                        style="@style/AppTheme.TextRegular"
+                        android:text="@string/please_sign_in_to_continue"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        android:id="@+id/txt_rootscare_login_userType"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:background="@drawable/round_dropdown_background"
+                        android:gravity="center_vertical"
+                        android:hint="@string/select_user_type"
+                        android:padding="@dimen/dp12"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textColorHint="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp15"
+                        app:drawableEndCompat="@drawable/ic_dropdown_arrow" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_rootscare_provider_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:hint="@string/email_address"
+                            android:imeOptions="actionDone"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true"
+                            android:textColor="@color/txt_dash_heading"
+                            android:textSize="@dimen/dp15" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_rootscare_provider_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:hint="@string/password"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@color/txt_dash_heading"
+                            android:textSize="@dimen/dp15" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp">
+
+                        <CheckBox
+                            android:id="@+id/checkbox_loginremember"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/rubik_regular"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:text="@string/remember_me"
+                            android:textColor="@color/txt_color"
+                            android:textSize="@dimen/dp14" />
+
+                        <TextView
+                            android:id="@+id/txt_forgot_password"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:text="@string/forgot_password"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_rootscare_login"
+                        style="@style/AppTheme.BtnMediumBlue"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:layout_marginBottom="@dimen/dp8"
+                        android:text="@string/continue_"
+                        android:textAllCaps="true" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp24"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingEnd="@dimen/dp4"
+                    android:visibility="gone"
+                    android:background="#F8F8F8">
+
+                    <TextView
+                        android:id="@+id/tvh_profile_setting"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_alignTop="@+id/ll_language_preference"
+                        android:layout_alignBottom="@+id/ll_language_preference"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/ll_language_preference"
+                        android:alpha=".71"
+                        android:gravity="center_vertical"
+                        android:text="@string/language_preference"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp14" />
+
+                    <!-- round_rect_grey_border  -->
+                    <LinearLayout
+                        android:id="@+id/ll_language_preference"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/dp16"
+                        android:background="@drawable/bg_rounded_grey_border"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_1dp">
+
+                        <TextView
+                            android:id="@+id/tvh_eng"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_width="75dp"
+                            android:alpha=".71"
+                            android:background="@color/lang_pref_select"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:padding="@dimen/dp6"
+                            android:text="ENG"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintStart_toStartOf="@+id/gl"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+                        <View
+                            android:id="@+id/vl_center"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/vpa_textview_background_color"
+                            app:layout_constraintEnd_toEndOf="@+id/gr"
+                            app:layout_constraintStart_toStartOf="@+id/tvh_profile_setting"
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_profile_setting" />
+
+                        <TextView
+                            android:id="@+id/tvh_ar"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_width="75dp"
+                            android:alpha=".71"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:padding="@dimen/dp6"
+                            android:text="AR"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp14"
+                            app:layout_constraintEnd_toStartOf="@+id/ivar5"
+                            app:layout_constraintStart_toStartOf="@+id/gl"
+                            app:layout_constraintTop_toBottomOf="@+id/vl11" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp36"
+                    android:background="@color/new_bg_grey"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp24"
+                    android:paddingBottom="@dimen/dp24">
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/don_t_have_an_account"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        android:id="@+id/tvBtn_createAcc"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/round_border_nav_menu"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/dp12"
+                        android:paddingVertical="@dimen/dp12"
+                        android:text="@string/create_a_new_account"
+                        android:textAllCaps="true"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp12"
+                        android:gravity="center"
+                        android:text="@string/swipe_right_to_left"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/dp14" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

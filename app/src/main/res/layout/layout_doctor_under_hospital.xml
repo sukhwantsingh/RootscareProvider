@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/ll_mainlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdview_appoitment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                app:cardElevation="@dimen/dp2">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp16">
+
+                    <TextView
+                        android:id="@+id/tv_username"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_width="match_parent"
+                        android:layout_toStartOf="@+id/tv_create_new"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:text="Doctor"
+                        android:textColor="@color/txt_color_profile_desc"
+                        android:textSize="@dimen/dp15" />
+
+                    <TextView
+                        android:id="@+id/tv_create_new"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@drawable/rd_border_grey_edit_profle"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/dp8"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/dp8"
+                        android:paddingVertical="@dimen/dp5"
+                        android:text="@string/create_new"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp14"
+                        android:visibility="visible"
+                        app:drawableStartCompat="@drawable/ico_edit" />
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/tv_create_new"
+                        android:layout_marginTop="@dimen/dp12"
+                        android:textColor="@color/txt_color_profile_desc"
+                        android:textSize="@dimen/dp12"
+                        tools:text="Attended Diabetic Update in Amsterdam, 2003 Attended Novo Update in Paris, 2004 Attended Lilli Update in Hong Kong, 2005 Worked on inheritance patterns in Diabetes and HLA Mechanism in hypothyroidism." />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_docs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/crdview_appoitment_list"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/layout_new_item_doc_listing" />
+
+            <TextView
+                android:id="@+id/tv_no_date"
+                style="@style/AppTheme.TextRegular"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dp3"
+                android:gravity="center"
+                android:text="@string/no_data"
+                android:textSize="@dimen/dp15"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

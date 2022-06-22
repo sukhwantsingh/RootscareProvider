@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_dropdown_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtDropDownListLabel"
+            style="@style/AppTheme.TextRegular"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="Strawberry"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginStart="@dimen/dp14"
+            android:background="@color/divider_support_more" />
+
+    </LinearLayout>
+</layout>

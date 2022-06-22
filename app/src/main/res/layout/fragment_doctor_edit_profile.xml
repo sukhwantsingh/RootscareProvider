@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+          <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp">
+
+                <ImageView
+                    android:id="@+id/img_doctor_profile"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/profile_no_image" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_15dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:layout_alignEnd="@+id/img_doctor_profile"
+                    android:layout_alignBottom="@+id/img_doctor_profile"
+                    android:contentDescription="@null"
+                    android:src="@drawable/edit_icon" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp8"
+                    android:layout_toEndOf="@+id/img_doctor_profile"
+                    android:orientation="vertical">
+
+                    <com.rootscare.customviews.MyTextView
+                        android:id="@+id/textViewDocNameTilte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold" />
+
+                    <com.rootscare.customviews.MyTextView
+                        android:id="@+id/textViewDocEmailTilte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text=""
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+
+                    <com.rootscare.customviews.MyCustomButton
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/edit_profile_btn_bg"
+                        android:text="Edit Profile"
+                        android:textAllCaps="false"
+                        android:textColor="@color/txt_color"
+                        android:textSize="@dimen/_8ssp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdview_appoitment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:elevation="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:id="@+id/ll_mainlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="First Name" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextFirstName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="First Name"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Last Name" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextLastName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Last Name"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Date of Birth" />
+
+
+                            <com.rootscare.customviews.MyTextView
+                                android:id="@+id/textViewDOB"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:drawableEnd="@drawable/calendar_month"
+                                android:hint="Date of Birth"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Email" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextEmail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+                            <!--android:drawableEnd="@drawable/new_down_arrow"-->
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Password" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/et_password"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Password"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+                            <!--android:drawableEnd="@drawable/new_down_arrow"-->
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Confirm Password" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/et_confirm_password"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Confirm Password"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+                            <!--android:drawableEnd="@drawable/new_down_arrow"-->
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <!--<com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foregroundGravity="center"
+                            android:gravity="center"  >
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Mobile Number"
+                                android:inputType="phone"
+                                android:lines="1"
+                                android:background="@null"
+                                android:paddingTop="@dimen/_3sdp"
+                                android:paddingBottom="@dimen/_3sdp"
+                                android:id="@+id/ediitextMobileNumber"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Mobile Number" />
+
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextMobileNumber"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:maxLength="12"
+                                android:hint="Mobile Number"
+                                android:inputType="phone"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <RadioGroup
+                            android:id="@+id/radioYesOrNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/radioBtnMale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Male"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <RadioButton
+                                android:id="@+id/radioBtnFemale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:text="Female"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <!--<RadioButton
+                                android:id="@+id/radioBtnOther"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:text="Other"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />-->
+                        </RadioGroup>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="20"
+                                android:text="Add Certificates" />
+
+                            <ImageView
+                                android:id="@+id/imageViewaddCertificate"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/add_btn_bg" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewCertificates"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_3sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:padding="@dimen/_4sdp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Description" />
+
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextDescription"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Description"
+                                android:lines="2"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Experience" />
+
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextExperience"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Experience"
+                                android:inputType="number"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Available Time (Hours)" />
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitexAvailableTime"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Available Time"
+                                android:inputType="number"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_hourly_time"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Preferred Start Time"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/edt_nurse_from_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="4"
+                                android:drawableEnd="@drawable/stopwatch"
+                                android:hint="Select start time"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Preferred End Time"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <TextView
+                                android:id="@+id/edt_nurse_to_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="4"
+                                android:drawableEnd="@drawable/stopwatch"
+                                android:hint="Select end time"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_fees"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Fees" />
+
+
+                            <com.rootscare.customviews.MyEditTextView
+                                android:id="@+id/ediitextFees"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:hint="Fees"
+                                android:inputType="numberDecimal"
+                                android:lines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Department" />
+
+                            <com.rootscare.customviews.MyTextView
+                                android:id="@+id/textViewDepartment"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:background="@null"
+                                android:drawableEnd="@drawable/new_down_arrow"
+                                android:gravity="center_vertical"
+                                android:hint="Department"
+                                android:maxLines="2"
+                                android:minLines="1"
+                                android:textColor="@color/txt_color"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1ssp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/rootscare_text_and_view_color" />
+                    </LinearLayout>
+
+
+                    <com.rootscare.customviews.MyCustomButton
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_50sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/booking_new_bg"
+                        android:drawableEnd="@drawable/white_arrow_circle"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:visibility="visible" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
