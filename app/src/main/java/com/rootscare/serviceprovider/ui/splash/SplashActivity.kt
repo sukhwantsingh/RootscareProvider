@@ -63,6 +63,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
         super.onCreate(savedInstanceState)
         splashViewModel?.navigator = this
         activitySplashBinding = viewDataBinding
+
         Handler(Looper.getMainLooper()).postDelayed({ redirectToLogin() }, SPLASH_DISPLAY_LENGTH.toLong())
     }
 
