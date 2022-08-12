@@ -21,7 +21,21 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.google.android.youtube" />
+        <package android:name="com.twitter.android" />
+        <package android:name="com.google.android.apps.maps" />
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
 
     <application
         android:name="com.ApplicationClass"
@@ -71,10 +85,16 @@
 
         <activity
             android:name=".ui.supportmore.NeedSupportScreen"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.pricelistss.PriceListScreen"
             android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pricelistss.EditPackageScreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false" />
         <activity
             android:name=".ui.manageDocLab.ActivityCreateEditHospitalDocs"

@@ -1,6 +1,5 @@
 package com.rootscare.serviceprovider.ui.splash
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,8 +8,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.text.parseAsHtml
 import androidx.lifecycle.ViewModelProviders
-import com.rootscare.data.model.response.CommonResponse
 import com.rootscare.serviceprovider.BR
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.ActivitySplashBinding
@@ -18,13 +17,11 @@ import com.rootscare.serviceprovider.ui.babySitter.home.BabySitterHomeActivity
 import com.rootscare.serviceprovider.ui.base.BaseActivity
 import com.rootscare.serviceprovider.ui.caregiver.home.CaregiverHomeActivity
 import com.rootscare.serviceprovider.ui.hospital.HospitalHomeActivity
-import com.rootscare.serviceprovider.ui.labtechnician.home.LabTechnicianHomeActivity
 import com.rootscare.serviceprovider.ui.login.LoginActivity
 import com.rootscare.serviceprovider.ui.nurses.home.NursrsHomeActivity
 import com.rootscare.serviceprovider.ui.physiotherapy.home.PhysiotherapyHomeActivity
-import com.rootscare.serviceprovider.utilitycommon.LoginTypes
-import com.rootscare.serviceprovider.utilitycommon.SUCCESS_CODE
-import com.rootscare.serviceprovider.utilitycommon.openWebLink
+import com.rootscare.serviceprovider.ui.splash.model.NetworkAppCheck
+import com.rootscare.serviceprovider.utilitycommon.*
 import io.branch.referral.Branch
 import io.branch.referral.BranchError
 import kotlinx.coroutines.Dispatchers
@@ -38,8 +35,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
     private var activitySplashBinding: ActivitySplashBinding? = null
     private var splashViewModel: SplashActivityViewModel? = null
 
-    //    private var mRegistrationBroadcastReceiver: BroadcastReceiver? = null
-    private val SPLASH_DISPLAY_LENGTH = 1000
     override val bindingVariable: Int
         get() = BR.viewModel
     override val layoutId: Int
@@ -51,20 +46,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
             return splashViewModel as SplashActivityViewModel
         }
 
-    companion object {
-        val TAG = SplashActivity::class.java.simpleName
-
-        fun newIntent(activity: Activity): Intent {
-            return Intent(activity, SplashActivity::class.java)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         splashViewModel?.navigator = this
         activitySplashBinding = viewDataBinding
 
-        Handler(Looper.getMainLooper()).postDelayed({ redirectToLogin() }, SPLASH_DISPLAY_LENGTH.toLong())
+        initViews()
+    }
+
+    fun initViews() {
+        if (IS_PRODUCTION) apiVersionCheck()
+        else Handler(Looper.getMainLooper()).postDelayed({ redirectToLogin() }, 2000L)
     }
 
     private fun redirectToLogin() {
@@ -72,29 +64,29 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
             if (splashViewModel?.appSharedPref?.isLoggedIn == true) {
                 val loginResponse = splashViewModel?.appSharedPref?.loginUserType
                 when {
-                    loginResponse?.lowercase(Locale.ROOT).equals(LoginTypes.NURSE.type) -> {
-                        startActivity(NursrsHomeActivity.newIntent(this@SplashActivity))
-                    }
+
                     loginResponse?.lowercase().equals(LoginTypes.CAREGIVER.type) -> {
                         startActivity(CaregiverHomeActivity.newIntent(this@SplashActivity))
                     }
+
                     loginResponse?.lowercase().equals(LoginTypes.BABYSITTER.type) -> {
                         startActivity(BabySitterHomeActivity.newIntent(this@SplashActivity))
                     }
                     loginResponse?.lowercase().equals(LoginTypes.PHYSIOTHERAPY.type) -> {
                         startActivity(PhysiotherapyHomeActivity.newIntent(this@SplashActivity))
                     }
-                    loginResponse?.lowercase().equals(LoginTypes.DOCTOR.type) ||
+
+                    loginResponse?.lowercase(Locale.ROOT).equals(LoginTypes.LAB.type) ||
+                            loginResponse?.lowercase(Locale.ROOT).equals(LoginTypes.NURSE.type) ||
+                            loginResponse?.lowercase().equals(LoginTypes.DOCTOR.type) ||
                             loginResponse?.lowercase().equals(LoginTypes.HOSPITAL_DOCTOR.type) -> {
-//                        startActivity(HomeActivity.newIntent(this@SplashActivity))
                         startActivity(NursrsHomeActivity.newIntent(this@SplashActivity))
                     }
+
                     loginResponse?.lowercase().equals(LoginTypes.HOSPITAL.type) -> {
                         startActivity(HospitalHomeActivity.newIntent(this@SplashActivity))
                     }
-                    loginResponse?.lowercase().equals(LoginTypes.LAB_TECHNICIAN.type) -> {
-                        startActivity(LabTechnicianHomeActivity.newIntent(this@SplashActivity))
-                    }
+                    //  loginResponse?.lowercase().equals(LoginTypes.LAB.type) -> { startActivity(LabTechnicianHomeActivity.newIntent(this@SplashActivity)) }
 
                 }
                 finish()
@@ -112,15 +104,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
         super.onStart()
         // Branch init
         Branch.sessionBuilder(this).withCallback(branchListener).withData(this.intent?.data).init()
-       // apiVersionCheck()
     }
 
-    override fun onNewIntent(intent: Intent) {
+    override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         this.intent = intent
 
-        // if activity is in foreground (or in backstack but partially visible) launch the same
-        // activity will skip onStart, handle this case with reInit
         if (intent != null &&
             intent.hasExtra("branch_force_new_session") &&
             intent.getBooleanExtra("branch_force_new_session", false)
@@ -142,19 +131,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
         }
     }
 
-    override fun onSuccessVersion(response: CommonResponse?) {
+    override fun onSuccessVersion(response: NetworkAppCheck?) {
         try {
             if (response?.code.equals(SUCCESS_CODE)) {
                 response?.result?.let {
                     try {
-                      //  if (BuildConfig.VERSION_CODE >= mRes.appVer?.appVer ?: 1) {
+                        if (getAppVersionNumber() >= it.getServerVersion()) {
                             redirectToLogin()
-                       // } else {
+                        } else {
                             showUpdateDialogBeforeLogin(response)
-                      //  }
-
+                        }
                     } catch (e: java.lang.Exception) {
-
                     }
 
                 }
@@ -165,13 +152,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
 
     override fun errorInApi(throwable: Throwable?) {
         hideLoading()
+        redirectToLogin()
     }
 
     private fun apiVersionCheck() {
-        if (isNetworkConnected) { splashViewModel?.apiVersionCheck() }
+        if (isNetworkConnected) {
+            splashViewModel?.apiVersionCheck()
+        }
     }
 
-    private fun showUpdateDialogBeforeLogin(mNode: CommonResponse?) {
+    private fun showUpdateDialogBeforeLogin(mNode: NetworkAppCheck?) {
         val view = layoutInflater.inflate(R.layout.layout_dialog_version_check, null, false)
 
         val mTxtTopHeader = view.findViewById<AppCompatTextView>(R.id.txt_welcome)
@@ -184,33 +174,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityViewMod
         val mBtnUpdate = view.findViewById<AppCompatTextView>(R.id.btn_update)
 
         GlobalScope.launch(Dispatchers.Main + SupervisorJob()) {
-          //  mNode?.appVer?.let {
-             mTxtTopHeader.text = getString(R.string.update_patient)
+            mNode?.result?.let {
+                mTxtTopHeader.text = it.updTitle?.parseAsHtml()
+                mTxtContent.text = it.updText?.parseAsHtml()
+                mBtnNoThankx.text = it.skipText?.parseAsHtml()
 
-              //  if (it.skipFlag == true) {
-                   mBtnNoThankx.visibility = View.VISIBLE
-              //  } else {
-               //     mBtnNoThankx.visibility = View.INVISIBLE
-             //   }
-
-            //    mTxtContent.text = "".parseAsHtml()  // it.updText
-
-             //   if (it.showHelp == true) {
+                mBtnNoThankx.visibility = if (it.skipFlag == true) View.VISIBLE else View.INVISIBLE
+                if (it.showHelp == true) {
                     mViewLine.visibility = View.VISIBLE; mTxtHelp.visibility = View.VISIBLE
-                    mTxtHelp.text = "Help https://www.rootscare.com"     // "${it.helpTitle}: ${it.helpUrl}"
-             //   } else {
-                 //   mViewLine.visibility = View.GONE; mTxtHelp.visibility = View.GONE
-               // }
-           // }
-
+                    mTxtHelp.text = "${it.helpTitle}: ${it.helpUrl}"
+                } else {
+                    mViewLine.visibility = View.GONE; mTxtHelp.visibility = View.GONE
+                }
+            }
         }
 
         val dialog: AlertDialog = AlertDialog.Builder(this)
             .setView(view).setCancelable(false).create()
-            dialog.show()
+        dialog.show()
         mBtnUpdate.setOnClickListener {
-           // openWebLink(mNode?.appVer?.rdrUrl)
-           openWebLink("https://play.google.com/store/apps/details?id=com.rootscare")
+            openWebLink(mNode?.result?.rdrUrl)
             dialog.cancel()
             finish()
 
