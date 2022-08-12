@@ -263,6 +263,8 @@
                             android:imeOptions="actionDone"
                             android:inputType="number"
                             android:gravity="start"
+                            android:clickable="false"
+                            android:background="@drawable/round_dropdown_background"
                             android:maxLength="4"
                             android:focusable="false"
                             android:singleLine="true"
@@ -319,6 +321,8 @@
                         android:hint="@string/email_address"
                         android:imeOptions="actionDone"
                         android:inputType="textEmailAddress"
+                        android:focusable="false"
+                        android:background="@drawable/round_dropdown_background"
                         android:singleLine="true"
                         android:textColor="@color/txt_dash_heading"
                         android:textSize="@dimen/dp15" />
@@ -459,6 +463,8 @@
                         android:inputType="number"
                         android:maxLength="15"
                         android:singleLine="true"
+                        android:focusable="false"
+                        android:background="@drawable/round_dropdown_background"
                         android:textColor="@color/txt_dash_heading"
                         android:textSize="@dimen/dp15" />
 
@@ -704,6 +710,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_marginTop="@dimen/dp12">
 
                     <TextView
@@ -729,30 +736,30 @@
                         android:textColor="@color/txt_dash_heading"
                         android:textSize="@dimen/dp14" />
 
-<!--                    <com.google.android.material.textfield.TextInputLayout-->
-<!--                        android:id="@+id/til_departments"-->
-<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:visibility="visible"-->
-<!--                        android:layout_below="@+id/tvh_department"-->
-<!--                        android:layout_height="wrap_content">-->
+<!--                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_departments"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:visibility="visible"
+                        android:layout_below="@+id/tvh_department"
+                        android:layout_height="wrap_content">
 
-<!--                        <com.google.android.material.textfield.TextInputEditText-->
-<!--                            android:id="@+id/edt_departments"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="@font/rubik_regular"-->
-<!--                            android:imeOptions="actionDone"-->
-<!--                            android:inputType="text"-->
-<!--                            android:singleLine="true"-->
-<!--                            android:focusable="false"-->
-<!--                            android:clickable="true"-->
-<!--                            app:drawableEndCompat="@drawable/ic_dropdown_arrow"-->
-<!--                            android:hint="@string/select_depart"-->
-<!--                            android:textColor="@color/txt_dash_heading"-->
-<!--                            android:textSize="@dimen/dp15" />-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_departments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:focusable="false"
+                            android:clickable="true"
+                            app:drawableEndCompat="@drawable/ic_dropdown_arrow"
+                            android:hint="@string/select_depart"
+                            android:textColor="@color/txt_dash_heading"
+                            android:textSize="@dimen/dp15" />
 
-<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_departs"
@@ -764,10 +771,11 @@
                         android:background="@drawable/round_rect_grey_border"
                         android:orientation="horizontal"
                         android:visibility="gone"
+                        tools:visibility="visible"
                         android:padding="@dimen/dp5"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3"
-                        tools:itemCount="8"
+                        tools:itemCount="2"
                         tools:listitem="@layout/row_editable_departments" />
 
                 </RelativeLayout>

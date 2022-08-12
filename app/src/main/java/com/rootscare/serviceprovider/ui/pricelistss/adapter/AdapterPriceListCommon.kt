@@ -2,7 +2,9 @@ package com.rootscare.serviceprovider.ui.pricelistss.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.parseAsHtml
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.LayoutNewItemPriceBinding
-import com.rootscare.serviceprovider.ui.pricelistss.ModelPriceListing
+import com.rootscare.serviceprovider.ui.pricelistss.models.ModelPriceListing
 import com.rootscare.serviceprovider.utilitycommon.changeColorWithCheck
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -78,8 +80,11 @@ class AdapterPriceListCommon(internal var context: Context) :
 
  fun setData(binding: LayoutNewItemPriceBinding, pos:Int) {
      binding.run {
+         tvTaskDesc.visibility = if(updatedArrayList[pos]?.showDesc().isNullOrBlank()) View.GONE else View.VISIBLE
+
          swTask.isChecked = updatedArrayList[pos]?.isChecked ?: false
          tvTask.text = updatedArrayList[pos]?.name
+         tvTaskDesc.text = updatedArrayList[pos]?.showDesc()?.parseAsHtml()
 
          edtPrice.isEnabled = updatedArrayList[pos]?.isChecked ?: false
          edtPrice.setText(updatedArrayList[pos]?.price ?: "")

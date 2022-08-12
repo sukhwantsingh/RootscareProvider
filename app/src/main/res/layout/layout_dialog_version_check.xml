@@ -16,9 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            style="@style/AppTheme.TextRegular"
             android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/price_txt_heading"
+            android:textSize="18dp" />
     </RelativeLayout>
 
     <TextView
@@ -31,7 +32,7 @@
         android:textColor="@color/opaque_black"
         android:textSize="15sp"
         style="@style/AppTheme.TextRegular"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <!-- android:background="@drawable/gradient_white" -->
     <LinearLayout
@@ -46,11 +47,11 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:letterSpacing=".01"
-            android:lineSpacingExtra="7dp"
-            android:textColor="@color/grey"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/price_txt_heading"
             tools:text="We are keep fixing bugs"
             style="@style/AppTheme.TextRegular"
-            android:textSize="14dp" />
+            android:textSize="15dp" />
 
 
     </LinearLayout>
@@ -71,7 +72,7 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="8dp"
-            android:text="NO, THANKS"
+            tools:text="NO, THANKS"
             android:textAllCaps="true"
             android:textColor="@color/green"
             style="@style/AppTheme.TextMedium"
@@ -82,14 +83,15 @@
 
         <TextView
             android:id="@+id/btn_update"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:background="@color/green"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:padding="8dp"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="16dp"
             android:text="@string/update"
             android:gravity="center"
             style="@style/AppTheme.TextMedium"

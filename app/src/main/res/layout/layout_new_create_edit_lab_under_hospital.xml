@@ -32,7 +32,6 @@
                 android:background="#fff"
                 android:elevation="@dimen/dp4"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp30"
                 android:clipToPadding="false"
                 android:orientation="vertical">
 
@@ -132,11 +131,11 @@
                     android:layout_marginHorizontal="@dimen/dp16"
                     android:orientation="vertical"
                     android:visibility="visible">
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cns_cba"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/img_profile"
                         android:layout_marginTop="@dimen/dp20"
                         android:background="@drawable/rd_border_grey_edit_profle">
 
@@ -187,15 +186,15 @@
                             app:layout_constraintTop_toTopOf="@+id/tvh_acname" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_labname"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp4">
+                        android:layout_marginTop="@dimen/dp5">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_labname"
+                            android:id="@+id/edt_reg_labname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_regular"
@@ -212,27 +211,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp4">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_reg_phonenumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/rubik_regular"
-                            android:hint="@string/mobile_number"
-                            android:imeOptions="actionDone"
-                            android:inputType="phone"
-                            android:singleLine="true"
-                            android:textColor="@color/txt_dash_heading"
-                            android:textSize="@dimen/dp15" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp4">
+                        android:layout_marginTop="@dimen/dp5">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_reg_emailaddress"
@@ -247,6 +226,92 @@
                             android:textSize="@dimen/dp15" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:gravity="center_vertical"
+                        android:text="@string/where_do_you_want_to_give_your_medical_service"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textSize="@dimen/dp14" />
+
+                    <TextView
+                        android:id="@+id/tv_work_from"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_height="48dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@drawable/round_dropdown_background"
+                        android:gravity="center_vertical"
+                        android:hint="@string/select"
+                        android:padding="@dimen/dp12"
+                        android:textColor="@color/txt_dash_heading"
+                        android:textColorHint="@color/txt_color_wi"
+                        android:textSize="@dimen/dp15"
+                      />
+                    <!--   app:drawableEndCompat="@drawable/ic_dropdown_arrow" -->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilcc"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_cc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/rubik_regular"
+                                android:hint="cc"
+                                android:imeOptions="actionDone"
+                                android:inputType="number"
+                                android:gravity="start"
+                                android:maxLength="4"
+                                android:focusable="false"
+                                android:singleLine="true"
+                                android:textColor="@color/txt_dash_heading"
+                                tools:text = ""
+                                android:textSize="@dimen/dp15" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilmb"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/tilcc"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_reg_phonenumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/rubik_regular"
+                                android:hint="@string/mobile_number"
+                                android:imeOptions="actionDone"
+                                android:inputType="number"
+                                android:maxLength="14"
+                                android:singleLine="true"
+                                android:textColor="@color/txt_dash_heading"
+                                android:textSize="@dimen/dp15" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            style="@style/AppTheme.TextRegular"
+                            android:text="@string/use_mobile_number_note"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:layout_below="@+id/tilmb"
+                            android:layout_marginStart="@dimen/dp2"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:layout_alignStart="@+id/tilmb"
+                            android:textSize="@dimen/dp12" />
+                    </RelativeLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_pwd"
@@ -278,7 +343,7 @@
                         android:textSize="@dimen/dp12" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_cnfpwd"
+                        android:id="@+id/til_cnf_pwd"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -306,11 +371,19 @@
                         android:textColor="@color/colorTxtGrey1"
                         android:textSize="@dimen/dp12" />
 
+                    <include
+                        android:id="@+id/layout_hospital"
+                        layout="@layout/layout_signup_for_hospital"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp10">
+                        android:layout_marginTop="@dimen/dp8">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_about"

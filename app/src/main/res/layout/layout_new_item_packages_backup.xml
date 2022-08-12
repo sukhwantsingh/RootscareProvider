@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="node"
+            type="com.rootscare.serviceprovider.ui.pricelistss.models.ModelPackages.Result" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crd_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginVertical="@dimen/dp4">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp16">
+
+            <TextView
+                android:id="@+id/tv_package_name"
+                style="@style/AppTheme.TextMedium"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp8"
+                android:layout_toStartOf="@+id/sw_pack_enable"
+                android:text="@{node.name}"
+                tools:text="Good Health Gold Package"
+                android:textColor="@color/txt_color_profile_desc"
+                android:textSize="@dimen/dp18" />
+
+            <Switch
+                android:id="@+id/sw_pack_enable"
+                style="@style/AppTheme.TextRegular"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dp5"
+                android:enabled="false"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tv_tests_counts"
+                style="@style/AppTheme.TextRegular"
+                android:layout_below="@+id/tv_package_name"
+                android:layout_alignStart="@+id/tv_package_name"
+                android:layout_marginTop="@dimen/dp3"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{node.task_count}"
+                tools:text="Includes 60 Tests"
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/tv_tests"
+                style="@style/AppTheme.TextRegular"
+                android:layout_below="@+id/tv_tests_counts"
+                android:layout_alignStart="@+id/tv_tests_counts"
+                android:layout_marginTop="@dimen/dp10"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="3"
+                android:text="@{node.task_details}"
+                tools:text="Calcium, LFT, Urine Routine, Kidney Function Test, Iron Studies, Basic, Complete Blood Count, Vitamin D, TPT, Lipid Profile, Vitamin B12, Diabetes Screening..."
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp10" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cns_cba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_tests"
+                android:paddingTop="@dimen/dp8"
+                android:visibility="visible"
+                app:layout_goneMarginBottom="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/tvh_bank"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:text="@{node.maxrp}"
+                    tools:text="3200 SAR"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/vs11end"
+                    android:singleLine="true"
+                    app:strikeThrough="@{true}" />
+
+                <TextView
+                    android:id="@+id/tvh_acname"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_marginEnd="@dimen/dp30"
+                    android:text="@string/bookings"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintEnd_toStartOf="@+id/vs1end"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
+
+                <View
+                    android:id="@+id/vs1end"
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/dp30"
+                    android:background="@color/divider_support_more"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_num"
+                    app:layout_constraintEnd_toStartOf="@+id/tvh_acnum"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_acnum" />
+
+                <TextView
+                    android:id="@+id/tvh_acnum"
+                    style="@style/AppTheme.TextRegular"
+                    android:text="@string/rating"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_acname" />
+
+                <TextView
+                    android:id="@+id/tv_bank_name"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:text="2200 SAR"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_bank"
+                    app:layout_constraintTop_toTopOf="@+id/tv_percent_off" />
+
+                <TextView
+                    android:id="@+id/tv_percent_off"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="30% Off"
+                    android:textColor="@color/green_off_text"
+                    android:textSize="@dimen/dp10"
+                    android:background="@drawable/round_solid_stroke_width_off"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_name"
+                    app:layout_constraintStart_toEndOf="@+id/tv_bank_name"
+                    android:layout_marginStart="@dimen/dp12"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ac_name" />
+
+                <View
+                    android:id="@+id/vs11end"
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/dp24"
+                    android:background="@color/divider_support_more"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_name"
+                    app:layout_constraintEnd_toStartOf="@+id/tvh_acname"
+                    app:layout_constraintTop_toTopOf="@+id/tvh_acname" />
+                <TextView
+                    android:id="@+id/tv_ac_name"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ac_num"
+                    app:layout_constraintEnd_toStartOf="@+id/vs1end"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_acname"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ac_num" />
+
+                <TextView
+                    android:id="@+id/tv_ac_num"
+                    style="@style/AppTheme.TextMedium"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:drawableStart="@drawable/ico_star"
+                    android:drawablePadding="@dimen/dp3"
+                    android:gravity="bottom"
+                    android:text="0.0"
+                    android:textColor="@color/txt_color_profile_desc"
+                    android:textSize="@dimen/dp15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvh_acnum" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cns_recomm_initials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_tests"
+                android:layout_marginTop="@dimen/dp12"
+                android:paddingTop="@dimen/dp2"
+                android:visibility="gone"
+                app:layout_goneMarginBottom="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/tvh_rcm"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="@dimen/dp2"
+                    android:text="@string/recommended_price"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_recomm_price"
+                    style="@style/AppTheme.TextRegular"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="@dimen/dp2"
+                    android:text="1500 - 3200 SAR"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp14"
+                    app:layout_constraintStart_toStartOf="@+id/tvh_rcm"
+                    app:layout_constraintTop_toBottomOf="@+id/tvh_rcm" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

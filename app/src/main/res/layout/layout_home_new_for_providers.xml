@@ -118,17 +118,17 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/divider_support_more" />
 
-                <TextView
-                    android:id="@+id/tvh_h2"
-                    style="@style/AppTheme.TextMedium"
-                    android:layout_width="match_parent"
-                    android:layout_below="@+id/v2"
-                    android:drawableEnd="@drawable/ic_right_arrow_green_bg"
-                    android:paddingHorizontal="@dimen/dp16"
-                    android:paddingVertical="@dimen/dp12"
-                    android:text="@string/my_availability_schedule_"
-                    android:textColor="@color/txt_dash_heading"
-                    android:textSize="@dimen/dp15" />
+               <TextView
+                   android:id="@+id/tvh_h2"
+                   style="@style/AppTheme.TextMedium"
+                   android:layout_width="match_parent"
+                   android:layout_below="@+id/v2"
+                   android:drawableEnd="@drawable/ic_right_arrow_green_bg"
+                   android:paddingHorizontal="@dimen/dp16"
+                   android:paddingVertical="@dimen/dp12"
+                   android:text="@string/my_availability_schedule_"
+                   android:textColor="@color/txt_dash_heading"
+                   android:textSize="@dimen/dp15" />
 
             </RelativeLayout>
             <RelativeLayout

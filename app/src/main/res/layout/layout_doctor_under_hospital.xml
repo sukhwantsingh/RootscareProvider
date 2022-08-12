@@ -38,7 +38,7 @@
                         android:layout_width="match_parent"
                         android:layout_toStartOf="@+id/tv_create_new"
                         android:layout_marginTop="@dimen/dp8"
-                        android:text="Doctor"
+                        android:text="@string/doctor"
                         android:textColor="@color/txt_color_profile_desc"
                         android:textSize="@dimen/dp15" />
 

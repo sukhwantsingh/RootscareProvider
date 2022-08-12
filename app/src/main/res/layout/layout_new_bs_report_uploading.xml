@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cns_restl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/white_upper_corners"
+        android:elevation="@dimen/_6sdp"
+        android:paddingTop="@dimen/dp12"
+        android:paddingBottom="@dimen/dp10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gr"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimen_16dp" />
+
+        <TextView
+            android:id="@+id/n1"
+            style="@style/AppTheme.TextMedium"
+            android:layout_width="0dp"
+            android:text="@string/report_attachment"
+            android:textColor="@color/indicator_color"
+            android:textSize="@dimen/dp12"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_cross"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toTopOf="@+id/iv_cross" />
+
+        <ImageView
+            android:id="@+id/iv_cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/ic_cross_"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/rel_tap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp10"
+            android:background="@drawable/round_stroke_dash_width"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/dp12"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cross">
+
+            <ImageView
+                android:id="@+id/iv_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:src="@drawable/ic_upload_report" />
+
+            <TextView
+                android:id="@+id/tvh_h"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp3"
+                android:layout_toEndOf="@+id/iv_upload"
+                android:singleLine="true"
+                android:text="@string/tap_or_click_to_upload"
+                android:textColor="@color/txt_color"
+                android:textSize="@dimen/dp12" />
+
+
+            <TextView
+                android:id="@+id/tvh_sh"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/tvh_h"
+                android:layout_alignStart="@+id/tvh_h"
+                android:layout_marginTop="@dimen/dp3"
+                android:layout_toEndOf="@+id/iv_upload"
+                android:singleLine="true"
+                android:text="Maximum file size allowed 10 MB."
+                android:textColor="@color/colorTxtGrey1"
+                android:textSize="@dimen/dp10" />
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_attachments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/dp8"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toBottomOf="@+id/rel_tap"
+            app:spanCount="2"
+            tools:itemCount="2"
+            tools:listitem="@layout/row_item_upload_reports_" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_upload"
+            style="@style/AppTheme.BtnRegularBlue"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/dp16"
+            android:layout_marginBottom="@dimen/dp20"
+            android:text="@string/submit"
+            android:layout_marginTop="@dimen/dp32"
+            android:foreground="?attr/selectableItemBackground"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintEnd_toStartOf="@+id/gr"
+            app:layout_constraintStart_toEndOf="@+id/gl"
+            app:layout_constraintTop_toBottomOf="@+id/rv_attachments" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

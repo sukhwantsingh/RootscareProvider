@@ -82,7 +82,7 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
         arguments?.let {
             scheduleType = it.getString(ARG_SCHEDULE_TYPE) ?: ""
         }
-         hospId = scheduleActivityViewModel?.appSharedPref?.loginmodeldata?.getModelFromPref<ModelUserProfile>()?.result?.hospital_id
+         hospId = scheduleActivityViewModel?.appSharedPref?.loginmodeldata?.getModelFromPref<ModelUserProfile>()?.result?.hospital_id.orEmpty()
     }
 
     private fun isHospitalDoctor() = hospId.isNullOrBlank().not()
@@ -92,7 +92,6 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
         activityScheduleBinding = viewDataBinding
         activityScheduleBinding?.curRef = this
 
-        //clicks
         initViews()
     }
 
@@ -123,6 +122,9 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
             }
             scheduleType.equals(ScheduleTypes.ONLINE_BASED.nm, true) -> {
                 slotEnableForDoctorOnlineVisit()
+            }
+            scheduleType.equals(ScheduleTypes.LAB_BASED.nm, true) -> {
+                slotEnableForLabt()
             }
         }
 
@@ -396,6 +398,16 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
         }
     }
 
+    private fun slotEnableForLabt(){
+        activityScheduleBinding?.run {
+            rbHours.visibility = View.GONE; rbTask.visibility = View.VISIBLE
+            rbTask.isChecked = true
+            rbTask.text = getString(R.string.min_45_slots)
+
+            rbTask.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        }
+    }
+
   private fun is30MinSlotEnable(mFlag:Boolean){
         activityScheduleBinding?.run {
         if(mFlag){
@@ -549,7 +561,6 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
                } else {
                    activityScheduleBinding?.rbAccept?.isChecked = false
                    activityScheduleBinding?.rbHide?.isChecked = true
-
                    updateUiForProvider(false)
                }
 
@@ -615,13 +626,13 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
             activityScheduleBinding?.rbAccept?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             activityScheduleBinding?.rbHide?.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorTxtGrey1))
 
-            if(isHospitalDoctor()) {
+          if(isHospitalDoctor()) {
             activityScheduleBinding?.llHideAccept?.visibility = View.VISIBLE
             activityScheduleBinding?.llAddRadiusService?.visibility = View.GONE
-        } else {
+            } else {
             activityScheduleBinding?.llHideAccept?.visibility = View.VISIBLE
             activityScheduleBinding?.llAddRadiusService?.visibility = View.VISIBLE
-         }
+            }
 
         } else {
             activityScheduleBinding?.llHideAccept?.visibility = View.GONE
@@ -649,14 +660,14 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
             val req = FetchScheduleRequest()
             req.user_id = scheduleActivityViewModel?.appSharedPref?.loginUserId
 
-            when {
-                viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.HOSPITAL.type, true) == true -> {
-                    req.service_type = LoginTypes.PATHOLOGY.type
-                }
-                else -> {
+          //  when {
+          //      viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.HOSPITAL.type, true) == true -> {
+          //          req.service_type = LoginTypes.PATHOLOGY.type
+          //      }
+          //      else -> {
                     req.service_type = scheduleActivityViewModel?.appSharedPref?.loginUserType
-                }
-            }
+         //       }
+        //    }
 
             // in case for nurse fetch will  use different api
             when {
@@ -667,9 +678,8 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
                         scheduleActivityViewModel?.fetchScheduleForNurseHourlyBased(req)
                     }
                 }
-                viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.DOCTOR.type, true) == true -> {
-                scheduleActivityViewModel?.fetchScheduleDataForDoctor(req)
-                }
+                viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.DOCTOR.type, true) == true -> { scheduleActivityViewModel?.fetchScheduleDataForDoctor(req) }
+
                 else -> { scheduleActivityViewModel?.fetchScheduleData(req) }
             }
         }
@@ -707,17 +717,16 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
             }
 
 
-            baseActivity?.showLoading()
             val scheduleList: ArrayList<Slot> = ArrayList()
             activityScheduleBinding?.run {
                 scheduleList.apply {
-                    add(Slot("MON", tvMonStart.text.toString(),  tvMonEnd.text.toString(), s1 ) )
-                    add(Slot("TUE", tvTueStart.text.toString(),tvTueEnd.text.toString(), s2  ) )
-                    add(Slot("WED", tvWedStart.text.toString(), tvWedEnd.text.toString(), s3))
-                    add(Slot("THU", tvThurStart.text.toString(), tvThurEnd.text.toString(), s4 ))
-                    add(Slot("FRI", tvFriStart.text.toString(), tvFriEnd.text.toString(),  s5 ) )
-                    add(Slot("SAT", tvStartSat.text.toString(), tvEndSat.text.toString(), s6) )
-                    add(Slot("SUN", tvStartSun.text.toString(), tvEndSun.text.toString(),  s7 ) )
+                    add(Slot(WEEKDAYS.MONDAY.get(), tvMonStart.text.toString(),  tvMonEnd.text.toString(), s1 ) )
+                    add(Slot(WEEKDAYS.TUESDAY.get(), tvTueStart.text.toString(),tvTueEnd.text.toString(), s2  ) )
+                    add(Slot(WEEKDAYS.WEDNESDAY.get(), tvWedStart.text.toString(), tvWedEnd.text.toString(), s3))
+                    add(Slot(WEEKDAYS.THURSDAY.get(), tvThurStart.text.toString(), tvThurEnd.text.toString(), s4 ))
+                    add(Slot(WEEKDAYS.FRIDAY.get(), tvFriStart.text.toString(), tvFriEnd.text.toString(),  s5 ) )
+                    add(Slot(WEEKDAYS.SATURDAY.get(), tvStartSat.text.toString(), tvEndSat.text.toString(), s6) )
+                    add(Slot(WEEKDAYS.SUNDAY.get(), tvStartSun.text.toString(), tvEndSun.text.toString(),  s7 ) )
                 }
             }
 
@@ -733,21 +742,21 @@ class ScheduleFragmentCombine : BaseFragment<FragmentScheduleCombineBinding, Sch
                 serviceType = scheduleActivityViewModel?.appSharedPref?.loginUserType
             }
 
+            baseActivity?.showLoading()
             when {
                 viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.NURSE.type, true) == true -> {
                     sendRequest.slot_type = if (scheduleType.equals(ScheduleTypes.TASK_BASED.nm, true)) PriceTypes.TASK_BASED.getMode() else PriceTypes.HOURLY_BASED.getMode()
                     scheduleActivityViewModel?.sendProviderSchedule(sendRequest)
                 }
-
+                viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.LAB.type, true) == true -> {
+                    sendRequest.slot_type = PriceTypes.TASK_BASED.getMode()
+                    scheduleActivityViewModel?.sendProviderSchedule(sendRequest)
+                }
                 viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.DOCTOR.type, true) == true -> {
                     sendRequest.slot_type = if (scheduleType.equals(ScheduleTypes.ONLINE_HOME_BASED.nm, true) ||
                         scheduleType.equals(ScheduleTypes.ONLINE_BASED.nm, true)) PriceTypes.ONLINE.getMode() else PriceTypes.HOME_VISIT.getMode()
                     scheduleActivityViewModel?.sendProviderScheduleForDoctor(sendRequest)
                 }
-//                viewModel.appSharedPref?.loginUserType?.equals(LoginTypes.HOSPITAL.type, true) == true -> {
-//                  sendRequest.serviceType = "pathology"
-//                  scheduleActivityViewModel?.sendProviderSchedule(sendRequest)
-//                }
                 else -> { scheduleActivityViewModel?.sendProviderSchedule(sendRequest) }
             }
 

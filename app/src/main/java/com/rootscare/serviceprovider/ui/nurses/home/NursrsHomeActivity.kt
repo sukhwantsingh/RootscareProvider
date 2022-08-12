@@ -98,6 +98,7 @@ class NursrsHomeActivity : BaseActivity<ActivityNursrsHomeBinding, NursrsHomeAct
         checkFragmentInBackStackAndOpen(FragmentNurseHome.newInstance())
         observers()
         hitNotificationUnread()
+
     }
 
     private fun observers() {
@@ -146,7 +147,15 @@ class NursrsHomeActivity : BaseActivity<ActivityNursrsHomeBinding, NursrsHomeAct
 
         }
         }
-
+        initForLab()
+    }
+    private fun initForLab() {
+        activityNurseHomeBinding?.inclLayoutProviders?.run {
+            if(loginresponse?.result?.user_type?.lowercase().equals(LoginTypes.LAB.type)){
+                tvhMyappont.text = getString(R.string.all_appointments)
+                tvhPricelist.text = getString(R.string.manage_test_n_packages)
+            }
+        }
     }
 
     override fun onStart() {
@@ -243,35 +252,33 @@ class NursrsHomeActivity : BaseActivity<ActivityNursrsHomeBinding, NursrsHomeAct
             // appointment
             cnsAppointment.setOnClickListener {
                 toggleDrawer()
-             checkFragmentInBackStackAndOpen(FragmentNursesMyAppointment.newInstance())
+                if(allowProvider()) checkFragmentInBackStackAndOpen(FragmentNursesMyAppointment.newInstance())
             }
 
             // price-list
-            cnsPricelist.setOnClickListener { toggleDrawer();
-              navigate<PriceListScreen>()
-            }
+            cnsPricelist.setOnClickListener { toggleDrawer();  if(allowProvider()) navigate<PriceListScreen>() }
 
             // Schedule availability
-            cnsSchedule.setOnClickListener { toggleDrawer(); navigate<ScheduleActivity>() }
+            cnsSchedule.setOnClickListener { toggleDrawer(); if(allowProvider()) navigate<ScheduleActivity>() }
 
             // profile setting
-            cnsProfileSetting.setOnClickListener { toggleDrawer(); checkFragmentInBackStackAndOpen(FragmentNursesProfile.newInstance()) }
+            cnsProfileSetting.setOnClickListener { toggleDrawer();  if(allowProvider()) checkFragmentInBackStackAndOpen(FragmentNursesProfile.newInstance()) }
             profileImage.setOnClickListener { cnsProfileSetting.performClick() }
             profileImageCamera.setOnClickListener { cnsProfileSetting.performClick() }
 
             // transaction history
             cnsTransactionHistory.setOnClickListener { toggleDrawer()
-                navigate<TransactionsMore>()
+                if(allowProvider()) navigate<TransactionsMore>()
             }
 
             // Review and rating
-            cnsReviewRating.setOnClickListener { toggleDrawer(); checkFragmentInBackStackAndOpen(FragmentNursesReviewAndRating.newInstance()) }
+            cnsReviewRating.setOnClickListener { toggleDrawer(); if(allowProvider()) checkFragmentInBackStackAndOpen(FragmentNursesReviewAndRating.newInstance()) }
 
             // Support and more
-            cnsSupportMore.setOnClickListener { toggleDrawer(); navigate<SupportAndMore>() }
+            cnsSupportMore.setOnClickListener { toggleDrawer(); if(allowProvider()) navigate<SupportAndMore>() }
 
             // Logout
-            llLogout.setOnClickListener { toggleDrawer();  logout() }
+            llLogout.setOnClickListener { toggleDrawer(); logout() }
         }
 
     }
@@ -333,21 +340,19 @@ class NursrsHomeActivity : BaseActivity<ActivityNursrsHomeBinding, NursrsHomeAct
                 toolbar_back.visibility = View.VISIBLE
                 toolbar_menu.visibility = View.GONE
                 toolbar_back.setOnClickListener{ onBackPressed() }
-                tootbar_notification.setOnClickListener(View.OnClickListener {
+                tootbar_notification.setOnClickListener {
                     checkFragmentInBackStackAndOpen(FragmentHospitalManageNotification.newInstance())
-                })
+                }
             }
             is FragmentNursesEditProfile -> {
                 tootbar_text.text = resources.getString(R.string.edit_your_profile)
                 tootbar_notification.visibility = View.VISIBLE
                 toolbar_back.visibility = View.VISIBLE
                 toolbar_menu.visibility = View.GONE
-                toolbar_back.setOnClickListener(View.OnClickListener {
+                toolbar_back.setOnClickListener {
                     onBackPressed()
-                })
-                tootbar_notification.setOnClickListener(View.OnClickListener {
-                    checkFragmentInBackStackAndOpen(FragmentHospitalManageNotification.newInstance())
-                })
+                }
+                tootbar_notification.setOnClickListener { checkFragmentInBackStackAndOpen(FragmentHospitalManageNotification.newInstance())  }
 
             }
             is FragmentNursesReviewAndRating -> {
@@ -375,7 +380,7 @@ class NursrsHomeActivity : BaseActivity<ActivityNursrsHomeBinding, NursrsHomeAct
                 appointmentSearch.setOnClickListener { FragNewAppointmentListing.showSearch.value = true }
 
                 toolbar_back.setOnClickListener{ onBackPressed() }
-                tootbar_notification.setOnClickListener{ checkFragmentInBackStackAndOpen(FragmentHospitalManageNotification.newInstance())}
+                tootbar_notification.setOnClickListener { checkFragmentInBackStackAndOpen(FragmentHospitalManageNotification.newInstance())}
 
             }
 

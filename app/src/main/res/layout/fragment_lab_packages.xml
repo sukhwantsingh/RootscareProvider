@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/ll_mainlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crdview_appoitment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                app:cardElevation="@dimen/dp2">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp16">
+
+                    <TextView
+                        android:id="@+id/tv_username"
+                        style="@style/AppTheme.TextMedium"
+                        android:layout_width="match_parent"
+                        android:text="@string/packages"
+                        android:textColor="@color/txt_color_profile_desc"
+                        android:textSize="@dimen/dp18" />
+
+      <!--
+                     android:layout_toStartOf="@+id/tv_create_new"
+                    <TextView
+                        android:id="@+id/tv_create_new"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:background="@drawable/rd_border_grey_edit_profle"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/dp8"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/dp8"
+                        android:paddingVertical="@dimen/dp5"
+                        android:text="@string/create_new"
+                        android:textColor="@color/indicator_color"
+                        android:textSize="@dimen/dp14"
+                        android:visibility="gone"
+                        app:drawableStartCompat="@drawable/ico_edit" />-->
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        style="@style/AppTheme.TextRegular"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/tv_username"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:text="Only Administrator can create Tests &amp; Test Packages under their account as many as they want, each package will contain group of tests included with a price range suggestion"
+                        android:textColor="@color/colorTxtGrey1"
+                        android:textSize="@dimen/dp12" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_packages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/crdview_appoitment_list"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/layout_new_item_packages" />
+
+            <TextView
+                android:id="@+id/tv_no_date"
+                style="@style/AppTheme.TextRegular"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dp3"
+                android:gravity="center"
+                android:text="@string/no_data"
+                android:textSize="@dimen/dp15"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

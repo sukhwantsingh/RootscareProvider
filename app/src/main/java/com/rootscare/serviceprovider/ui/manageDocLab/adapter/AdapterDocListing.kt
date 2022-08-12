@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.LayoutNewItemDocListingBinding
 import com.rootscare.serviceprovider.ui.manageDocLab.model.ModelHospitalDocs
-import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.ModelAppointmentsListing
-import com.rootscare.serviceprovider.ui.pricelistss.ModelPriceListing
 import com.rootscare.serviceprovider.utilitycommon.setCircularRemoteImage
 import java.util.ArrayList
 

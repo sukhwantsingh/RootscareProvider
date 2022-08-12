@@ -1,6 +1,7 @@
 package com.rootscare.serviceprovider.ui.manageDocLab
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -19,11 +20,15 @@ import androidx.lifecycle.ViewModelProviders
 import com.dialog.CommonDialog
 import com.google.gson.JsonObject
 import com.myfilepickesexample.FileUtil
+import com.rootscare.data.model.response.CommonResponse
+import com.rootscare.data.model.response.registrationresponse.RegistrationResponse
 import com.rootscare.interfaces.DialogClickCallback
+import com.rootscare.model.ModelServiceFor
 import com.rootscare.serviceprovider.BR
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.LayoutNewCreateEditLabUnderHospitalBinding
 import com.rootscare.serviceprovider.ui.base.BaseActivity
+import com.rootscare.serviceprovider.ui.manageDocLab.fragments.FragmentManageHospitalDocsLab
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.FragmentNursesProfileNavigator
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.FragmentNursesProfileViewModel
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
@@ -32,11 +37,16 @@ import com.rootscare.serviceprovider.utilitycommon.*
 import com.rootscare.utils.ManagePermissions
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.*
+import java.util.HashMap
 
 class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHospitalBinding, FragmentNursesProfileViewModel>(),
     FragmentNursesProfileNavigator {
@@ -46,7 +56,8 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
     private var fileUri: Uri? = null
     private var filePath: String? = null
     private var imageFile: File? = null
-
+    private var imgMohLicence: File? = null
+    private var imgRegistration: File? = null
 
     private var binding: LayoutNewCreateEditLabUnderHospitalBinding? = null
     private var mViewModel: FragmentNursesProfileViewModel? = null
@@ -65,6 +76,11 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
     companion object {
         var needToCreateLab = true
     }
+    private val workFromList : ArrayList<String?> by lazy { ArrayList() }
+    private val workFromListMap : HashMap<String?, String?> by lazy { HashMap() }
+
+    private var currency = ""
+    private var logModel : ModelUserProfile? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +90,9 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
             tvHeader.text = getString(R.string.manage_doctor_amp_lab)
             btnBack.setOnClickListener { finish() }
         }
+        logModel = mViewModel?.appSharedPref?.loginmodeldata?.getModelFromPref()
+        currency = logModel?.result?.currency_symbol.orEmpty()
+
         managePermissions = ManagePermissions(this,listOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE), PermissionsRequestCode)
 
         initViews()
@@ -89,7 +108,7 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
             binding?.cnsCba?.visibility =  View.GONE
 
             binding?.tilPwd?.visibility = View.VISIBLE
-            binding?.tilCnfpwd?.visibility = View.VISIBLE
+            binding?.tilCnfPwd?.visibility = View.VISIBLE
             binding?.tvnD1?.visibility = View.VISIBLE
             binding?.tvnD2?.visibility = View.VISIBLE
 
@@ -100,12 +119,19 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
             binding?.cnsCba?.visibility =  View.VISIBLE
 
             binding?.tilPwd?.visibility = View.GONE
-            binding?.tilCnfpwd?.visibility = View.GONE
+            binding?.tilCnfPwd?.visibility = View.GONE
             binding?.tvnD1?.visibility = View.GONE
             binding?.tvnD2?.visibility = View.GONE
 
-         //   fetchProfileData()
+         //  fetchProfileData()
         }
+        logModel?.let {
+            binding?.run {
+                tvWorkFrom.text = it.result?.work_area.orEmpty()
+                edtCc.setText(it.result?.country_code.orEmpty())
+            }
+        }
+
     }
 
     private lateinit var noAttchQualiTv: TextView
@@ -120,13 +146,70 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
                   //  pickupImage(PICKFILE_RESULT_CODE)
                 captureImage()
                 }
-
-
+           }
+            binding?.layoutHospital?.tvhHospUploadPhotocopy?.setOnClickListener {
+                uploadForType = 0
+                if (checkAndRequestPermissionsTest()) {
+                    uplaodCertificate(PICKFILE_RESULT_CODE)
+                }
             }
+            binding?.layoutHospital?.tvhHospUploadCertificate?.setOnClickListener {
+                uploadForType = 1
+                if (checkAndRequestPermissionsTest()) {
+                    uplaodCertificate(PICKFILE_RESULT_CODE)
+                }
+            }
+
             profileImageCamera.setOnClickListener { imgProfile.performClick() }
             btnSubmit.setOnClickListener { submitDetailsForEditProfile() }
+            tvhDisableLab.setOnClickListener { disableDeleteDoc(UserDisableType.DISABLE.get(), getString(R.string.sure_to_disable_this_lab)) }
+            tvhDelLab.setOnClickListener { disableDeleteDoc(UserDisableType.DELETE.get(), getString(R.string.sure_to_delete_this_lab))   }
 
+//            tvWorkFrom.setOnClickListener {
+//                if(workFromList.isEmpty()) return@setOnClickListener
+//             CommonDialog.showDialogForDropDownList(this@ActivityCreateEditHospitalDocs, getString(R.string.select),
+//                    workFromList, object : DropDownDialogCallBack {
+//                        override fun onConfirm(text: String) {
+//                           if(needToCreateDoc) {
+//                                binding?.run {
+//                                    if(tvWorkFrom.text.toString().equals(text,true).not()){
+//                                        tvWorkFrom.text = text
+//
+//                                        val mCode = workFromListMap[text].orEmpty()
+//                                        edtCc.setText(mCode)
+//                                    }
+//                                }
+//                            }
+//
+//                        }
+//                    })
+//            }
         }
+    }
+
+    private fun disableDeleteDoc(typeToHit: String, desc:String) {
+        CommonDialog.showDialog(this@ActivityCreateEditHospitalLab, object :
+            DialogClickCallback {
+            override fun onConfirm() {
+                if (isNetworkConnected) {
+                    showLoading()
+                    val jsonObject = JsonObject().apply {
+                        addProperty("user_id", ActivityCreateEditHospitalDocs.docId)
+                    }
+                 //   val body = jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull())
+                 // when {
+                    //    typeToHit.equals(UserDisableType.DISABLE.get(),true) -> mViewModel?.disableDoc(body)
+                     //   typeToHit.equals(UserDisableType.DELETE.get(),true) -> mViewModel?.deleteDoc(body)
+                      //  else -> hideLoading()
+                 //  }
+
+                } else {
+                    showToast(getString(R.string.network_unavailable))
+                }
+
+            }
+        }, typeToHit, desc)
+
     }
 
     private fun fetchProfileData() {
@@ -154,36 +237,77 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
         }
     }
 
-    override fun onSuccessEditProfile(response: ModelUserProfile?) {
+    override fun onSuccessServiceFor(specialityList: ModelServiceFor?) {
         hideLoading()
-        if (response?.code.equals(SUCCESS_CODE)) IS_PROFILE_UPDATE_ = true
-
-        CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
-            override fun onConfirm() {
-                onBackPressed()
+        if (specialityList?.code.equals(SUCCESS_CODE)) {
+            CoroutineScope(Dispatchers.IO).launch {
+                specialityList?.result?.let {
+                    if (it.isNotEmpty()) {
+                        workFromList.clear(); workFromListMap.clear()
+                        it.forEach { lst ->
+                            workFromList.add(lst?.name)
+                            workFromListMap[lst?.name] = lst?.country_code
+                        }
+                    }
+                }
             }
-            }, getString(R.string.profile), response?.message ?: ""
-        )
+        } else {
+            showToast(specialityList?.message ?: "")
+        }
     }
 
+    override fun onSuccessEditProfile(response: ModelUserProfile?) {
+        hideLoading()
+        if (response?.code.equals(SUCCESS_CODE)) FragmentManageHospitalDocsLab.NEED_REFRESH_LAB = true
+        CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
+            override fun onConfirm() { /* onBackPressed() */ } }, getString(R.string.profile), response?.message ?: "")
+    }
+
+    override fun successRegistrationResponse(response: RegistrationResponse?) {
+        hideLoading()
+        if (response?.code.equals(SUCCESS_CODE)) {
+            FragmentManageHospitalDocsLab.NEED_REFRESH_LAB = true
+            CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
+                override fun onConfirm() {
+                    onBackPressed()
+                }
+            }, getString(R.string.profile), response?.message ?: "")
+        } else {
+            CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
+            }, getString(R.string.profile), response?.message ?: "")
+        }
+    }
+
+    override fun onSuccessCommon(response: CommonResponse?) {
+        hideLoading()
+        showToast(response?.message ?: "")
+        if (response?.code.equals(SUCCESS_CODE)) {
+            FragmentManageHospitalDocsLab.NEED_REFRESH_LAB = true
+            finish()
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun bindNewLayout(response: ModelUserProfile.Result?) {
         binding?.run {
             response?.let {
-                when (mViewModel?.appSharedPref?.loginUserType) {
-                    // important details
-                    LoginTypes.LAB_TECHNICIAN.type -> {
-                      // pending when we do lab login then will do it
-                    }
-                    else -> Unit
-                }
 
                 if (it.image.isNullOrBlank().not()) imgProfile.setCircularRemoteImage(it.image)
                 tvUsername.text = (it.first_name + " " + it.last_name).trim()
                 tvhHospName.text = it.email  // hospital name
 
-                edtLabname.setText("Lab Name")
+                edtRegLabname.setText((it.first_name + " " + it.last_name).trim())
                 edtRegEmailaddress.setText(it.email)
-                edtRegPhonenumber.setText(it.phone_number)
+                edtRegPhonenumber.setText(it.phone_number.orEmpty())
+
+                tvWorkFrom.text = it.work_area.orEmpty()
+                edtCc.setText(it.country_code.orEmpty())
+
+                layoutHospital.edtHospMoh.setText(it.hosp_moh_lic_no)
+                layoutHospital.tvHospNoAttachmentPhotocopy.text = it.moh_lic_image
+
+                layoutHospital.edtHospRegistrationNo.setText(it.hosp_reg_no)
+                layoutHospital.tvHospAttachementCertificate.text = it.hosp_reg_image
 
                 edtAbout.setText(it.description)
                 true
@@ -191,14 +315,12 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
         }
     }
 
-
     override fun errorInApi(throwable: Throwable?) {
         hideLoading()
         if (throwable?.message != null) {
            showToast(getString(R.string.something_went_wrong))
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -249,6 +371,14 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
 
     private fun displayCertificateName(fFile: File) {
         when (uploadForType) {
+            0 -> {
+                imgMohLicence = fFile
+                binding?.layoutHospital?.tvHospNoAttachmentPhotocopy?.text = fFile.name
+            }
+            1 -> {
+                imgRegistration = fFile
+                binding?.layoutHospital?.tvHospAttachementCertificate?.text = fFile.name
+            }
             3 -> {
                 imageFile = fFile
                 binding?.imgProfile?.setCircularLocalImage(fFile.absolutePath ?: "")
@@ -261,26 +391,48 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
 
     private fun submitDetailsForEditProfile() {
         binding?.run {
-            if (null != mViewModel?.appSharedPref?.loginUserId && checkValidationForRegStepOne()) {
+            if (checkValidationForRegStepOne()) {
 
                 val uId = mViewModel?.appSharedPref?.loginUserId?.asReqBody()
                 val uType = mViewModel?.appSharedPref?.loginUserType?.asReqBody()
 
-                val labName = edtLabname.text?.trim().toString().asReqBody()
-                val mobNum = edtRegPhonenumber.text?.trim().toString().asReqBody()
-                val email = edtRegEmailaddress.text?.trim().toString().asReqBody()
+                val labName = binding?.edtRegLabname?.text?.toString().orEmpty()
+                val email = binding?.edtRegEmailaddress?.text?.toString().orEmpty()
+                var mobNum = binding?.edtRegPhonenumber?.text?.toString().orEmpty()
+                val cc_ = binding?.edtCc?.text?.toString().orEmpty()
+                mobNum = cc_ + mobNum
+
                 val about = edtAbout.text?.trim().toString().asReqBody()
                 val pwd = binding?.edtRegPassword?.text?.toString()?.asReqBody()
+                val workArea = binding?.tvWorkFrom?.text?.toString().orEmpty()
+
+                var hspMohLicNum = ""
+                var hospRegId = ""
+
+                binding?.layoutHospital?.run {
+                    hspMohLicNum = edtHospMoh.text.toString()
+                    hospRegId = edtHospRegistrationNo.text.toString()
+                }
+
 
                 var uImage: MultipartBody.Part? = null
-
                 imageFile?.let {
                     val nmg = imageFile!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
                     uImage = MultipartBody.Part.createFormData("image", imageFile?.name, nmg)
                 }
+                var mohLicImg: MultipartBody.Part? = null
+                imgMohLicence?.let {
+                    val idnmg = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), imgMohLicence!!)
+                    mohLicImg = MultipartBody.Part.createFormData("id_image", imgMohLicence?.name, idnmg)
+                }
+                var regImg: MultipartBody.Part? = null
+                imgRegistration?.let {
+                    val qmg = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), imgRegistration!!)
+                    regImg = MultipartBody.Part.createFormData("certificate", imgRegistration?.name, qmg)
+                }
 
-                showLoading()
-                hideKeyboard()
+//                showLoading()
+//                 hideKeyboard()
 //                if(needToCreateLab){
 //                    mViewModel?.apiSignup(
 //                        idImg, qlImg, scfhsImg, uType ?: "".asReqBody(), flName,
@@ -306,15 +458,10 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
     private fun checkValidationForRegStepOne(): Boolean {
         val mLt = binding
         return when {
-            binding?.edtLabname?.text.isNullOrBlank() -> {
-              binding?.edtLabname?.error = getString(R.string.enter_lab_name)
-              binding?.edtLabname?.requestFocus()
+            binding?.edtRegLabname?.text.isNullOrBlank() -> {
+              binding?.edtRegLabname?.error = getString(R.string.enter_lab_name)
+              binding?.edtRegLabname?.requestFocus()
               false
-            }
-            !isValidPassword(binding?.edtRegPhonenumber?.text?.toString()!!) -> {
-                binding?.edtRegPhonenumber?.error = getString(R.string.enter_mobile_number)
-                binding?.edtRegPhonenumber?.requestFocus()
-                false
             }
 
             binding?.edtRegEmailaddress?.text.isNullOrBlank() -> {
@@ -322,11 +469,21 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
                 binding?.edtRegEmailaddress?.requestFocus()
                 false
             }
+            binding?.tvWorkFrom?.text.isNullOrBlank() -> {
+                showToast(getString(R.string.provide_service_area))
+                false
+            }
             !binding?.edtRegEmailaddress?.text?.toString()!!.matches(emailPattern.toRegex()) -> {
                 binding?.edtRegEmailaddress?.error = getString(R.string.enter_valid_email)
                 binding?.edtRegEmailaddress?.requestFocus()
                 false
             }
+            !isValidPassword(binding?.edtRegPhonenumber?.text?.toString()!!) -> {
+                binding?.edtRegPhonenumber?.error = getString(R.string.enter_mobile_number)
+                binding?.edtRegPhonenumber?.requestFocus()
+                false
+            }
+
             binding?.edtRegPassword?.text.isNullOrBlank()  && needToCreateLab-> {
                 binding?.edtRegPassword?.error = getString(R.string.enter_password)
                 binding?.edtRegPassword?.requestFocus()
@@ -352,19 +509,25 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
                 binding?.edtRegConfirmPassword?.requestFocus()
                 false
             }
+            binding?.layoutHospital?.edtHospMoh?.text.isNullOrBlank() -> {
+                binding?.layoutHospital?.edtHospMoh?.error = getString(R.string.provide_moh_licence_no)
+                binding?.layoutHospital?.edtHospMoh?.requestFocus()
+                false
+            }
+              (null == imgMohLicence) && needToCreateLab -> {
+                showToast(getString(R.string.provide_moh_proof))
+                false
+            }
+            binding?.layoutHospital?.edtHospRegistrationNo?.text.isNullOrBlank() -> {
+                binding?.layoutHospital?.edtHospRegistrationNo?.error = getString(R.string.provide_registration_number)
+                binding?.layoutHospital?.edtHospRegistrationNo?.requestFocus()
+                false
+            }
+            (null == imgRegistration) && needToCreateLab  -> {
+                showToast(getString(R.string.provide_registration_proof))
+                false
+            }
 
-//            ((mLt?.edtDocScfhs?.text?.toString()?.length ?: 0) < 8) ||
-//                    ((mLt?.edtDocScfhs?.text?.toString()?.length ?: 0) > 11) -> {
-//                mLt?.edtDocScfhs?.error = getString(R.string.not_more_than_11_characters)
-//                mLt?.edtDocScfhs?.requestFocus()
-//                false
-//            }
-//
-//            // check for upload certificate
-//            (null == imgScfhs) && needToCreateLab -> {
-//                showToast("Please provide SCFHS Registration Proof!")
-//                false
-//            }
             else -> true
         }
     }
@@ -448,7 +611,6 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
         builder.show()
     }
 
-
     private fun openPictureEditActivity() {
         if (!TextUtils.isEmpty(imageFile?.path) && File(imageFile?.path).exists()) {
             CropImage.activity(Uri.fromFile(File(imageFile?.path)))
@@ -513,6 +675,7 @@ class ActivityCreateEditHospitalLab : BaseActivity<LayoutNewCreateEditLabUnderHo
         im_editbutton.setVisibility(View.GONE);
         im_holder.setVisibility(View.GONE);*/
     }
+
     private fun goToImageIntent() {
         val intent = Intent(
             Intent.ACTION_PICK,

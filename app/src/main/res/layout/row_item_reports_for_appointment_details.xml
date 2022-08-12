@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cns_presc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_prescription"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp65"
+            android:layout_marginVertical="@dimen/dp8"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_presc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_presc_name"
+            style="@style/AppTheme.TextMedium"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp3"
+            android:singleLine="true"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintBottom_toTopOf="@+id/tv_presc_dowonload"
+            app:layout_constraintEnd_toStartOf="@+id/tv_presc_dowonload"
+            app:layout_constraintStart_toEndOf="@+id/img_prescription"
+            tools:text="rx-prescription.pdf" />
+
+        <TextView
+            android:id="@+id/tv_presc_date"
+            style="@style/AppTheme.TextRegular"
+            android:layout_marginTop="@dimen/dp3"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/colorTxtGrey1"
+            android:textSize="@dimen/dp10"
+            app:layout_constraintStart_toStartOf="@+id/tv_presc_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_presc_name"
+            tools:text="Uploaded 11/12/021" />
+
+        <TextView
+            android:id="@+id/tv_presc_dowonload"
+            style="@style/AppTheme.TextSemiBold"
+            android:clickable="true"
+            android:ellipsize="end"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/dp5"
+            android:singleLine="true"
+            android:text="@string/download"
+            android:textColor="@color/indicator_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintBottom_toBottomOf="@+id/img_prescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_prescription" />
+
+        <View
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp8"
+            android:visibility="gone"
+            android:background="@color/divider_support_more"
+            app:layout_constraintTop_toBottomOf="@+id/img_prescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

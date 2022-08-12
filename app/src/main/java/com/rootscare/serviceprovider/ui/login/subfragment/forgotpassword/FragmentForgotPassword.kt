@@ -15,6 +15,7 @@ import com.rootscare.serviceprovider.databinding.FragmentNewForgotPasswordSsBind
 import com.rootscare.serviceprovider.ui.base.BaseFragment
 import com.rootscare.serviceprovider.ui.login.LoginActivity
 import com.rootscare.serviceprovider.ui.login.subfragment.registration.FragmentRegistration
+import com.rootscare.serviceprovider.utilitycommon.SUCCESS_CODE
 
 class FragmentForgotPassword : BaseFragment<FragmentNewForgotPasswordSsBinding, FragmentForgotPasswordViewModel>(),
     FragmentForgotPasswordNavigator {
@@ -78,7 +79,7 @@ class FragmentForgotPassword : BaseFragment<FragmentNewForgotPasswordSsBinding, 
                     forgotPasswordChangeRequest.password = fragmentForgotPasswordBinding?.edtRootscareForgotPassword?.text?.toString()
                     fragmentForgotPasswordViewModel?.apiforgotchangepassword(forgotPasswordChangeRequest)
                 } else {
-                    Toast.makeText(activity, "Please check your network connection.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, getString(R.string.check_network_connection), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -90,7 +91,7 @@ fun resetFields() {
 }
     override fun successForgotPasswordSendMailResponse(forgotPasswordSendMailResponse: ForgotPasswordSendMailResponse?) {
         baseActivity?.hideLoading()
-        if (forgotPasswordSendMailResponse?.code.equals("200")) {
+        if (forgotPasswordSendMailResponse?.code.equals(SUCCESS_CODE)) {
             Toast.makeText(activity, forgotPasswordSendMailResponse?.message, Toast.LENGTH_SHORT).show()
             sendOTP = forgotPasswordSendMailResponse?.result!!
             fragmentForgotPasswordBinding?.llEmailContent?.visibility = View.GONE
@@ -115,7 +116,7 @@ fun resetFields() {
                         req.emailId = registerEmailId
                         fragmentForgotPasswordViewModel?.apiforgotpasswordemail(req)
                     } else {
-                        Toast.makeText(activity, "Please check your network connection.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, getString(R.string.check_network_connection), Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
@@ -137,7 +138,7 @@ fun resetFields() {
 
     override fun successForgotPasswordChangePasswordResponse(forgotPasswordChangePasswordResponse: ForgotPasswordChangePasswordResponse?) {
         baseActivity?.hideLoading()
-        if (forgotPasswordChangePasswordResponse?.code.equals("200")) {
+        if (forgotPasswordChangePasswordResponse?.code.equals(SUCCESS_CODE)) {
             Toast.makeText(activity, forgotPasswordChangePasswordResponse?.message, Toast.LENGTH_SHORT).show()
             fragmentForgotPasswordBinding?.firstPinView?.setText("")
             fragmentForgotPasswordBinding?.edtRootscareForgotPassword?.setText("")
@@ -151,14 +152,14 @@ fun resetFields() {
         baseActivity?.hideLoading()
         if (throwable?.message != null) {
             Log.d(FragmentRegistration.TAG, "--ERROR-Throwable:-- ${throwable.message}")
-            Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun checkFieldValidation(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         if (!email.matches(emailPattern.toRegex())) {
-            fragmentForgotPasswordBinding?.edtEmail?.error = "Please enter valid email id"
+            fragmentForgotPasswordBinding?.edtEmail?.error = getString(R.string.enter_valid_email)
             fragmentForgotPasswordBinding?.edtEmail?.requestFocus()
             return false
         }

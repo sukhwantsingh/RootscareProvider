@@ -57,6 +57,8 @@ import android.widget.Button
 
 import android.widget.NumberPicker
 import com.rootscare.model.ModelServiceFor
+import com.rootscare.serviceprovider.ui.nurses.nurseprofile.adapter.OnDepartListingCallback
+import com.rootscare.serviceprovider.ui.nurses.nurseprofile.subfragment.nursesprofileedit.FragmentNursesEditProfile.Companion.IS_PROFILE_UPDATE_
 
 
 class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersBinding, FragmentNursesProfileViewModel>(),
@@ -79,7 +81,7 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
     override val bindingVariable: Int
         get() = BR.viewModel
     override val layoutId: Int
-        get() = com.rootscare.serviceprovider.R.layout.layout_new_edit_profile_for_providers
+        get() = R.layout.layout_new_edit_profile_for_providers
     override val viewModel: FragmentNursesProfileViewModel
         get() {
             mViewModel = ViewModelProviders.of(this).get(
@@ -152,6 +154,11 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
 
             rvDeparts.setHasFixedSize(false)
             rvDeparts.adapter = mAdapSelectedDeparts
+            mAdapSelectedDeparts.mCallback = object :OnDepartListingCallback{
+                override fun onDelDepart() {
+                  toggleDepartmentList()
+                }
+            }
 
             imgProfile.setOnClickListener {
             //    openCamera()
@@ -214,19 +221,17 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
             tvAddMorddeDepartment.setOnClickListener {
                 val fnDpt = ArrayList<String?>()
                 fnDpt.addAll(listDepartments)
-                mAdapSelectedDeparts.updatedArrayList?.forEach { ldp ->
-                       fnDpt.remove(ldp?.title.orEmpty())
-                 }
+                mAdapSelectedDeparts.updatedArrayList?.forEach { ldp ->   fnDpt.remove(ldp?.title.orEmpty()) }
 
             if(fnDpt.isEmpty()) return@setOnClickListener
-            CommonDialog.showDialogForDropDownList(requireActivity(), getString(com.rootscare.serviceprovider.R.string.departments), fnDpt, object :
-                    DropDownDialogCallBack {
+              CommonDialog.showDialogForDropDownList(requireActivity(), getString(com.rootscare.serviceprovider.R.string.departments), fnDpt, object :   DropDownDialogCallBack {
                     override fun onConfirm(text: String) {
                         val isPresent = mAdapSelectedDeparts.updatedArrayList?.find { it?.title.equals(text) }
-                       if(null == isPresent){
-                           mAdapSelectedDeparts.loadDataIntoList(ModelHospDeparts.Result(hashListDepart.get(text), text))
-                       startSmoothScroll(0, binding?.rvDeparts)
-                       }
+                        if(null == isPresent) {
+                        mAdapSelectedDeparts.loadDataIntoList(ModelHospDeparts.Result(hashListDepart.get(text), text))
+                        startSmoothScroll(0, binding?.rvDeparts)
+                        }
+                        toggleDepartmentList()
                     }
                 })
             }
@@ -279,6 +284,10 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
         }
     }
 
+    private fun toggleDepartmentList(){
+        binding?.rvDeparts?.visibility = if(mAdapSelectedDeparts.updatedArrayList.isNullOrEmpty()){
+         View.GONE } else View.VISIBLE
+    }
     private fun fetchProfileData() {
 //      /*  if (isNetworkConnected) {
 //            baseActivity?.showLoading()
@@ -447,6 +456,31 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
 
                         setDepartments(it)
                     }
+                    LoginTypes.LAB.type -> {
+                        tilEstablish.visibility = View.VISIBLE
+                        tilAddr.visibility = View.VISIBLE
+
+                        llGender.visibility = View.GONE
+                        tilDob.visibility = View.GONE
+                        tilExp.visibility = View.GONE
+
+                     // 2nd phase tvhAddMoreQuali.visibility = View.GONE
+                        tilScfhs.visibility = View.GONE
+                        relScfhsDoc.visibility = View.GONE
+
+                        tilFirstname.hint = getString(R.string.lab_name)
+
+                        tilIdnNumber.hint = getString(R.string.moh_licence_number)
+                        edtDocIdentityNumber.setText(it.hosp_moh_lic_no)  // licence number
+
+                        tvIdnAttachment.text = it.moh_lic_image
+
+                        tilHql.hint = getString(R.string.registration_number)
+                        edtDocHighestQualification.setText(it.hosp_reg_no) // reg number
+
+                        tvhDocUploadCertificate.text = getString(R.string.upload_document)
+                        tvDocAttachementCertificate.text = it.hosp_reg_image
+                    }
                     else -> Unit
                 }
 
@@ -485,7 +519,6 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
                    departData.add(0,ModelHospDeparts.Result(it?.department_id.orEmpty(), it?.title.orEmpty()))
                }
                mAdapSelectedDeparts.loadAllDataIntoList(departData)
-
              } else {
                  rvDeparts.visibility = View.GONE
              }
@@ -695,7 +728,7 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
                         }
 
                     }
-                    LoginTypes.HOSPITAL.type -> {
+                    LoginTypes.HOSPITAL.type  -> {
                         binding?.run {
                             hspMohLicNum = edtDocIdentityNumber.text.toString()
                             hospRegId = edtDocHighestQualification.text.toString()
@@ -704,6 +737,15 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
                         }
                         departmentsSelected =  mAdapSelectedDeparts.updatedArrayList?.joinToString { it?.id.toString() } ?: ""
                     }
+                    LoginTypes.LAB.type -> {
+                        binding?.run {
+                            hspMohLicNum = edtDocIdentityNumber.text.toString()
+                            hospRegId = edtDocHighestQualification.text.toString()
+                            expYears = edtEstablish.text.toString()
+                            address_ = edtHospAddr.text.toString()
+                        }
+                    }
+
                     else -> Unit
                 }
 
@@ -966,7 +1008,7 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
                     }
 
                     mLt?.edtDocIdentityNumber?.text.isNullOrBlank() -> {
-                        mLt?.edtDocIdentityNumber?.error = "Please provide MOH Licence Number!"
+                        mLt?.edtDocIdentityNumber?.error = getString(R.string.provide_moh_licence_no)
                         mLt?.edtDocIdentityNumber?.requestFocus()
                         false
                     }
@@ -976,7 +1018,44 @@ class FragmentNursesEditProfile : BaseFragment<LayoutNewEditProfileForProvidersB
 //                        false
 //                    }
                     mLt?.edtDocHighestQualification?.text.isNullOrBlank() -> {
-                        mLt?.edtDocHighestQualification?.error = "Please provide Registration Number!"
+                        mLt?.edtDocHighestQualification?.error = getString(R.string.provide_registration_number)
+                        mLt?.edtDocHighestQualification?.requestFocus()
+                        false
+                    }
+
+                    // Check for upload certificate
+//                    null == imgQualification -> {
+//                        showToast("Please provide Registration Proof!")
+//                        false
+//                    }
+                    else -> true
+                }
+            }
+            mViewModel?.appSharedPref?.loginUserType?.equals(LoginTypes.LAB.type) == true -> {
+                val mLt = binding
+                when {
+                    binding?.edtEstablish?.text.isNullOrBlank() -> {
+                        showToast(getString(R.string.provide_year_of_establishment))
+                        false
+                    }
+                    binding?.edtHospAddr?.text.isNullOrBlank() -> {
+                        binding?.edtHospAddr?.error = getString(R.string.provide_address)
+                        binding?.edtHospAddr?.requestFocus()
+                        false
+                    }
+
+                    mLt?.edtDocIdentityNumber?.text.isNullOrBlank() -> {
+                        mLt?.edtDocIdentityNumber?.error =  getString(R.string.provide_moh_licence_no)
+                        mLt?.edtDocIdentityNumber?.requestFocus()
+                        false
+                    }
+                    // check for upload certificate
+//                    null == imgIdentity -> {
+//                        showToast("Please provide MOH Licence Proof!")
+//                        false
+//                    }
+                    mLt?.edtDocHighestQualification?.text.isNullOrBlank() -> {
+                        mLt?.edtDocHighestQualification?.error =  getString(R.string.provide_registration_number)
                         mLt?.edtDocHighestQualification?.requestFocus()
                         false
                     }

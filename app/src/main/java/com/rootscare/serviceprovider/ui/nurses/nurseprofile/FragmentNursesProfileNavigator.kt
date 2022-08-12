@@ -13,6 +13,7 @@ interface FragmentNursesProfileNavigator {
     fun onSuccessEditProfile(response: ModelUserProfile?){}
     fun onSuccessSpeciality(specialityList: ModelIssueTypes?){}
     fun onSuccessServiceFor(specialityList: ModelServiceFor?){}
+
     fun successRegistrationResponse(response: RegistrationResponse?){}
     fun onSuccessCommon(response: CommonResponse?){}
     fun errorInApi(throwable: Throwable?)

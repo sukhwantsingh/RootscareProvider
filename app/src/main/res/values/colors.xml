@@ -97,6 +97,10 @@
     <color name="black">#000000</color>
     <color name="grey">#757575</color>
     <color name="video_fab_bg">#515C6F</color>
+    <color name="green_off_price">#D1ECC8</color>
+    <color name="green_off_text">#26720B</color>
+    <color name="warm_light">#FFF2D9</color>
+    <color name="arrow_bg_light">#F0F3F6</color>
 
 
 </resources>

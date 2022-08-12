@@ -53,6 +53,7 @@
                         android:layout_toStartOf="@+id/tv_status_"
                         android:layout_toEndOf="@+id/tvhtop"
                         android:singleLine="true"
+                        android:gravity="center_vertical"
                         android:text="@{data.order_id}"
                         android:textColor="@color/indicator_color"
                         android:textSize="@dimen/dp16"
@@ -104,26 +105,25 @@
                         android:text="@{data.service_type}"
                         android:textAllCaps="true"
                         android:textColor="@color/indicator_color"
-                        android:textSize="@dimen/dp15"
+                        android:textSize="@dimen/dp14"
                         tools:text="Doctor" />
 
                     <TextView
                         android:id="@+id/tvh_hospital_"
                         style="@style/AppTheme.TextMedium"
-                        android:background="@color/price_bg"
+                        android:layout_alignTop="@+id/tv_user_type"
+                        android:layout_marginHorizontal="@dimen/dp8"
                         android:layout_marginStart="@dimen/dp4"
+                        android:layout_toEndOf="@+id/tv_user_type"
+                        android:background="@color/price_bg"
                         android:paddingHorizontal="@dimen/dp5"
                         android:paddingVertical="@dimen/dp4"
                         android:text="@string/hospital"
                         android:textColor="@color/txt_color"
                         android:textSize="@dimen/dp9"
                         android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_toEndOf="@+id/tv_user_type"
-                        android:layout_alignTop="@+id/tv_user_type"
-                        android:layout_marginHorizontal="@dimen/dp8"
                         app:visibilityWithNullEmptyCheck="@{data.hospital_id}"
-                       />
+                        tools:visibility="visible" />
 
 
                     <TextView
@@ -166,8 +166,9 @@
                             android:id="@+id/tv_1"
                             style="@style/AppTheme.TextMedium"
                             android:text="@string/appointment_schedule"
+                            android:textAllCaps="true"
                             android:textColor="@color/indicator_color"
-                            android:textSize="@dimen/dp16"
+                            android:textSize="@dimen/dp12"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -252,10 +253,69 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RelativeLayout
-                        android:id="@+id/cns_patient_syptm"
+                        android:id="@+id/rel_lab_report_section"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/cns_apsh"
+                        android:layout_marginTop="@dimen/dp1"
+                        android:paddingHorizontal="@dimen/dp16"
+                        android:paddingTop="@dimen/dp8"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvh_reports"
+                            style="@style/AppTheme.TextMedium"
+                            android:singleLine="true"
+                            android:text="@string/report_attachment"
+                            android:textAllCaps="true"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_reports"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvh_reports"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/dp8"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/row_item_reports_for_appointment_details" />
+
+                        <TextView
+                            android:id="@+id/tv_upload"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/rv_reports"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/round_square_border_schedule_type_blue"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:paddingHorizontal="@dimen/dp12"
+                            android:layout_marginVertical="@dimen/dp12"
+                            android:paddingVertical="@dimen/dp6"
+                            android:text="@string/upload"
+                            android:textAllCaps="true"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp13" />
+
+                        <View
+                            android:id="@+id/vrep_last"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tv_upload"
+                            android:background="@color/divider_support_more" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cns_patient_syptm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rel_lab_report_section"
                         android:background="#FDF7EB"
                         android:padding="@dimen/dp16"
                         android:visibility="gone">
@@ -348,17 +408,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/cns_patient_syptm"
-                        android:paddingHorizontal="@dimen/dp16"
-                        android:paddingBottom="@dimen/dp16">
+                        android:paddingHorizontal="@dimen/dp16">
 
-                        <!--   app:visibilityWithNullEmptyCheck="@{data.patient_name}" -->
                         <androidx.constraintlayout.widget.Group
                             android:id="@+id/grp_presc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:constraint_referenced_ids="tv_presc_reUpload,v2,tv_presc_dowonload,tv_presc_date,tv_presc_name,tvh_presc,img_prescription"
-                            tools:visibility="visible" />
+                            app:constraint_referenced_ids="tv_presc_reUpload,v2,tv_presc_dowonload,tv_presc_date,tv_presc_name,tvh_presc,img_prescription" />
 
                         <TextView
                             android:id="@+id/tvh_presc"
@@ -417,27 +474,27 @@
                             android:foreground="?attr/selectableItemBackground"
                             android:padding="@dimen/dp5"
                             android:singleLine="true"
+                            android:text="@string/download"
                             android:textColor="@color/indicator_color"
                             android:textSize="@dimen/dp12"
                             app:layout_constraintBottom_toBottomOf="@+id/img_prescription"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/img_prescription"
-                            android:text="@string/download" />
+                            app:layout_constraintTop_toTopOf="@+id/img_prescription" />
 
                         <TextView
                             android:id="@+id/tv_presc_reUpload"
                             style="@style/AppTheme.TextSemiBold"
+                            android:layout_marginTop="8dp"
                             android:clickable="true"
                             android:ellipsize="end"
                             android:foreground="?attr/selectableItemBackground"
                             android:padding="@dimen/dp5"
-                            android:layout_marginTop="8dp"
                             android:singleLine="true"
+                            android:text="@string/re_upload"
                             android:textColor="@color/review_star"
                             android:textSize="@dimen/dp12"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_presc_dowonload"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:text="@string/re_upload" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_presc_dowonload" />
 
                         <View
                             android:id="@+id/v2"
@@ -479,27 +536,46 @@
                             android:background="@color/divider_support_more"
                             app:layout_constraintTop_toBottomOf="@+id/tv_" />
 
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/grp_patient_details"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:constraint_referenced_ids="tvh_call,tpc,tvh_open_gmap,tv_patient_address,ivp_map_pin,tv_patient_nm"
+                            tools:visibility="visible" />
+
                         <TextView
                             android:id="@+id/tvh_patient_details"
                             style="@style/AppTheme.TextMedium"
-                            android:layout_marginTop="@dimen/dp12"
                             android:singleLine="true"
                             android:text="@string/patient_details"
+                            android:textAllCaps="true"
                             android:textColor="@color/indicator_color"
-                            android:textSize="@dimen/dp16"
+                            android:textSize="@dimen/dp12"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_patient_arrow_down"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/img_patient_arrow_down" />
+
+                        <ImageView
+                            android:id="@+id/img_patient_arrow_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/arrow_bg_light"
+                            android:padding="@dimen/dp20"
+                            android:src="@drawable/ico_arrow_dnew"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/v3p" />
+
 
                         <TextView
                             android:id="@+id/tv_patient_nm"
                             style="@style/AppTheme.TextSemiBold"
-                            android:layout_marginTop="@dimen/dp8"
                             android:singleLine="true"
                             android:text="@{data.patient_name}"
                             android:textColor="@color/txt_color"
                             android:textSize="@dimen/dp14"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvh_patient_details"
+                            app:layout_constraintTop_toBottomOf="@+id/img_patient_arrow_down"
                             tools:text="Sanjay Biswas" />
 
                         <ImageView
@@ -510,7 +586,6 @@
                             android:src="@drawable/ic_nav_map_pin"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_patient_nm" />
-
 
                         <TextView
                             android:id="@+id/tv_patient_address"
@@ -540,21 +615,23 @@
                         <TextView
                             android:id="@+id/tpc"
                             style="@style/AppTheme.TextMedium"
-                            android:layout_marginTop="@dimen/dp8"
-                            android:drawableStart="@drawable/ico_phn_dots"
                             android:drawablePadding="@dimen/dp8"
                             android:singleLine="true"
                             android:text="@{data.patient_contact}"
                             android:textColor="@color/txt_color"
                             android:textSize="@dimen/dp12"
+                            app:drawableStartCompat="@drawable/ico_phn_dots"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvh_call"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvh_open_gmap"
+                            app:layout_constraintTop_toTopOf="@+id/tvh_call"
                             tools:text="+044 6985 7423" />
 
                         <TextView
                             android:id="@+id/tvh_call"
                             style="@style/AppTheme.TextSemiBold"
                             android:layout_marginStart="@dimen/dp10"
+                            android:layout_marginTop="@dimen/dp4"
+                            android:layout_marginBottom="@dimen/dp10"
                             android:clickable="true"
                             android:foreground="?attr/selectableItemBackground"
                             android:padding="@dimen/dp5"
@@ -562,9 +639,9 @@
                             android:text="@string/call"
                             android:textColor="@color/indicator_color"
                             android:textSize="@dimen/dp12"
-                            app:layout_constraintBottom_toBottomOf="@+id/tpc"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tpc"
-                            app:layout_constraintTop_toTopOf="@+id/tpc" />
+                            app:layout_constraintTop_toBottomOf="@+id/tvh_open_gmap" />
 
 
                         <androidx.constraintlayout.widget.Group
@@ -669,6 +746,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/cns_presc"
+                        android:layout_marginTop="@dimen/dp1"
                         android:background="@color/gray_very_light_new"
                         android:orientation="vertical"
                         android:padding="@dimen/dp16"
@@ -678,8 +756,9 @@
                             android:id="@+id/tvh_payment"
                             style="@style/AppTheme.TextMedium"
                             android:text="@string/payment"
+                            android:textAllCaps="true"
                             android:textColor="@color/indicator_color"
-                            android:textSize="@dimen/dp16" />
+                            android:textSize="@dimen/dp12" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_payments"
@@ -696,10 +775,41 @@
                             tools:listitem="@layout/layout_new_item_payment_splitting" />
 
                         <View
-                            android:id="@+id/vcdiv"
+                            android:id="@+id/vw1"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_below="@+id/rv_payments"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:background="@color/view_div_dk" />
+
+                        <TextView
+                            android:id="@+id/tvh_sub_total"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/vw1"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:layout_marginBottom="@dimen/dp8"
+                            android:text="@string/sub_total"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14" />
+
+                        <TextView
+                            android:id="@+id/tv_sub_total_price"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/vw1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="@{data.sub_total_price}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp14"
+                            tools:text="517.5 SAR" />
+
+                        <View
+                            android:id="@+id/vcdiv"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tvh_sub_total"
                             android:layout_marginTop="@dimen/dp4"
                             android:background="@color/view_div_dk" />
 
@@ -882,8 +992,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:numStars="5"
-                            android:visibility="gone"
                             android:theme="@style/fooRatingBar"
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />

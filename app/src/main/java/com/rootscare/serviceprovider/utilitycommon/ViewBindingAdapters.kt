@@ -1,9 +1,11 @@
 package com.rootscare.serviceprovider.utilitycommon
 
 import android.graphics.Color
+import android.graphics.Paint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.parseAsHtml
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -12,6 +14,14 @@ import com.rootscare.customviews.MyEditTextView
 import com.rootscare.serviceprovider.R
 import de.hdodenhof.circleimageview.CircleImageView
 
+@BindingAdapter("strikeThrough")
+fun strikeThrough(textView: TextView, strikeThrough: Boolean) {
+    if (strikeThrough) {
+        textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+    } else {
+        textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+    }
+}
 
 @BindingAdapter("visibilityWithNullEmptyCheck")
 fun View.visibilityWithNullEmptyCheck(vl: Any?) {
@@ -19,6 +29,15 @@ fun View.visibilityWithNullEmptyCheck(vl: Any?) {
         is String -> { if (vl.isNotBlank()) View.VISIBLE else View.GONE }
         is Boolean ->{ if (vl) View.VISIBLE else View.GONE }
         else -> View.GONE
+    }
+    this.visibility = mVisi
+}
+@BindingAdapter("invisibleWithNullEmptyCheck")
+fun View.invisibleWithNullEmptyCheck(vl: Any?) {
+    val mVisi = when (vl) {
+        is String -> { if (vl.isNotBlank()) View.VISIBLE else View.INVISIBLE }
+        is Boolean ->{ if (vl) View.VISIBLE else View.INVISIBLE }
+        else -> View.INVISIBLE
     }
     this.visibility = mVisi
 }
@@ -32,6 +51,10 @@ fun TextView.changeColorWithCheck(checkStatus: Boolean? = false) {
 
 }
 
+@BindingAdapter("setHtmlContent")
+fun TextView.setHtmlContent(txt: String?) {
+    this@setHtmlContent.text = txt?.let { it.parseAsHtml() }
+}
 @BindingAdapter("setAmount")
 fun TextView.setAmount(amt: String?) {
     this@setAmount.text = amt?.let { "$amt SAR" } ?: ""
@@ -107,7 +130,7 @@ fun TextView.setDisplayUserType(mType: String? = "") {
         LoginTypes.CAREGIVER.type -> LoginTypes.CAREGIVER.displayName
         LoginTypes.BABYSITTER.type -> LoginTypes.BABYSITTER.displayName
         LoginTypes.PHYSIOTHERAPY.type -> LoginTypes.PHYSIOTHERAPY.displayName
-        LoginTypes.LAB_TECHNICIAN.type -> LoginTypes.LAB_TECHNICIAN.displayName
+        LoginTypes.LAB.type -> LoginTypes.LAB.displayName
         LoginTypes.PATHOLOGY.type -> LoginTypes.PATHOLOGY.displayName
         else -> "Unknown"
     }

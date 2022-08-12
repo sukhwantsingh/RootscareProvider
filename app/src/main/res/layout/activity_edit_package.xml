@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="node"
+            type="com.rootscare.serviceprovider.ui.pricelistss.models.ModelPackageDetails.Result" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/top_toolbar"
+            layout="@layout/common_header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnSubmit"
+            android:layout_below="@+id/top_toolbar"
+            android:layout_marginTop="@dimen/dp8"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/ll_mainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp16">
+
+                        <TextView
+                            android:id="@+id/tv_package_name"
+                            style="@style/AppTheme.TextMedium"
+                            android:layout_width="match_parent"
+                            android:text="@{node.name}"
+                            android:textColor="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp18" />
+
+                        <TextView
+                            android:id="@+id/tv_tests_counts"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/tv_package_name"
+                            android:layout_alignStart="@+id/tv_package_name"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@{node.task_count}"
+                            tools:text="Includes 60 Tests"
+                            android:textColor="@color/indicator_color"
+                            android:textSize="@dimen/dp12" />
+
+                        <TextView
+                            android:id="@+id/tvh_recomm"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/tv_tests_counts"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/dp4"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            android:text="@string/recommended_price"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:textSize="@dimen/dp10" />
+
+                        <TextView
+                            android:id="@+id/tv_recomm_price"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_alignTop="@+id/edtPrice"
+                            android:layout_alignBottom="@+id/edtPrice"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/dp6"
+                            android:layout_marginTop="@dimen/dp1"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            android:text="@{node.display_rp}"
+                            tools:text="1500 - 3200 SAR"
+                            android:textColor="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp14" />
+
+                        <EditText
+                            android:id="@+id/edtPrice"
+                            android:layout_width="80dp"
+                            android:layout_height="26dp"
+                            android:layout_below="@+id/tvh_recomm"
+                            android:background="@color/price_bg"
+                            android:digits="0123456789"
+                            android:fontFamily="@font/rubik_regular"
+                            android:gravity="center"
+                            android:hint="@string/price"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="9"
+                            android:text="@{node.price}"
+                            android:padding="@dimen/dp3"
+                            android:singleLine="true"
+                            android:textColor="@color/price_txt_heading"
+                            android:textSize="@dimen/dp12"
+                            tools:text="123" />
+
+                        <TextView
+                            android:id="@+id/tvh_currency"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_alignTop="@+id/edtPrice"
+                            android:layout_alignBottom="@+id/edtPrice"
+                            android:layout_marginStart="@dimen/dp6"
+                            android:layout_toEndOf="@+id/edtPrice"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            android:textColor="@color/colorTxtGrey1"
+                            android:textSize="@dimen/dp14"
+                            tools:text="SAR" />
+
+
+                        <View
+                            android:id="@+id/vh1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/edtPrice"
+                            android:layout_marginVertical="@dimen/dp16"
+                            android:background="@color/divider_support_more" />
+
+                        <TextView
+                            android:id="@+id/tvhdesc"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/vh1"
+                            android:layout_alignStart="@+id/tv_tests_counts"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            app:setHtmlContent="@{node.task_heading}"
+                            android:textColor="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp14"
+                            tools:text="@string/test_description" />
+
+                        <TextView
+                            android:id="@+id/tv_test_desc"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_below="@+id/tvhdesc"
+                            android:layout_alignStart="@+id/tv_tests_counts"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            app:setHtmlContent="@{node.task_content}"
+                            android:textColor="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp11"
+                            tools:text="Unhealthy lifestyle and stress can gradually take a toll on our health. Early detection can help to capture the warning signs of masked diseases in the body. Comprehensive Silver Full Body Checkup Package provides a comprehensive range of tests that check your liver &amp; kidney function, blood sugar, thyroid status, lipid profile, blood profile, vitamins, minerals, urine and more. Overall, the package includes all the goodness of Good Health Platinum Package with the addition of Vitamin B12, iron tests and calcium. This package - a part of our 'premium range' of diagnostic tests - can be ordered once every 6 to 12 months or as recommended by your doctor." />
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/warm_light"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/dp16"
+                        android:paddingVertical="@dimen/dp10">
+
+                        <TextView
+                            style="@style/AppTheme.TextRegular"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            tools:text="@string/precautions"
+                            app:setHtmlContent="@{node.task_sub_heading}"
+                            android:textColor="@color/price_txt_heading"
+                            android:textSize="@dimen/dp14" />
+
+                        <TextView
+                            android:id="@+id/tv_tprecautions"
+                            style="@style/AppTheme.TextRegular"
+                            android:layout_marginTop="@dimen/dp6"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp3"
+                           app:setHtmlContent="@{node.task_sub_content}"
+                            tools:text="Do not eat or drink anything other than water for 8-12 hours before the test. Urine sample must preferably be the midstream urine (part of urine that comes after first and before the last stream). Collect the urine sample in a sealed and sterile container provided by our sample collection professional. Make sure that the container doesn't come in contact with your skin."
+                            android:textColor="@color/txt_color_profile_desc"
+                            android:textSize="@dimen/dp11" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp16">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/dp16"
+                        android:paddingVertical="@dimen/dp10">
+
+                        <TextView
+                            style="@style/AppTheme.TextRegular"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="@dimen/dp2"
+                            android:text="@string/tests_included"
+                            android:textColor="@color/price_txt_heading"
+                            android:textSize="@dimen/dp14" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_tests_included"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/_10sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/row_test_included" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            style="@style/AppTheme.BtnMediumBlue"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/dp16"
+            android:layout_marginBottom="@dimen/dp20"
+            android:text="@string/save_package"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+</layout>

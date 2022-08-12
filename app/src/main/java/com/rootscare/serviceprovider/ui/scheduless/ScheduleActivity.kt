@@ -179,12 +179,11 @@ class ScheduleActivity : BaseActivity<ActivityScheduleBinding, ScheduleActivityV
                 } else {
                     adapter.addFragment(ScheduleFragmentCombine.newInstance(ScheduleTypes.ONLINE_BASED.nm), getString(R.string.online_cons))
                 }
-
+            }
+            viewModel.appSharedPref?.loginUserType.equals(LoginTypes.LAB.type) -> {
+                adapter.addFragment(ScheduleFragmentCombine.newInstance(ScheduleTypes.LAB_BASED.nm), ScheduleTypes.LAB_BASED.nm)
             }
 
-//            viewModel.appSharedPref?.loginUserType.equals(LoginTypes.LAB_TECHNICIAN.type) -> {
-//                adapter.addFragment(ScheduleFragmentCombine.newInstance(ScheduleTypes.TASK_BASED.nm), "LAB Schedule")
-//            }
 //            scheduleActivityViewModel?.appSharedPref?.loginUserType.equals(LoginTypes.PATHOLOGY.type) -> {
 //                adapter.addFragment(ScheduleFragmentCombine.newInstance(ScheduleTypes.TASK_BASED.nm), ScheduleTypes.TASK_BASED.nm)
 //            }

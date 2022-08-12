@@ -43,10 +43,14 @@ class AdapterHospitalDepartments(val departList: ArrayList<String>?, internal va
 }
 
 
+interface OnDepartListingCallback {
+    fun onDelDepart()
+}
 class AdapterSelectedDepartments :
     ListAdapter<ModelHospDeparts.Result, AdapterSelectedDepartments.ViewHolder>(SelectedDepartListDiffUtil()) {
 
     var updatedArrayList: MutableList<ModelHospDeparts.Result?>? = java.util.ArrayList()
+    var mCallback :OnDepartListingCallback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<RowEditableDepartmentsBinding>(
@@ -84,6 +88,7 @@ class AdapterSelectedDepartments :
             updatedArrayList?.remove(node)
             submitList(updatedArrayList)
         }
+        mCallback?.onDelDepart()
     }
 
     inner class ViewHolder(val binding: RowEditableDepartmentsBinding) :

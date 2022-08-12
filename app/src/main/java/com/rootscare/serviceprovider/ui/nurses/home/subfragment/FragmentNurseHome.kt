@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.rootscare.serviceprovider.BR
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.FragmentNursesHomeBinding
-import com.rootscare.serviceprovider.ui.babySitter.babySitterMyAppointment.FragmentBabySitterUpdateMyAppointment
 import com.rootscare.serviceprovider.ui.base.BaseFragment
 import com.rootscare.serviceprovider.ui.nurses.home.NursrsHomeActivity
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.FragmentNursesProfile
+import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.subfragment.nursesprofileedit.FragmentNursesEditProfile.Companion.IS_PROFILE_UPDATE_
 import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.FragmentNursesMyAppointment
 import com.rootscare.serviceprovider.ui.pricelistss.PriceListScreen
@@ -20,6 +20,8 @@ import com.rootscare.serviceprovider.ui.supportmore.OPEN_FOR_ABOUT
 import com.rootscare.serviceprovider.ui.supportmore.SupportAndMore
 import com.rootscare.serviceprovider.ui.transactionss.TransactionsMore
 import com.rootscare.serviceprovider.utilitycommon.IntentParams
+import com.rootscare.serviceprovider.utilitycommon.LoginTypes
+import com.rootscare.serviceprovider.utilitycommon.getModelFromPref
 import com.rootscare.serviceprovider.utilitycommon.navigate
 
 class FragmentNurseHome : BaseFragment<FragmentNursesHomeBinding, FragmentNurseHomeViewModel>(),
@@ -37,6 +39,7 @@ class FragmentNurseHome : BaseFragment<FragmentNursesHomeBinding, FragmentNurseH
             )
             return fragmentNurseHomeViewModel as FragmentNurseHomeViewModel
         }
+    var loginresponse: ModelUserProfile? = null
 
     companion object {
         fun newInstance(): FragmentNurseHome {
@@ -57,7 +60,26 @@ class FragmentNurseHome : BaseFragment<FragmentNursesHomeBinding, FragmentNurseH
         fragmentNursesHomeBinding = viewDataBinding
 
         initViews()
+        initControls()
 
+    }
+
+    private fun initControls() {
+        fragmentNursesHomeBinding?.layoutNewDashboard?.run {
+            rlDashAppointment.setOnClickListener {
+                if(allowProvider()) (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesMyAppointment.newInstance())
+            }
+            rlDashSchedule.setOnClickListener { if(allowProvider()) navigate<ScheduleActivity>() }
+            rlDashPriceList.setOnClickListener {  if(allowProvider()) navigate<PriceListScreen>() }
+            rlDashAccountSetting.setOnClickListener { if(allowProvider()) (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesProfile.newInstance()) }
+
+            rlDashTransactionAccounting.setOnClickListener { if(allowProvider()) navigate<TransactionsMore>() }
+
+            tvhAboutRootscare.setOnClickListener { if(allowProvider()) navigate<CommonWebviewScreen>(listOf(IntentParams(OPEN_FOR, OPEN_FOR_ABOUT))) }
+
+            tvhHelpNSuppot.setOnClickListener { if(allowProvider())  navigate<SupportAndMore>()  }
+
+        }
     }
 
     override fun onStart() {
@@ -69,29 +91,13 @@ class FragmentNurseHome : BaseFragment<FragmentNursesHomeBinding, FragmentNurseH
     }
 
     private fun initViews() {
+        loginresponse = fragmentNurseHomeViewModel?.appSharedPref?.loginmodeldata?.getModelFromPref()
         fragmentNursesHomeBinding?.layoutNewDashboard?.run {
-            rlDashAppointment.setOnClickListener {
-                (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesMyAppointment.newInstance())
-            }
-            rlDashSchedule.setOnClickListener {
-                navigate<ScheduleActivity>()
-            }
-            rlDashPriceList.setOnClickListener {
-//                (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesManageRate.newInstance("other"))
-                navigate<PriceListScreen>()
-            }
-            rlDashTransactionAccounting.setOnClickListener {
-//            (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesPaymentHistory.newInstance())
-                navigate<TransactionsMore>()
-            }
-            rlDashAccountSetting.setOnClickListener {
-                (activity as? NursrsHomeActivity)?.checkFragmentInBackStackAndOpen(FragmentNursesProfile.newInstance())
-            }
-            tvhAboutRootscare.setOnClickListener {
-                navigate<CommonWebviewScreen>(listOf(IntentParams(OPEN_FOR, OPEN_FOR_ABOUT)))
-            }
-            tvhHelpNSuppot.setOnClickListener {
-                navigate<SupportAndMore>()
+            if (loginresponse?.result?.user_type?.lowercase().equals(LoginTypes.LAB.type)) {
+                tvhH1.text = getString(R.string.all_appointments)
+                tvhH2.text = getString(R.string.availability_schedule)
+                tvhH3.text = getString(R.string.manage_test_n_packages)
+                tvhPricelist.text = "Select Tests\nPrice Each Tests\nCreate Package\nON & OFF Task or Package"
             }
 
         }

@@ -17,11 +17,11 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import com.rootscare.serviceprovider.databinding.FragmentPriceListCommonBinding
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
-import com.rootscare.serviceprovider.ui.pricelistss.ModelPriceListing
+import com.rootscare.serviceprovider.ui.pricelistss.models.ModelPriceListing
 import com.rootscare.serviceprovider.utilitycommon.getModelFromPref
 import java.util.*
 
-private const val ARG_PRICE_TYPE = "ARG_PRICE_TYPE"
+const val ARG_PRICE_TYPE = "ARG_PRICE_TYPE"
 
 class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, ManagePriceViewModel>(), ManagePriceNavigator {
 
@@ -113,6 +113,18 @@ class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, Man
                     fetchTasksApiForDoctor(PriceTypes.HOME_VISIT.getMode())
                 }
 
+                priceType.equals(PriceTypes.TEST_BASED.get(), true) -> {
+                binding?.run {
+                    tvBookingDurationHourly.visibility = View.GONE
+                    rd30minSlots.visibility = View.VISIBLE
+
+                    rd30minSlots.text = getString(R.string.min_45_slots)
+                    tvhlt.text = getString(R.string.list_of_tasks)
+                    tvh1.text = getString(R.string.tasks_you_as_wish_service_text)
+                }
+                 fetchLabTestsApi(PriceTypes.TEST_BASED.getMode())
+            }
+
             }
 
     }
@@ -146,7 +158,21 @@ class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, Man
         } else {
             noData(getString(R.string.check_network_connection))
         }
+    }
 
+    private fun fetchLabTestsApi(taskType: String) {
+        if (isNetworkConnected) {
+            baseActivity?.showLoading()
+            val jsonObject = JsonObject().apply {
+                addProperty("service_type", mViewModel?.appSharedPref?.loginUserType)
+                addProperty("user_id", mViewModel?.appSharedPref?.loginUserId)
+                addProperty("task_type", taskType)
+            }
+            val body = jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull())
+            mViewModel?.getLabTestsList(body)
+        } else {
+            noData(getString(R.string.check_network_connection))
+        }
     }
 
     private fun apiSavePriceList() {
@@ -185,7 +211,12 @@ class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, Man
                 addProperty("task_id", tasksId)
                 addProperty("price", tasksPrice)
             }
+
             when {
+                priceType.equals(PriceTypes.TEST_BASED.get(), true) -> {
+                    jsonObject.addProperty("task_type", PriceTypes.TEST_BASED.getMode())
+                    fireSavePrice(jsonObject, PriceTypes.TEST_BASED.getMode())
+                }
                 priceType.equals(PriceTypes.TASK_BASED.get(), true) -> {
                     jsonObject.addProperty("task_type", PriceTypes.TASK_BASED.getMode())
                     fireSavePrice(jsonObject)
@@ -200,7 +231,7 @@ class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, Man
                 }
                 priceType.equals(PriceTypes.HOME_VISIT.get(), true) -> {
                     jsonObject.addProperty("task_type", PriceTypes.HOME_VISIT.getMode())
-                    fireSavePrice(jsonObject,PriceTypes.ONLINE.getMode())
+                    fireSavePrice(jsonObject, PriceTypes.ONLINE.getMode())
                 }
                 else ->{ baseActivity?.showLoading(); return }
             }
@@ -209,25 +240,26 @@ class FragmentPriceListCommon : BaseFragment<FragmentPriceListCommonBinding, Man
         }
     }
 
-   private fun fireSavePrice(jsonObject: JsonObject,hitFor:String = "") {
+   private fun fireSavePrice(jsonObject: JsonObject, hitFor:String = "") {
       try {
           baseActivity?.showLoading()
           val body = jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull())
           if(hitFor.equals(PriceTypes.ONLINE.getMode(), ignoreCase = true)) {
               mViewModel?.saveTaskSlotForDoc(body)
-          } else mViewModel?.saveTaskSlot(body)
+          } else if(hitFor.equals(PriceTypes.TEST_BASED.getMode(), ignoreCase = true)) {
+              mViewModel?.saveLabTestsPrice(body)
+          }
+          else mViewModel?.saveTaskSlot(body)
 
       } catch (e:Exception) {
        print(e)
       }
-
-
    }
 
     override fun onSuccessAfterSavePrice(response: CommonResponse) {
         baseActivity?.hideLoading()
-        if (response.code.equals("200")) {
-            showToast(response.message ?: "")
+        if (response.code.equals(SUCCESS_CODE)) {
+            showToast(response.message.orEmpty())
         }
     }
 

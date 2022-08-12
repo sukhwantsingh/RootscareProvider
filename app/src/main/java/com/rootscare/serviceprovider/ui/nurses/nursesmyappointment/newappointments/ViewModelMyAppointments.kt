@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.rootscare.data.model.request.videoPushRequest.VideoPushRequest
 import com.rootscare.serviceprovider.ui.base.BaseViewModel
+import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.AppointmentDetailScreen.Companion.appointmentId
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -164,7 +165,18 @@ class ViewModelMyAppointments : BaseViewModel<AppointmentNavigator>() {
     }
 
     fun apiUploadPrescription(appointmentId: RequestBody?, upload_prescription: MultipartBody.Part? = null) {
-        val disposable = apiServiceWithGsonFactory.apiUploadPrescription(appointmentId ,upload_prescription)
+        val disposable = apiServiceWithGsonFactory.apiUploadPrescription(appointmentId, upload_prescription)
+            .subscribeOn(_scheduler_io)
+            .observeOn(_scheduler_ui)
+            .subscribe({ response ->
+            if (response != null) { navigator.onPrescriptionUploaded(response) }
+            }, { throwable ->  run { navigator.errorInApi(throwable) }
+            })
+        compositeDisposable.add(disposable)
+    }
+
+    fun apiUploadLabReports(appointmentId: RequestBody?, patientId: RequestBody?, hospId: RequestBody?, repoList: ArrayList<MultipartBody.Part?>) {
+        val disposable = apiServiceWithGsonFactory.apiUploadLabReports(appointmentId,patientId,hospId, repoList)
             .subscribeOn(_scheduler_io)
             .observeOn(_scheduler_ui)
             .subscribe({ response ->

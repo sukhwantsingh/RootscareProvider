@@ -107,15 +107,27 @@ class FragNewAppointmentListing : BaseFragment<FragNewAppointmentListingBinding,
                 navigate<AppointmentDetailScreen>()
             }
 
-            override fun onAcceptBtnClick(id: String, pos: Int, action: String) {
+            override fun onAcceptBtnClick(id: String, pos: Int, action: String, hospId: String?) {
+                if(hospId.isNullOrBlank().not() && mViewModel?.appSharedPref?.loginUserType.equals("lab",ignoreCase = true)){
+                    showToast("Not yet implemented!")
+                    return
+                }
+
                 CommonDialog.showDialog(requireActivity(), object : DialogClickCallback {
-                    override fun onConfirm() { apiRejAccept(id, pos, action) }
+                    override fun onConfirm() {
+                        apiRejAccept(id, pos, action)
+                    }
                 }, getString(R.string.confirmation), getString(R.string.do_realy_want_to_accept_appointment))
             }
 
-            override fun onRejectBtnBtnClick(id: String, pos: Int, action: String) {
+            override fun onRejectBtnBtnClick(id: String, pos: Int, action: String, hospId: String?) {
+                if(hospId.isNullOrBlank().not() && mViewModel?.appSharedPref?.loginUserType.equals("lab",ignoreCase = true)){
+                    showToast("Not yet implemented!")
+                    return
+                }
                 CommonDialog.showDialog(requireActivity(), object : DialogClickCallback {
-                    override fun onConfirm() { apiRejAccept(id, pos, action) }
+                    override fun onConfirm() {
+                        apiRejAccept(id, pos, action) }
                 }, getString(R.string.confirmation), getString(R.string.do_realy_want_to_reject_appointment))
             }
 

@@ -50,7 +50,6 @@ class FragmentNursesProfileViewModel : BaseViewModel<FragmentNursesProfileNaviga
             .observeOn(_scheduler_ui)
             .subscribe({ response ->
                 if (response != null) {
-                   appSharedPref?.loginmodeldata = Gson().toJson(response)
                    navigator.onSuccessUserProfile(response)
                 }
             }, { throwable ->
@@ -69,7 +68,6 @@ class FragmentNursesProfileViewModel : BaseViewModel<FragmentNursesProfileNaviga
             .observeOn(_scheduler_ui)
             .subscribe({ response ->
                 if (response != null) {
-                   appSharedPref?.loginmodeldata = Gson().toJson(response)
                    navigator.onSuccessCommon(response)
                 }
             }, { throwable ->
@@ -87,7 +85,6 @@ class FragmentNursesProfileViewModel : BaseViewModel<FragmentNursesProfileNaviga
             .observeOn(_scheduler_ui)
             .subscribe({ response ->
                 if (response != null) {
-                   appSharedPref?.loginmodeldata = Gson().toJson(response)
                    navigator.onSuccessCommon(response)
                 }
             }, { throwable ->
@@ -189,7 +186,6 @@ class FragmentNursesProfileViewModel : BaseViewModel<FragmentNursesProfileNaviga
             .observeOn(_scheduler_ui)
             .subscribe({ response ->
                 if (response != null) {
-                    appSharedPref?.loginmodeldata = Gson().toJson(response)
                     navigator.onSuccessEditProfile(response)
                 } else {
                     Log.d("check_response", ": null response")

@@ -172,6 +172,18 @@ class FragmentNursesProfile : BaseFragment<LayoutNewProfileForProvidersBinding, 
 
                         bindHospitalData(it)
                     }
+                      LoginTypes.LAB.type -> {
+                        tvhIdentityNum.text = getString(R.string.moh_licence)
+                        tvhQualification.text = getString(R.string.registration_number)
+                        tvhLabTest.text = getString(R.string.lab_test)
+
+                        tvIdentityNum.text = it.hosp_moh_lic_no   // moh licence number
+                        tvQualification.text = it.hosp_reg_no  // registration number
+
+                        grpBabyCareHosp.visibility = View.VISIBLE
+
+                        bindLabData(it)
+                    }
                     else -> Unit
                 }
 
@@ -202,6 +214,33 @@ class FragmentNursesProfile : BaseFragment<LayoutNewProfileForProvidersBinding, 
         }
     }
     }
+
+    private fun bindLabData(result: ModelUserProfile.Result?) {
+        fragmentNursesProfileBinding?.run {
+            result?.let {
+            crdDepartments.visibility = View.GONE
+
+                 tvhAcname.text = getString(R.string.lab_test)
+                 tvhBank.text = getString(R.string.established)
+
+                imgProfile.setCircularRemoteImage(it.image)
+                tvUsername.text = it.first_name
+                tvhSpecialityHeader.text = it.address
+
+                tvemail.text = it.email
+                tvphn.text = it.phone_number
+
+                tvBankName.text = if (it.experience.isNullOrBlank().not()) "${it.experience}" else "N/A"  // establishment
+
+                tvAcNum.text = it.avg_rating?.toFloat()?.toString() ?: 0.0.toString() // avg  rating
+                tvAcName.text = it.lab_test_count   // lab test count
+                tvAddress.text = it.description // desc about
+
+                setDocumentsNLForHospital(rvDocuments, it)
+
+        }
+    }
+  }
 
     private fun bindHospitalData(result: ModelUserProfile.Result?) {
         fragmentNursesProfileBinding?.run {

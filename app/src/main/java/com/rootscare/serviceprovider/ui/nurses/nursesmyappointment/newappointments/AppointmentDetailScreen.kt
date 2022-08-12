@@ -7,6 +7,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.net.Uri
@@ -14,12 +15,17 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dialog.CommonDialog
 import com.google.gson.JsonObject
+import com.myfilepickesexample.FileUtil
 import com.rootscare.data.model.request.videoPushRequest.VideoPushRequest
 import com.rootscare.data.model.response.CommonResponse
 import com.rootscare.data.model.response.videoPushResponse.VideoPushResponse
@@ -28,11 +34,17 @@ import com.rootscare.serviceprovider.BR
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.LayoutNewAppointmentDetailsBinding
 import com.rootscare.serviceprovider.ui.base.BaseActivity
+import com.rootscare.serviceprovider.ui.login.subfragment.registration.FragmentRegistration
 import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.adapter.AdapterPaymentSplitting
+import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.adapter.AdapterReportUploadeds
+import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.adapter.OnLabReportsCallback
 import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.models.ModelAppointmentDetails
+import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.models.ModelLabReports
+import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.models.OnBottomSheetCallbacks
 import com.rootscare.serviceprovider.utilitycommon.*
 import com.rootscare.twilio.VideoCallActivity
 import com.rootscare.utils.ManagePermissions
+import kotlinx.android.synthetic.main.layout_new_appointment_details.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -40,6 +52,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val IMAGE_DIRECTORY = "/demonuts"
 class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding, ViewModelMyAppointments>(),
@@ -73,10 +86,18 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
 
     private val GALLERY = 1
     private val CAMERA = 2
+    val PICKFILE_RESULT_CODE = 4
+    private var fileUri: Uri? = null
+    private var filePath: String? = null
+
     var imageFile: File? = null
     private var prescriptionimage: RequestBody? = null
     private var imageMulitpart: MultipartBody.Part? = null
+    private var hospitalId = ""
 
+    private val adapterReports: AdapterReportUploadeds by lazy { AdapterReportUploadeds() }
+
+    var mBsReportsUploading : BSUploadReportSection? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +105,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
         mViewModel?.navigator = this
         binding = viewDataBinding
         initViews()
+        fetchTasksDetailApi()
     }
 
     private fun initViews() {
@@ -91,8 +113,16 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
             topToolbar.tvHeader.text = getString(R.string.appointment_details)
             topToolbar.btnBack.setOnClickListener { finish() }
             rvPayments.adapter = mAdapterPayment
+            rvReports.adapter = adapterReports
+            rvReports.addItemDecoration(DividerItemDecoration(this@AppointmentDetailScreen,LinearLayoutManager.VERTICAL))
+            adapterReports.mCallback = object: OnLabReportsCallback{
+                override fun onDownloads(mFileName: String) {
+                    initializeDownloadManager()
+                    downloadFile(mFileName)
+                }
+            }
             tvhCall.setOnClickListener { openDialer(patientContact) }
-            tvhOpenGmap.setOnClickListener { openGoogleMap(mPatientLat,mPatientLng) }
+            tvhOpenGmap.setOnClickListener { openGoogleMapWithDirectNavigationStart(mPatientLat,mPatientLng) }
 
             ivSendOtp.setOnClickListener {
                 val ot = edtOtp.text.toString().trim()
@@ -103,13 +133,23 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                 }
             }
             btnAccept.setOnClickListener {
+                if(hospitalId.isNotBlank() && mViewModel?.appSharedPref?.loginUserType.equals("lab",ignoreCase = true)){
+                    showToast("Not yet implemented!")
+                    return@setOnClickListener
+                }
+
                 CommonDialog.showDialog(this@AppointmentDetailScreen, object : DialogClickCallback {
                     override fun onConfirm() {
                         accRejStatus = TransactionStatus.ACCEPTED.get()
-                       apiRejAccept(appointmentId ?: "", "Accept")
+                         apiRejAccept(appointmentId ?: "", "Accept")
                     }   }, getString(R.string.confirmation), getString(R.string.do_realy_want_to_accept_appointment))
             }
             ibcross.setOnClickListener {
+                if(hospitalId.isNotBlank() && mViewModel?.appSharedPref?.loginUserType.equals("lab",ignoreCase = true)){
+                    showToast("Not yet implemented!")
+                    return@setOnClickListener
+                }
+
                 CommonDialog.showDialog(this@AppointmentDetailScreen, object : DialogClickCallback {
                     override fun onConfirm() {
                         accRejStatus = TransactionStatus.CANCELLED.get()
@@ -117,8 +157,15 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                     }
                 }, getString(R.string.confirmation), getString(R.string.do_realy_want_to_reject_appointment))
             }
-            fetchTasksDetailApi()
-        }
+            imgPatientArrowDown.setOnClickListener {
+                imgPatientArrowDown.rotation = if(grpPatientDetails.isShown){
+                   grpPatientDetails.visibility = View.GONE; 0f
+                } else {
+                   grpPatientDetails.visibility = View.VISIBLE; 180f
+                }
+
+            }
+       }
     }
 
     private fun fetchTasksDetailApi() {
@@ -176,9 +223,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
         try {
             if (response?.code.equals(SUCCESS_CODE)) {
              //   bindViews(response?.result)
-                FragNewAppointmentListing.icCompleted = true
-                FragNewAppointmentListing.isAcceptedOrRejcted = false
-                fetchTasksDetailApi()
+              afterCompleteAppointment()
              }else  showToast(response?.message ?: getString(R.string.something_went_wrong))
 
         } catch (e: Exception) {
@@ -200,6 +245,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
 
     private var mPatientLat:String = "0.0"
     private var mPatientLng:String = "0.0"
+    private var mPatientId: String = ""
 
     private fun bindViews(response: ModelAppointmentDetails.Result?) {
        response?.let {
@@ -208,6 +254,8 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                patientContact = it.patient_contact?:""
                mPatientLat = it.patient_lat ?: "0.0"
                mPatientLng = it.patient_long ?: "0.0"
+               hospitalId = it.hospital_id.orEmpty()
+               mPatientId = it.patient_id.orEmpty()
 
                if(it.service_type.equals(LoginTypes.DOCTOR.type, ignoreCase = true)) {
                    detailModel = it
@@ -259,7 +307,43 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                                }
                            }
                        }
-               } else {
+               }
+               else if(it.service_type.equals(LoginTypes.LAB.type, ignoreCase = true)) {
+                   detailModel = it
+                   btnVideoCall.visibility = View.GONE
+                   when {
+                       it.acceptance_status.equals(TransactionStatus.PENDING.get(), ignoreCase = true) -> {
+                           grpAcceptCancel.visibility = View.VISIBLE
+                       }
+                       else -> {
+                           grpAcceptCancel.visibility = View.GONE
+                           when {
+                               it.acceptance_status.equals(TransactionStatus.REJECTED.get(), ignoreCase = true) ||
+                               it.acceptance_status.equals(TransactionStatus.CANCELLED.get(), ignoreCase = true) -> { btnUploadPresc.visibility = View.GONE }
+                               it.acceptance_status.equals(TransactionStatus.ACCEPTED.get(), ignoreCase = true) -> {
+                                   val list = listOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                   managePermissions = ManagePermissions(this@AppointmentDetailScreen, list, PermissionsRequestCode)
+                                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { managePermissions.checkPermissions() }
+
+                                   needToShowUploadPrescription(it.app_date, it.from_time, relLabReportSection)
+                                   tvUpload.setOnClickListener { uploadReportClick() }
+                               }
+                               it.acceptance_status.equals(TransactionStatus.COMPLETED.get(), ignoreCase = true) -> {
+                                    showRatingOrNot(it)
+                                    relLabReportSection.visibility = View.VISIBLE
+                                    needToShowUploadLabReport(it.app_date, it.from_time, tvUpload)
+                                    needToShowUploadLabReport(it.app_date, it.from_time, vrepLast)
+
+                                    rvReports.visibility = if(it.report.isNullOrEmpty()) View.GONE else {
+                                        adapterReports.submitList(it.report); View.VISIBLE
+                                    }
+                                   tvUpload.setOnClickListener { uploadReportClick() }
+                                  }
+                               }
+                           }
+                       }
+                   }
+               else {
                    when {
                            it.acceptance_status.equals(TransactionStatus.PENDING.get(), ignoreCase = true) -> {
                                grpAcceptCancel.visibility = View.VISIBLE
@@ -302,6 +386,45 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
          }
         }
     }
+    private fun afterCompleteAppointment(){
+        FragNewAppointmentListing.icCompleted = true
+        FragNewAppointmentListing.isAcceptedOrRejcted = false
+        fetchTasksDetailApi()
+    }
+
+    private fun uploadReportClick(){
+        mBsReportsUploading = BSUploadReportSection.newInstance(object :OnBottomSheetCallbacks{
+            override fun onSubmitReports(data: ArrayList<File?>?) {
+                // hit the api from here for the lab
+                apiUploadLabReports(data)
+            }
+            override fun onPickImage() {
+                if (checkAndRequestPermissionsTest()) {
+                    uplaodCertificate(PICKFILE_RESULT_CODE)
+                }
+            }
+        })
+        mBsReportsUploading?.show(supportFragmentManager, "RescheduleDialog")
+    }
+
+    private fun apiUploadLabReports(repoFiles: ArrayList<File?>?) {
+        if (isNetworkConnected) {
+            val repoLst = ArrayList<MultipartBody.Part?>()
+            repoFiles?.let { it.forEach { fls ->
+            val rqb = fls?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                repoLst.add(MultipartBody.Part.createFormData("report[]", fls?.name.orEmpty(), rqb!!))
+            }
+          }
+
+         val reqApptId = (appointmentId.orEmpty()).asReqBody()
+         val reqPatientId = mPatientId.asReqBody()
+         val reqHospId = hospitalId.asReqBody()
+
+             showLoading()
+             mViewModel?.apiUploadLabReports(reqApptId,reqPatientId,reqHospId,repoLst)
+        }
+    }
+
 
     private fun hitVideoCall(){
         if (isNetworkConnected) {
@@ -371,7 +494,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
     private fun downloadFile(fName: String) {
         try{
             val request = DownloadManager.Request(Uri.parse(BaseMediaUrls.USERIMAGE.url + fName))
-//            val request = DownloadManager.Request(Uri.parse("https://teq-dev-var19.co.in/rootscare/uploads/images/Kalimba.mp3"))
+//          val request = DownloadManager.Request(Uri.parse("https://teq-dev-var19.co.in/rootscare/uploads/images/Kalimba.mp3"))
             request.setTitle(fName).setDescription("File is downloading...")
                 .setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, fName)
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
@@ -404,19 +527,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
         hideLoading()
         if (response?.code.equals(SUCCESS_CODE)) {
             FragNewAppointmentListing.isAcceptedOrRejcted = true
-
             fetchTasksDetailApi()
-
-//            binding?.grpAcceptCancel?.visibility = View.GONE
-//            binding?.grpEnterOtp?.visibility =  when {
-//                accRejStatus.equals(TransactionStatus.CANCELLED.get(),ignoreCase = true) -> { View.GONE }
-//                accRejStatus.equals(TransactionStatus.ACCEPTED.get(),ignoreCase = true) -> { View.VISIBLE }
-//                else -> View.GONE
-//            }
-//
-//            binding?.tvStatus?.text = accRejStatus
-//            binding?.tvStatus?.backgroundStatusColor(accRejStatus)
-
         } else showToast(response?.message?:"")
     }
 
@@ -474,26 +585,27 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
         startActivityForResult(intent, CAMERA)
     }
 
-    // Receive the permissions request result
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,  grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PermissionsRequestCode -> {
-                val isPermissionsGranted = managePermissions.processPermissionsResult(grantResults)
-
-                if (isPermissionsGranted) {
-                    showPictureDialog(); showToast(getString(R.string.permission_granted))
-                } else { showToast(getString(R.string.permission_denied)) }
-                return
-            }
-        }
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
          if (resultCode != Activity.RESULT_CANCELED) {
-            if (requestCode == GALLERY) {
+             if (requestCode == PICKFILE_RESULT_CODE) {
+                 if (resultCode == -1) {
+                     fileUri = data?.data
+                     filePath = fileUri?.path
+                     // tvItemPath.setText(filePath)
+                     try {
+                         val file = FileUtil.from(this, fileUri!!)
+                         Log.wtf("file_", "File...:::: uti - " + file.path + " file -" + file + " : " + file.exists())
+                         if(isSelectedFileSizeNotEligible(file.path , 10)){
+                             showLongToast(getString(R.string.size_below_10mb))
+                         } else {
+                             displayCertificateName(getFileName(this, fileUri!!), file)
+                         }
+                     } catch (e: IOException) {
+                         e.printStackTrace()
+                     }
+                 }
+             } else if (requestCode == GALLERY) {
                 if (data != null) {
                     val contentURI = data.data
                     try {
@@ -526,6 +638,36 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
             }
         }
 
+    }
+
+    private fun getFileName(context: Context, uri: Uri): String {
+        var result: String? = null
+        if (uri.scheme == "content") {
+            val cursor =
+                context.contentResolver.query(uri, null, null, null, null)
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                cursor?.close()
+            }
+        }
+        if (result == null) {
+            result = uri.path
+            val cut = result!!.lastIndexOf(File.separator)
+            if (cut != -1) {
+                result = result.substring(cut + 1)
+            }
+        }
+        return result
+    }
+
+    private fun displayCertificateName(fname: String?, fFile: File) {
+        Log.wtf(FragmentRegistration.TAG, "displayCertificateName: $fname \n ${fFile.name}")
+        mBsReportsUploading?.updateReports(fFile)
     }
 
     private fun saveImage(myBitmap: Bitmap): String {
@@ -605,11 +747,11 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
     override fun onPrescriptionUploaded(response: CommonResponse?) {
         hideLoading()
         if (response?.code.equals(SUCCESS_CODE)) {
-            FragNewAppointmentListing.icCompleted = true
-            FragNewAppointmentListing.isAcceptedOrRejcted = false
-            fetchTasksDetailApi()
-        } else showToast(response?.message?:"")
+            afterCompleteAppointment()
+        } else showLongToast(response?.message.orEmpty())
     }
+
+
     private var roomName: String? = null
     override fun successVideoPushResponse(videoPushResponse: VideoPushResponse?) {
         hideLoading()
@@ -633,5 +775,45 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
         }
     }
 
+    var REQUEST_ID_MULTIPLE_PERMISSIONS = 123
+    var requested = false
+    private fun checkAndRequestPermissionsTest(): Boolean {
+        return if (Build.VERSION.SDK_INT >= 23) {
+            val permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            val permissionWriteExternalStorage =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val listPermissionsNeeded: MutableList<String> = java.util.ArrayList()
+            if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.CAMERA)
+            }
+            if (permissionWriteExternalStorage != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+            if (listPermissionsNeeded.isNotEmpty()) {
+                requested = true
+                requestPermissions(listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
+                false
+            } else {
+                true
+            }
+        } else {
+            requested = false
+            true
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,  grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PermissionsRequestCode -> {
+                val isPermissionsGranted = managePermissions.processPermissionsResult(grantResults)
+
+                if (isPermissionsGranted) {
+                    showPictureDialog(); showToast(getString(R.string.permission_granted))
+                } else { showToast(getString(R.string.permission_denied)) }
+                return
+            }
+        }
+
+    }
 
 }

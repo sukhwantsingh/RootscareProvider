@@ -19,17 +19,12 @@ import com.rootscare.serviceprovider.ui.babySitter.home.BabySitterHomeActivity
 import com.rootscare.serviceprovider.ui.base.BaseFragment
 import com.rootscare.serviceprovider.ui.caregiver.home.CaregiverHomeActivity
 import com.rootscare.serviceprovider.ui.hospital.HospitalHomeActivity
-import com.rootscare.serviceprovider.ui.labtechnician.home.LabTechnicianHomeActivity
 import com.rootscare.serviceprovider.ui.login.LoginActivity
 import com.rootscare.serviceprovider.ui.nurses.home.NursrsHomeActivity
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
 import com.rootscare.serviceprovider.ui.physiotherapy.home.PhysiotherapyHomeActivity
-import com.rootscare.serviceprovider.utilitycommon.LanguageModes
-import com.rootscare.serviceprovider.utilitycommon.LoginTypes
-import com.rootscare.serviceprovider.utilitycommon.SUCCESS_CODE
-import com.rootscare.serviceprovider.utilitycommon.navigate
+import com.rootscare.serviceprovider.utilitycommon.*
 import java.util.regex.Pattern
-import kotlin.collections.ArrayList
 
 
 class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>(), FragmentLoginNavigator {
@@ -54,17 +49,6 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
             fragment.arguments = args
             return fragment
         }
-    }
-
-    private val dropdownList: ArrayList<String?> by lazy {
-        arrayListOf(LoginTypes.NURSE.displayName,
-            LoginTypes.CAREGIVER.displayName,
-            LoginTypes.BABYSITTER.displayName,
-            LoginTypes.PHYSIOTHERAPY.displayName,
-            LoginTypes.DOCTOR.displayName,
-            LoginTypes.HOSPITAL.displayName,
-        //  LoginTypes.LAB_TECHNICIAN.displayName
-        )
     }
 
     private var isRemChecked = false
@@ -92,7 +76,7 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
             (activity as LoginActivity?)?.setCurrentItem(4, true)
         }
         fragmentLoginBinding?.txtRootscareLoginUserType?.setOnClickListener {
-            CommonDialog.showDialogForDropDownList(this.requireActivity(), getString(R.string.select_provider_type), dropdownList,
+            CommonDialog.showDialogForDropDownList(this.requireActivity(), getString(R.string.select_provider_type), enableProviders,
                 object : DropDownDialogCallBack {
                     override fun onConfirm(text: String) {
                         fragmentLoginBinding?.txtRootscareLoginUserType?.text = text
@@ -251,6 +235,7 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
                 when {
                     loginResponse.result.user_type?.lowercase().equals(LoginTypes.NURSE.type) ||
                     loginResponse.result.user_type?.lowercase().equals(LoginTypes.DOCTOR.type) ||
+                    loginResponse.result.user_type?.lowercase().equals(LoginTypes.LAB.type) ||
                     loginResponse.result.user_type?.lowercase().equals(LoginTypes.HOSPITAL_DOCTOR.type) -> {
                         startActivity(activity?.let { NursrsHomeActivity.newIntent(it) })
                         activity?.finish()
@@ -272,10 +257,10 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding, FragmentLoginViewModel>
                         startActivity(activity?.let { HospitalHomeActivity.newIntent(it) })
                         activity?.finish()
                     }
-                    loginResponse.result.user_type?.lowercase().equals(LoginTypes.LAB_TECHNICIAN.type) -> {
-                        startActivity(activity?.let { LabTechnicianHomeActivity.newIntent(it) })
-                        activity?.finish()
-                    }
+//                    loginResponse.result.user_type?.lowercase().equals(LoginTypes.LAB.type) -> {
+//                        startActivity(activity?.let { LabTechnicianHomeActivity.newIntent(it) })
+//                        activity?.finish()
+//                    }
 
                 }
             } else {

@@ -45,6 +45,7 @@
             android:textColor="@color/txt_color"
             android:textSize="@dimen/dp9"
             android:visibility="gone"
+            tools:visibility="visible"
             app:visibilityWithNullEmptyCheck="@{node.hospital_id}"
             app:layout_constraintStart_toEndOf="@+id/tvh_bank"
             app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
@@ -89,7 +90,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_ac_name"
             app:layout_constraintStart_toStartOf="@+id/tvh_bank"
             app:layout_constraintTop_toBottomOf="@+id/tvh_acname"
-            tools:text="Dr Ramadi Entersilio" />
+            tools:text="Dr Ramadi" />
 
         <TextView
             android:id="@+id/tv_ac_name"

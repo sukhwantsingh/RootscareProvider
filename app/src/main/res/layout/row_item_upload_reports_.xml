@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cns_presc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cns_patient_syptm">
+
+        <ImageView
+            android:id="@+id/img_prescription"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp8"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_presc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_presc_name"
+            style="@style/AppTheme.TextRegular"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp3"
+            android:singleLine="true"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/dp12"
+            app:layout_constraintStart_toEndOf="@+id/img_prescription"
+            app:layout_constraintTop_toTopOf="@+id/img_prescription"
+            app:layout_constraintEnd_toStartOf="@+id/ivcross"
+            android:layout_marginEnd="@dimen/dp16"
+            tools:text="Report ORD22-87669874.pdf" />
+
+        <ImageView
+            android:id="@+id/ivcross"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
+            android:layout_marginTop="@dimen/dp4"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/ic_union_80"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/vseek"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginEnd="@dimen/dp16"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_percent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_percent"
+            app:layout_constraintStart_toStartOf="@+id/tv_presc_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_percent" />
+
+        <TextView
+            android:id="@+id/tv_percent"
+            style="@style/AppTheme.TextRegular"
+            android:layout_marginTop="@dimen/dp8"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="100%"
+            android:textColor="@color/colorTxtGrey"
+            android:textSize="@dimen/dp10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_presc_name" />
+
+        <View
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp8"
+            android:background="@color/divider_support_more"
+            app:layout_constraintTop_toBottomOf="@+id/img_prescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

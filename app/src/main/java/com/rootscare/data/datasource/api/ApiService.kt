@@ -49,8 +49,11 @@ import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelHospDepa
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
 import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.ModelAppointmentsListing
 import com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.models.ModelAppointmentDetails
-import com.rootscare.serviceprovider.ui.pricelistss.ModelPriceListing
+import com.rootscare.serviceprovider.ui.pricelistss.models.ModelPackageDetails
+import com.rootscare.serviceprovider.ui.pricelistss.models.ModelPriceListing
+import com.rootscare.serviceprovider.ui.pricelistss.models.ModelPackages
 import com.rootscare.serviceprovider.ui.scheduless.ModelScheduleTiming
+import com.rootscare.serviceprovider.ui.splash.model.NetworkAppCheck
 import com.rootscare.serviceprovider.ui.supportmore.models.ModelIssueTypes
 import com.rootscare.serviceprovider.ui.transactionss.models.ModelTransactions
 import com.rootscare.serviceprovider.ui.transactionss.models.ModelWithdrawalDetails
@@ -529,11 +532,29 @@ interface ApiService {
     @POST("api-provider-get-price-list")
     fun getProvidersTasksApi(@Body requestBody: RequestBody): Single<ModelPriceListing>
 
+    @POST("api-get-lab-task")
+    fun getLabTestsApi(@Body requestBody: RequestBody?): Single<ModelPriceListing>
+
+    @POST("api-get-lab-task")
+    fun getLabPackagesApi(@Body requestBody: RequestBody?): Single<ModelPackages>
+
+    @POST("api-get-lab-package-details")
+    fun getLabPackagesDetails(@Body requestBody: RequestBody?): Single<ModelPackageDetails>
+
     @POST("api-doctor-get-price")
     fun getProvidersTasksApiForDoc(@Body requestBody: RequestBody): Single<ModelPriceListing>
 
     @POST("api-provider-insert-update-price-list")
     fun insertUpdatePriceApi(@Body requestBody: RequestBody): Single<CommonResponse>
+
+    @POST("api-lab-package-disable")
+    fun disableLabPackage(@Body requestBody: RequestBody): Single<CommonResponse>
+
+    @POST("api-add-lab-task_price")
+    fun insertUpdateLabTestsPriceApi(@Body requestBody: RequestBody): Single<CommonResponse>
+
+    @POST("api-provider-insert-update-price-list")
+    fun insertUpdatePackageApi(@Body requestBody: RequestBody): Single<CommonResponse>
 
     @POST("api-doctor-insertupdate-price")
     fun insertUpdatePriceApiForDoc(@Body requestBody: RequestBody): Single<CommonResponse>
@@ -664,10 +685,19 @@ interface ApiService {
     fun getAppointmentDetails(@Body req: RequestBody): Single<ModelAppointmentDetails>
 
     @Multipart
-    @POST("api-doctor-upload-prescription") // needs to change after testing
+    @POST("api-doctor-upload-prescription")
     fun apiUploadPrescription(
         @Part("id") appointment_id: RequestBody?,
         @Part upload_prescription: MultipartBody.Part?
+    ): Single<CommonResponse>
+
+    @Multipart
+    @POST("api-upload-lab-report")
+    fun apiUploadLabReports(
+        @Part("appointment_id") appointment_id: RequestBody?,
+        @Part("patient_id") patient_id: RequestBody?,
+        @Part("hospital_id") hospital_id: RequestBody?,
+        @Part reportList: ArrayList<MultipartBody.Part?>
     ): Single<CommonResponse>
 
     @Multipart
@@ -755,8 +785,8 @@ interface ApiService {
         @Part("last_name") last_name: RequestBody= "".asReqBody()
     ): Single<ModelUserProfile>
 
-    @GET("api-version-check")
-    fun apiVersionCheck(): Single<CommonResponse>
+    @GET("api-android-provider-update")
+    fun apiVersionCheck(): Single<NetworkAppCheck>
 
 
 

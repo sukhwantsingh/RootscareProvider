@@ -12,6 +12,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.rootscare.serviceprovider.utilitycommon.LoginTypes
 import java.lang.Exception
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
@@ -115,4 +116,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
         fun onFragmentDetached(tag: String)
     }
+
+     fun allowProvider() = baseActivity?.allowProvider() ?: false
 }

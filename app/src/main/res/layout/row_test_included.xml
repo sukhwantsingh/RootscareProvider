@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="node"
+            type="com.rootscare.serviceprovider.ui.pricelistss.models.ModelPackageDetails.Result.TaskName" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dp2">
+
+            <TextView
+                android:id="@+id/tv_test_name"
+                style="@style/AppTheme.TextRegular"
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingVertical="@dimen/dp1"
+                android:layout_toStartOf="@+id/iv_arrowd"
+                android:layout_marginTop="3dp"
+                android:text="@{node.name}"
+                tools:text="Liver Function Test (11)"
+                android:textColor="@color/indicator_color"
+                android:textSize="@dimen/dp12" />
+
+            <TextView
+                android:id="@+id/tv_test_desc"
+                style="@style/AppTheme.TextRegular"
+                android:layout_marginStart="@dimen/dp8"
+                android:layout_below="@+id/tv_test_name"
+                android:layout_alignStart="@+id/tv_test_name"
+                app:setHtmlContent="@{node.showSubTasks()}"
+                tools:text="Glycosy, lated Hemoglobin, Glucose - Fasting"
+                android:layout_marginTop="@dimen/dp2"
+                android:layout_marginEnd="24dp"
+                android:textColor="@color/txt_sub_heading"
+                android:lineSpacingExtra="@dimen/dp1"
+                android:visibility="visible"
+                android:layout_toStartOf="@+id/iv_arrowd"
+                android:textSize="@dimen/dp10" />
+
+            <ImageView
+                android:id="@+id/iv_arrowd"
+                android:layout_width="26dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_dropdown_arrow"
+                android:padding="8dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:visibility="visible"
+                android:layout_height="26dp" />
+
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

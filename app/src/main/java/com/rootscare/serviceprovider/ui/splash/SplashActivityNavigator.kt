@@ -1,9 +1,9 @@
 package com.rootscare.serviceprovider.ui.splash
 
-import com.rootscare.data.model.response.CommonResponse
+import com.rootscare.serviceprovider.ui.splash.model.NetworkAppCheck
 
 
 interface SplashActivityNavigator {
-    fun onSuccessVersion(response: CommonResponse?)
+    fun onSuccessVersion(response: NetworkAppCheck?)
     fun errorInApi(throwable: Throwable?)
 }

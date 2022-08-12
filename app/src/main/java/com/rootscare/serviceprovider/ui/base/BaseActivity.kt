@@ -16,6 +16,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.facebook.appevents.AppEventsLogger
+import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
+import com.rootscare.serviceprovider.utilitycommon.LoginTypes
+import com.rootscare.serviceprovider.utilitycommon.getAppLocale
+import com.rootscare.serviceprovider.utilitycommon.getModelFromPref
 import com.rootscare.utils.CommonUtils
 import com.rootscare.utils.NetworkUtils
 import java.util.*
@@ -61,6 +65,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     override fun onFragmentDetached(tag: String) {
 
     }
+
     lateinit var logger: AppEventsLogger
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,8 +76,12 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     }
 
 
-    fun showToast(msg:String){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+    fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showLongToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -83,7 +92,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
@@ -114,7 +123,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         viewDataBinding?.executePendingBindings()
     }
 
-
     fun openDialogFragment(dialogFragment: DialogFragment) {
         val ft = supportFragmentManager.beginTransaction()
         val prev = supportFragmentManager.findFragmentByTag(dialogFragment.javaClass.name)
@@ -125,18 +133,30 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         dialogFragment.show(ft, dialogFragment.javaClass.name)
     }
 
-//    override fun attachBaseContext(newBase: Context) {
-//        Log.e("langMode", ": ${getAppLocale()}")
-//        super.attachBaseContext(LangContextWrapper.wrap(newBase, getAppLocale()))
-//    }
+    fun allowProvider(): Boolean {
+        val mModel = viewModel.appSharedPref?.loginmodeldata?.getModelFromPref<ModelUserProfile>()
+        return when {
+            mModel?.result?.user_type.equals(LoginTypes.LAB.type, ignoreCase = true) &&
+            mModel?.result?.hospital_id.isNullOrBlank().not() -> {
+                showToast("Has not implemented yet!"); false
+            }
+            else -> true
+        }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        // Log.e("langMode", ": ${getAppLocale()}")
+        super.attachBaseContext(LangContextWrapper.wrap(newBase, getAppLocale()))
+    }
+
 }
 
 class LangContextWrapper private constructor(base: Context) : ContextWrapper(base) {
 
     companion object {
 
-        private val enLocale = Locale("en","US")
-        private val arLocale = Locale("ar","SA")
+        private val enLocale = Locale("en", "US")
+        private val arLocale = Locale("ar", "SA")
 
         fun wrap(baseContext: Context, language: String): ContextWrapper {
             var wrappedContext = baseContext
@@ -151,6 +171,7 @@ class LangContextWrapper private constructor(base: Context) : ContextWrapper(bas
             }
             return LangContextWrapper(wrappedContext)
         }
+
         private fun returnOrCreateLocale(language: String): Locale {
             return when (language) {
                 "en" -> enLocale
@@ -159,5 +180,6 @@ class LangContextWrapper private constructor(base: Context) : ContextWrapper(bas
             }
         }
     }
+
 }
 

@@ -51,8 +51,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentRegistrationStepThreeViewModel>(),
-    FragmentRegistrationStepThreeNavigator {
+class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentRegistrationStepThreeViewModel>(),  FragmentRegistrationStepThreeNavigator {
     private var binding: FragmentRegistrationBinding? = null
     private var mViewModel: FragmentRegistrationStepThreeViewModel? = null
     private var yearForReopen: Int? = null
@@ -123,16 +122,6 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) managePermissions.checkPermissions()
 
-        val dropdownList = ArrayList<String?>().apply {
-            add(LoginTypes.NURSE.displayName)
-            add(LoginTypes.CAREGIVER.displayName)
-            add(LoginTypes.BABYSITTER.displayName)
-            add(LoginTypes.PHYSIOTHERAPY.displayName)
-            add(LoginTypes.DOCTOR.displayName)
-        //    add(LoginTypes.HOSPITAL.displayName)
-  //        add("LabDetails-Technician")
-        }
-
         binding?.tvWorkFrom?.setOnClickListener {
         CommonDialog.showDialogForDropDownList(this.requireActivity(), getString(R.string.select),
                 workFromList, object : DropDownDialogCallBack {
@@ -151,7 +140,7 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
         }
 
         binding?.tvSelectUser?.setOnClickListener {
-            CommonDialog.showDialogForDropDownList(this.requireActivity(), getString(R.string.select_provider_type), dropdownList, object :
+            CommonDialog.showDialogForDropDownList(this.requireActivity(), getString(R.string.select_provider_type), enableProviders, object :
                 DropDownDialogCallBack {
                 override fun onConfirm(text: String) {
                     if (binding?.tvSelectUser?.text.toString() != text) {
@@ -162,6 +151,12 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                                 tilDob.visibility = View.GONE
                                 llGender.visibility = View.GONE
                                 tilFirstname.hint = getString(R.string.hospital_name)
+                            }
+                        } else if (text == LoginTypes.LAB.displayName) {
+                            binding?.run {
+                                tilDob.visibility = View.GONE
+                                llGender.visibility = View.GONE
+                                tilFirstname.hint = getString(R.string.lab_name)
                             }
                         } else {
                             binding?.run {
@@ -369,7 +364,7 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                         }
 
                     }
-                    LoginTypes.HOSPITAL.displayName -> {
+                    LoginTypes.HOSPITAL.displayName , LoginTypes.LAB.displayName -> {
                         binding?.layoutHospital?.run {
                             hspMohLicNum = edtHospMoh.text.toString()
                             hospRegId = edtHospRegistrationNo.text.toString()
@@ -402,7 +397,7 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                     em.asReqBody(), phn.asReqBody(), db.asReqBody(), selectedGender.asReqBody(),
                     pwd.asReqBody(), idNum.asReqBody(), spec.asReqBody(),
                     hQualification.asReqBody(), expYears.asReqBody(), scfhsRegistrationId.asReqBody(),
-                    hspMohLicNum.asReqBody(),hospRegId.asReqBody(),workArea.asReqBody()
+                    hspMohLicNum.asReqBody(), hospRegId.asReqBody(),workArea.asReqBody()
                 )
             }
         } else {
@@ -501,16 +496,19 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
             layoutHospital.llTop.visibility = View.GONE
 
             when {
+                typeSelected.equals(LoginTypes.NURSE.displayName, ignoreCase = true) ||
+                        typeSelected.equals(LoginTypes.PHYSIOTHERAPY.displayName, ignoreCase = true) ||
+                        typeSelected.equals(LoginTypes.DOCTOR.displayName, ignoreCase = true) -> {
+                    layoutDoctorNursePhy.llTop.visibility = View.VISIBLE
+                }
+
                 typeSelected.equals(LoginTypes.BABYSITTER.displayName, ignoreCase = true) ||
                 typeSelected.equals(LoginTypes.CAREGIVER.displayName, ignoreCase = true) -> {
                     layoutBc.llTop.visibility = View.VISIBLE
                 }
-                typeSelected.equals(LoginTypes.NURSE.displayName, ignoreCase = true) ||
-                typeSelected.equals(LoginTypes.PHYSIOTHERAPY.displayName, ignoreCase = true) ||
-                typeSelected.equals(LoginTypes.DOCTOR.displayName, ignoreCase = true) -> {
-                    layoutDoctorNursePhy.llTop.visibility = View.VISIBLE
-                }
-                typeSelected.equals(LoginTypes.HOSPITAL.displayName, ignoreCase = true) -> {
+
+                typeSelected.equals(LoginTypes.HOSPITAL.displayName, ignoreCase = true) ||
+                typeSelected.equals(LoginTypes.LAB.displayName, ignoreCase = true) -> {
                     layoutHospital.llTop.visibility = View.VISIBLE
                 }
             }
@@ -524,7 +522,10 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                 false
             }
             binding?.edtRegFirstname?.text.isNullOrBlank() -> {
-                binding?.edtRegFirstname?.error = if (binding?.tvSelectUser?.text != LoginTypes.HOSPITAL.displayName) getString(R.string.enter_your_name) else (getString(R.string.enter_hospital_name))
+                binding?.edtRegFirstname?.error = if (binding?.tvSelectUser?.text == LoginTypes.HOSPITAL.displayName) (getString(R.string.enter_hospital_name))
+                else if (binding?.tvSelectUser?.text == LoginTypes.LAB.displayName) getString(R.string.enter_lab_name)
+                else getString(R.string.enter_your_name)
+
                 binding?.edtRegFirstname?.requestFocus()
                 false
             }
@@ -552,14 +553,18 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                 binding?.edtRegPhonenumber?.requestFocus()
                 false
             }
-            binding?.tvSelectUser?.text != LoginTypes.HOSPITAL.displayName && binding?.txtRegDob?.text.isNullOrBlank() -> {
+
+            binding?.tvSelectUser?.text != LoginTypes.HOSPITAL.displayName &&
+            binding?.tvSelectUser?.text != LoginTypes.LAB.displayName && binding?.txtRegDob?.text.isNullOrBlank() -> {
                 showToast(getString(R.string.select_dob))
                 false
             }
-            binding?.tvSelectUser?.text != LoginTypes.HOSPITAL.displayName && selectedGender.isBlank() -> {
+            binding?.tvSelectUser?.text != LoginTypes.HOSPITAL.displayName &&
+            binding?.tvSelectUser?.text != LoginTypes.LAB.displayName && selectedGender.isBlank() -> {
                 showToast(getString(R.string.select_gender))
                 false
             }
+
             binding?.edtRegPassword?.text.isNullOrBlank() -> {
                 binding?.edtRegPassword?.error = getString(R.string.enter_password)
                 binding?.edtRegPassword?.requestFocus()
@@ -695,22 +700,22 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
 
                     // check for upload certificate
                     null == imgIdentity -> {
-                        showToast("Please provide ID Proof!")
+                        showToast(getString(R.string.provide_id_proof))
                         false
                     }
 
                     mLt?.edtHighestQualification?.text.isNullOrBlank() -> {
-                        mLt?.edtHighestQualification?.error = "Please provide Qualification!"
+                        mLt?.edtHighestQualification?.error = getString(R.string.provide_qualification)
                         mLt?.edtHighestQualification?.requestFocus()
                         false
                     }
                     // check for upload certificate
                     null == imgQualification -> {
-                        showToast("Please provide Qualification Proof!")
+                        showToast(getString(R.string.provide_qualification_proof))
                         false
                     }
                     mLt?.edtExpeYears?.text.isNullOrBlank() -> {
-                        mLt?.edtExpeYears?.error = "Please provide Experience!"
+                        mLt?.edtExpeYears?.error = getString(R.string.provide_experience)
                         mLt?.edtExpeYears?.requestFocus()
                         false
                     }
@@ -718,28 +723,29 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
                 }
             }
 
-            binding?.tvSelectUser?.text?.equals(LoginTypes.HOSPITAL.displayName) == true -> {
+            binding?.tvSelectUser?.text?.equals(LoginTypes.HOSPITAL.displayName) == true ||
+            binding?.tvSelectUser?.text?.equals(LoginTypes.LAB.displayName) == true-> {
                 val mLt = binding?.layoutHospital
                 when {
                     mLt?.edtHospMoh?.text.isNullOrBlank() -> {
-                        mLt?.edtHospMoh?.error = "Please provide MOH Licence Number"
+                        mLt?.edtHospMoh?.error = getString(R.string.provide_moh_licence_no)
                         mLt?.edtHospMoh?.requestFocus()
                         false
                     }
                     // check for upload certificate
                     null == imgIdentity -> {
-                        showToast("Please provide MOH Licence Proof")
+                        showToast(getString(R.string.provide_moh_proof))
                         false
                     }
                     mLt?.edtHospRegistrationNo?.text.isNullOrBlank() -> {
-                        mLt?.edtHospRegistrationNo?.error = "Please provide Registration Number"
+                        mLt?.edtHospRegistrationNo?.error = getString(R.string.provide_registration_number)
                         mLt?.edtHospRegistrationNo?.requestFocus()
                         false
                     }
 
                     // Check for upload certificate
                     null == imgQualification -> {
-                        showToast("Please provide Registration Proof")
+                        showToast(getString(R.string.provide_registration_proof))
                         false
                     }
                   else -> true
@@ -786,21 +792,27 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
         val mTextView = when (uploadForType) {
             0 -> {
                 imgIdentity = fFile
-                if (uType == LoginTypes.CAREGIVER.displayName || uType == LoginTypes.BABYSITTER.displayName) {
-                    binding?.layoutBc?.tvBcNaId
-                }else if(uType == LoginTypes.HOSPITAL.displayName){
-                    binding?.layoutHospital?.tvHospNoAttachmentPhotocopy
+                when (uType) {
+                    LoginTypes.CAREGIVER.displayName, LoginTypes.BABYSITTER.displayName -> {
+                        binding?.layoutBc?.tvBcNaId
+                    }
+                    LoginTypes.HOSPITAL.displayName, LoginTypes.LAB.displayName -> {
+                        binding?.layoutHospital?.tvHospNoAttachmentPhotocopy
+                    }
+                    else -> binding?.layoutDoctorNursePhy?.tvDocNoAttachPhotocpy
                 }
-                else binding?.layoutDoctorNursePhy?.tvDocNoAttachPhotocpy
             }
             1 -> {
                 imgQualification = fFile
-                if (uType == LoginTypes.CAREGIVER.displayName || uType == LoginTypes.BABYSITTER.displayName) {
-                    binding?.layoutBc?.tvBcAttachementQuali
-                }else if(uType == LoginTypes.HOSPITAL.displayName){
-                    binding?.layoutHospital?.tvHospAttachementCertificate
+                when (uType) {
+                    LoginTypes.CAREGIVER.displayName, LoginTypes.BABYSITTER.displayName -> {
+                        binding?.layoutBc?.tvBcAttachementQuali
+                    }
+                    LoginTypes.HOSPITAL.displayName, LoginTypes.LAB.displayName -> {
+                        binding?.layoutHospital?.tvHospAttachementCertificate
+                    }
+                    else -> binding?.layoutDoctorNursePhy?.tvDocAttachementCertificate
                 }
-                else binding?.layoutDoctorNursePhy?.tvDocAttachementCertificate
             }
             2 -> {
                 imgScfhs = fFile
@@ -808,12 +820,15 @@ class FragmentRegistration : BaseFragment<FragmentRegistrationBinding, FragmentR
             }
             else -> {
                 imgIdentity = fFile
-                if (uType == LoginTypes.CAREGIVER.displayName || uType == LoginTypes.BABYSITTER.displayName) {
-                    binding?.layoutBc?.tvBcNaId
-                } else if(uType == LoginTypes.HOSPITAL.displayName){
-                    binding?.layoutHospital?.tvHospNoAttachmentPhotocopy
+                when (uType) {
+                    LoginTypes.CAREGIVER.displayName, LoginTypes.BABYSITTER.displayName -> {
+                        binding?.layoutBc?.tvBcNaId
+                    }
+                    LoginTypes.HOSPITAL.displayName, LoginTypes.LAB.displayName -> {
+                        binding?.layoutHospital?.tvHospNoAttachmentPhotocopy
+                    }
+                    else -> binding?.layoutDoctorNursePhy?.tvDocNoAttachPhotocpy
                 }
-                else binding?.layoutDoctorNursePhy?.tvDocNoAttachPhotocpy
             }
         }
 

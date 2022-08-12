@@ -30,6 +30,7 @@ import com.rootscare.serviceprovider.BR
 import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.LayoutNewCreateEditDocUnderHospitalBinding
 import com.rootscare.serviceprovider.ui.base.BaseActivity
+import com.rootscare.serviceprovider.ui.manageDocLab.fragments.FragmentManageHospitalDocsLab
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.FragmentNursesProfileNavigator
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.FragmentNursesProfileViewModel
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.adapter.AdapterQualificationMore
@@ -87,7 +88,8 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
     private val workFromList : ArrayList<String?> by lazy { ArrayList() }
     private val workFromListMap : HashMap<String?, String?> by lazy { HashMap() }
-
+    private var currency = ""
+    private var logModel : ModelUserProfile? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = viewDataBinding
@@ -96,6 +98,9 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
             tvHeader.text = getString(R.string.manage_doctor_amp_lab)
             btnBack.setOnClickListener { finish() }
         }
+        logModel = mViewModel?.appSharedPref?.loginmodeldata?.getModelFromPref()
+        currency = logModel?.result?.currency_symbol.orEmpty()
+
         adapQualiMore = AdapterQualificationMore(this)
 
         managePermissions = ManagePermissions(this,listOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE), PermissionsRequestCode)
@@ -135,7 +140,16 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
            fetchProfileData()
         }
-        fetchServiceForApi()
+
+        logModel?.let {
+            binding?.run {
+            tvWorkFrom.text = it.result?.work_area.orEmpty()
+            edtCc.setText(it.result?.country_code.orEmpty())
+        }
+        }
+
+     //   if(needToCreateDoc) fetchServiceForApi()
+
     }
 
     private lateinit var noAttchQualiTv: TextView
@@ -238,24 +252,28 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
                     uplaodCertificate(PICKFILE_RESULT_CODE)
                 }
             }
-            tvhDisableDoc.setOnClickListener { disableDeleteDoc("Disable","Are you sure you want to disable this doctor?") }
-            tvhDeleteDoc.setOnClickListener {disableDeleteDoc("Delete","Are you sure you want to delete this doctor?")   }
+            tvhDisableDoc.setOnClickListener { disableDeleteDoc(UserDisableType.DISABLE.get(), getString(R.string.sure_to_disable_this_doc)) }
+            tvhDeleteDoc.setOnClickListener { disableDeleteDoc(UserDisableType.DELETE.get(), getString(R.string.sure_to_delete_this_doc))   }
 
-            tvWorkFrom.setOnClickListener {
-             CommonDialog.showDialogForDropDownList(this@ActivityCreateEditHospitalDocs, getString(R.string.select),
-                    workFromList, object : DropDownDialogCallBack {
-                        override fun onConfirm(text: String) {
-                            binding?.run {
-                                if(tvWorkFrom.text.toString().equals(text,true).not()){
-                                    tvWorkFrom.text = text
-
-                                    val mCode = workFromListMap[text].orEmpty()
-                                    edtCc.setText(mCode)
-                                }
-                            }
-                        }
-                    })
-            }
+//            tvWorkFrom.setOnClickListener {
+//                if(workFromList.isEmpty()) return@setOnClickListener
+//             CommonDialog.showDialogForDropDownList(this@ActivityCreateEditHospitalDocs, getString(R.string.select),
+//                    workFromList, object : DropDownDialogCallBack {
+//                        override fun onConfirm(text: String) {
+//                           if(needToCreateDoc) {
+//                                binding?.run {
+//                                    if(tvWorkFrom.text.toString().equals(text,true).not()){
+//                                        tvWorkFrom.text = text
+//
+//                                        val mCode = workFromListMap[text].orEmpty()
+//                                        edtCc.setText(mCode)
+//                                    }
+//                                }
+//                            }
+//
+//                        }
+//                    })
+//            }
 
         }
     }
@@ -271,8 +289,8 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
                     }
                     val body = jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull())
                     when {
-                        typeToHit.equals("Disable",true) -> mViewModel?.disableDoc(body)
-                        typeToHit.equals("Delete",true) -> mViewModel?.deleteDoc(body)
+                        typeToHit.equals(UserDisableType.DISABLE.get(),true) -> mViewModel?.disableDoc(body)
+                        typeToHit.equals(UserDisableType.DELETE.get(),true) -> mViewModel?.deleteDoc(body)
                         else -> hideLoading()
                     }
                 } else {
@@ -284,7 +302,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
     }
 
-  private fun fetchProfileData() {
+    private fun fetchProfileData() {
         if (isNetworkConnected) {
             showLoading()
             val jsonObject = JsonObject().apply {
@@ -310,7 +328,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
         hideLoading()
         showToast(response?.message ?: "")
         if (response?.code.equals(SUCCESS_CODE)) {
-            IS_PROFILE_UPDATE_ = true
+            FragmentManageHospitalDocsLab.NEED_REFRESH_DOCS = true
             finish()
         }
     }
@@ -346,7 +364,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
     override fun successRegistrationResponse(response: RegistrationResponse?) {
         hideLoading()
         if (response?.code.equals(SUCCESS_CODE)) {
-            IS_PROFILE_UPDATE_ = true
+            FragmentManageHospitalDocsLab.NEED_REFRESH_DOCS = true
             CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
                 override fun onConfirm() {
                     onBackPressed()
@@ -360,7 +378,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
     override fun onSuccessEditProfile(response: ModelUserProfile?) {
         hideLoading()
-        if (response?.code.equals(SUCCESS_CODE)) IS_PROFILE_UPDATE_ = true
+        if (response?.code.equals(SUCCESS_CODE)) FragmentManageHospitalDocsLab.NEED_REFRESH_DOCS = true
         CommonDialog.showDialogForSingleButton(this, object : DialogClickCallback {
             override fun onConfirm() { /* onBackPressed() */ } }, getString(R.string.profile), response?.message ?: "")
     }
@@ -411,10 +429,6 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
                 if (it.image.isNullOrBlank().not()) imgProfile.setCircularRemoteImage(it.image)
 
-//                if(needToCreateDoc.not()){
-//                    tvWorkFrom.isEnabled = false
-//                    tvWorkFrom.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0)
-//                }
                 tvWorkFrom.text = it.work_area?.trim().orEmpty()
                 edtCc.setText(it.country_code.orEmpty())
 
@@ -561,7 +575,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
 
     private fun submitDetailsForEditProfile() {
         binding?.run {
-            if (null != mViewModel?.appSharedPref?.loginUserId && checkValidationForRegStepOne()) {
+            if (checkValidationForRegStepOne()) {
 
                 val docterId = docId.asReqBody()
                 val uId = mViewModel?.appSharedPref?.loginUserId?.asReqBody()
@@ -698,8 +712,15 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
                 mLt?.edtDocIdentityNumber?.requestFocus()
                 false
             }
-            isStartWithIdExact().not() -> {
+
+            currency.equals(CurrencyTypes.SAR.get(), ignoreCase = true) && isStartWithIdExact().not() -> {
                 mLt?.edtDocIdentityNumber?.error = getString(R.string.id_must_start_from_1_or_2)
+                mLt?.edtDocIdentityNumber?.requestFocus()
+                false
+            }
+
+            currency.equals(CurrencyTypes.AED.get(), ignoreCase = true) && isStartWithIdExact7().not() -> {
+                mLt?.edtDocIdentityNumber?.error = getString(R.string.id_must_start_from_7)
                 mLt?.edtDocIdentityNumber?.requestFocus()
                 false
             }
@@ -754,7 +775,10 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
             else -> true
         }
     }
-    private fun isStartWithIdExact() =  binding?.edtDocIdentityNumber?.text.toString().startsWith("1") || binding?.edtDocIdentityNumber?.text.toString().startsWith("2")
+    private fun isStartWithIdExact() =  binding?.edtDocIdentityNumber?.text.toString().trim().startsWith("1") ||
+                                        binding?.edtDocIdentityNumber?.text.toString().trim().startsWith("2")
+
+    private fun isStartWithIdExact7() =  binding?.edtDocIdentityNumber?.text.toString().trim().startsWith("7")
 
     private val PermissionsRequestCode = 123
     private lateinit var managePermissions: ManagePermissions
@@ -900,6 +924,7 @@ class ActivityCreateEditHospitalDocs : BaseActivity<LayoutNewCreateEditDocUnderH
         im_editbutton.setVisibility(View.GONE);
         im_holder.setVisibility(View.GONE);*/
     }
+
     private fun goToImageIntent() {
         val intent = Intent(
             Intent.ACTION_PICK,

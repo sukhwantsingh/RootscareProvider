@@ -102,13 +102,9 @@ class ManageDocAndLab : BaseActivity<ActivityPriceListScreenBinding, ManageDocLa
     }
 
     private fun setFragmentAccordingToUser() {
-      //  binding?.tabLayout?.layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT
-
         adapter.addFragment(FragmentManageHospitalDocsLab.newInstance(HospitalUnder.DOCTOR.getType()), HospitalUnder.DOCTOR.get())
-     //   adapter.addFragment(FragmentManageHospitalDocsLab.newInstance(HospitalUnder.LAB.getType()), HospitalUnder.LAB.get())
-
-
+      //  adapter.addFragment(FragmentManageHospitalDocsLab.newInstance(HospitalUnder.LAB.getType()), HospitalUnder.LAB.get())
+      //  binding?.tabLayout?.layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT
     }
-
 
 }

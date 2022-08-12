@@ -1,4 +1,4 @@
-package com.rootscare.serviceprovider.ui.pricelistss
+package com.rootscare.serviceprovider.ui.pricelistss.models
 
 
 import androidx.annotation.Keep
@@ -15,6 +15,9 @@ data class ModelPriceListing(
         val id: String?,
         var isChecked: Boolean? = false,
         val name: String?,
+        val description: String?,
         var price: String?
-    )
+    ){
+        fun showDesc() = if(description.isNullOrBlank()) "" else description
+    }
 }

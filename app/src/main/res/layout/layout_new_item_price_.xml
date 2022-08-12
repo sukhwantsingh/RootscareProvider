@@ -33,14 +33,33 @@
                 android:textColor="@color/indicator_color"
                 android:textSize="@dimen/dp14" />
 
-            <TextView
-                android:id="@+id/tv_task"
-                style="@style/AppTheme.TextRegular"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dp5"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/dp14"
-                tools:text="Muscle Injection Lorium ispsum " />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_task"
+                    style="@style/AppTheme.TextRegular"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/dp14"
+                    tools:text="Muscle Injection Lorium ispsum" />
+
+                <TextView
+                    android:id="@+id/tv_task_desc"
+                    style="@style/AppTheme.TextRegular"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorTxtGrey1"
+                    android:textSize="@dimen/dp10"
+                    android:singleLine="true"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:visibility="visible"
+                    tools:text="Coronavirus, Sars-Cov-2 test. COVID-RTPCR." />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

@@ -36,6 +36,7 @@ data class ModelAppointmentDetails(
         val paymentStatus: String?,
         val paymentType: String?,
         val price: String?,
+        val sub_total_price: String?,
         val provider_experience: String?,
         val provider_image: String?,
         val provider_name: String?,
@@ -50,6 +51,7 @@ data class ModelAppointmentDetails(
         val provider_prescription: String?,
         val provider_upd: String?,
         val task_details: List<TaskDetail?>?,
+        val report: ArrayList<LabTestReports?>?,
         val task_id: String?,
         val task_time: String?,
         val task_type: String?,
@@ -62,6 +64,12 @@ data class ModelAppointmentDetails(
             val id: String?,
             val name: String?,
             val price: String?
+        )
+        @Keep
+        data class LabTestReports(
+            val id: String?,
+            val report: String?,
+            val upload_date: String?
         )
     }
 }

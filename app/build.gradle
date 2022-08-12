@@ -17,8 +17,8 @@ android {
         applicationId "com.rootscare.serviceprovider"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode 13
-        versionName "2.5"
+        versionCode 17
+        versionName "2.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true

@@ -101,7 +101,7 @@ object ApiClient {
             Log.e("CITIZEN_HTTP_RESPONSE", "response\n$responseLog\n$bodyString")
 
             return response.newBuilder()
-                .body(ResponseBody.create(response.body!!.contentType(), bodyString))
+                .body(ResponseBody.create(response.body?.contentType(), bodyString))
                 .build()
         }
     }

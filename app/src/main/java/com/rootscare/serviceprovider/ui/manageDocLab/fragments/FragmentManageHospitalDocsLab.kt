@@ -18,10 +18,7 @@ import com.rootscare.serviceprovider.ui.manageDocLab.ManageDocLabViewModel
 import com.rootscare.serviceprovider.ui.manageDocLab.adapter.AdapterDocListing
 import com.rootscare.serviceprovider.ui.manageDocLab.adapter.OnHospitalDocsCallback
 import com.rootscare.serviceprovider.ui.manageDocLab.model.ModelHospitalDocs
-import com.rootscare.serviceprovider.ui.nurses.nurseprofile.subfragment.nursesprofileedit.FragmentNursesEditProfile
-import com.rootscare.serviceprovider.ui.pricelistss.ModelPriceListing
 import com.rootscare.serviceprovider.utilitycommon.HospitalUnder
-import com.rootscare.serviceprovider.utilitycommon.LoginTypes
 import com.rootscare.serviceprovider.utilitycommon.navigate
 
 private const val ARG_TYPE = "ARG_TYPE"
@@ -47,6 +44,8 @@ class FragmentManageHospitalDocsLab : BaseFragment<LayoutDoctorUnderHospitalBind
     private var mDocListingAdapter: AdapterDocListing? = null
 
     companion object {
+        var NEED_REFRESH_DOCS : Boolean? = null
+        var NEED_REFRESH_LAB : Boolean? = null
         @JvmStatic
         fun newInstance(priceType_: String = "") =
             FragmentManageHospitalDocsLab().apply {
@@ -68,10 +67,17 @@ class FragmentManageHospitalDocsLab : BaseFragment<LayoutDoctorUnderHospitalBind
     override fun onResume() {
         super.onResume()
 
-        if(FragmentNursesEditProfile.IS_PROFILE_UPDATE_){
-            FragmentNursesEditProfile.IS_PROFILE_UPDATE_ = false
+        // REFRESH DOCTORS
+        if(true == NEED_REFRESH_DOCS) {
+            NEED_REFRESH_DOCS = null
             fetchDocsList()
         }
+
+        // REFRESH LAB
+        if(true == NEED_REFRESH_LAB) {
+               NEED_REFRESH_LAB = null
+           // fetchDocsList()
+         }
 
     }
 

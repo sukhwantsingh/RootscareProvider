@@ -14,6 +14,7 @@ import com.rootscare.serviceprovider.R
 import com.rootscare.serviceprovider.databinding.ActivityPriceListScreenBinding
 import com.rootscare.serviceprovider.ui.base.BaseActivity
 import com.rootscare.serviceprovider.ui.nurses.nurseprofile.models.ModelUserProfile
+import com.rootscare.serviceprovider.ui.pricelistss.fragments.FragmentPackages
 import com.rootscare.serviceprovider.ui.pricelistss.fragments.FragmentPriceListCommon
 import com.rootscare.serviceprovider.utilitycommon.LoginTypes
 import com.rootscare.serviceprovider.utilitycommon.PriceTypes
@@ -39,7 +40,7 @@ class PriceListScreen : BaseActivity<ActivityPriceListScreenBinding, ManagePrice
         super.onCreate(savedInstanceState)
         binding = viewDataBinding
         binding?.topToolbar?.run {
-            tvHeader.text = getString(R.string.price_list)
+            tvHeader.text = if(viewModel.appSharedPref?.loginUserType.equals(LoginTypes.LAB.type)) getString(R.string.manage_test_n_packages) else getString(R.string.price_list)
             btnBack.setOnClickListener { finish() }
         }
 
@@ -130,12 +131,15 @@ class PriceListScreen : BaseActivity<ActivityPriceListScreenBinding, ManagePrice
                     binding?.tabLayout?.layoutParams?.width = ViewGroup.LayoutParams.WRAP_CONTENT
                     binding?.tabLayout?.tabMode = TabLayout.MODE_SCROLLABLE
                 } else {
-                    adapter.addFragment(FragmentPriceListCommon.newInstance(PriceTypes.ONLINE.get()), PriceTypes.ONLINE.get())
+                 adapter.addFragment(FragmentPriceListCommon.newInstance(PriceTypes.ONLINE.get()), PriceTypes.ONLINE.get())
                 }
-
-
-
             }
+            viewModel.appSharedPref?.loginUserType.equals(LoginTypes.LAB.type) -> {
+             adapter.addFragment(FragmentPriceListCommon.newInstance(PriceTypes.TEST_BASED.get()), PriceTypes.TEST_BASED.get())
+             adapter.addFragment(FragmentPackages.newInstance(PriceTypes.PACKAGE_BASED.get()), PriceTypes.PACKAGE_BASED.get())
+             binding?.tabLayout?.layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT
+            }
+
 //            // Optional when doctor will do then will do accordingly
 //            viewModel.appSharedPref?.loginUserType.equals(LoginTypes.DOCTOR.type) -> {
 //                adapter.addFragment(FragmentPriceListCommon.newInstance(PriceTypes.HOURLY_BASED.get()), PriceTypes.HOURLY_BASED.get())

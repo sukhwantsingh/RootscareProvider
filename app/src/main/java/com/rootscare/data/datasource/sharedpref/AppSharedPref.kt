@@ -69,7 +69,7 @@ class AppSharedPref(context: Context, prefFileName: String) {
 
     var languagePref: String?
         get() = mPrefs.getString(PREF_KEY_LANG, LanguageModes.ENG.get())
-        set(langPref) = mPrefs.edit().putString(PREF_KEY_LANG, langPref).apply()
+        set(langPref) = mPrefs.edit().putString(PREF_KEY_LANG, langPref?.trim() ?: LanguageModes.ENG.get()).apply()
 
     var loginUserType: String?
         get() = mPrefs.getString(PREF_KEY_LOGIN_USER_TYPE, null)

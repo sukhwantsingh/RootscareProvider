@@ -21,8 +21,8 @@ import kotlin.collections.ArrayList
 
 interface OnAppointmentListingCallback {
     fun onItemClick(pos: Int,id: String?) {}
-    fun onAcceptBtnClick(id: String, pos: Int, action: String = "") {}
-    fun onRejectBtnBtnClick(id: String, pos: Int, action: String = "") {}
+    fun onAcceptBtnClick(id: String, pos: Int, action: String = "", hospId:String?) {}
+    fun onRejectBtnBtnClick(id: String, pos: Int, action: String = "", hospId:String?) {}
     fun onVideoCall(dataModel: ModelAppointmentsListing.Result?) {}
 }
 
@@ -80,11 +80,11 @@ class AdapterAppointmentListingCommon(internal var context: Context, internal va
                 mCallback.onItemClick(absoluteAdapterPosition,getItem(absoluteAdapterPosition)?.id?:"") }
                 btnAccept.setOnClickListener {
                     mCallback.onAcceptBtnClick(getItem(absoluteAdapterPosition)?.id?:"",
-                        absoluteAdapterPosition, "Accept")
+                        absoluteAdapterPosition, "Accept", getItem(absoluteAdapterPosition).hospital_id.orEmpty())
                 }
                 ibcross.setOnClickListener {
                     mCallback.onRejectBtnBtnClick(getItem(absoluteAdapterPosition)?.id?:"",
-                        absoluteAdapterPosition, "Reject")
+                        absoluteAdapterPosition, "Reject", getItem(absoluteAdapterPosition).hospital_id.orEmpty())
                 }
                 btnVideoCall.setOnClickListener { mCallback.onVideoCall(getItem(absoluteAdapterPosition)) }
             }

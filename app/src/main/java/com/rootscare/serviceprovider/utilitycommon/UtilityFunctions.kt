@@ -32,14 +32,16 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import java.util.*
 import com.ApplicationClass
+import java.io.File
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
 
 const val IS_PRODUCTION = false
+
 val API_BASE_URL: String by lazy { if(IS_PRODUCTION) "https://rootscare.net/application/" else "https://teq-dev-var19.co.in/rootscare/" }
 
-const val SUCCESS_CODE= "200"
+const val SUCCESS_CODE = "200"
 
 enum class BaseMediaUrls(val url: String){
     USERIMAGE("${API_BASE_URL}uploads/images/"),
@@ -267,6 +269,8 @@ fun String.asReqBody() = RequestBody.create("multipart/form-data".toMediaTypeOrN
 
 fun getAppVersionText() = "RC Version ${BuildConfig.VERSION_NAME }(${BuildConfig.VERSION_CODE})"
 
+fun getAppVersionNumber() = BuildConfig.VERSION_CODE
+
 fun needToShowVideoCall(appDate: String?, appTime: String?, btnVideoCall: TextView) {
 
     val sdf = SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH)
@@ -313,7 +317,7 @@ fun needToShowVideoCall(appDate: String?, appTime: String?, btnVideoCall: TextVi
 }
 
 
-fun needToShowUploadPrescription(appDate: String?, appTime: String?, btnView: TextView) {
+fun needToShowUploadPrescription(appDate: String?, appTime: String?, btnView: View) {
     // "app_date":"Tue, 19 Apr 2022","app_time":"07:30 PM"
     val sdf = SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH)
     val sdf1 = SimpleDateFormat("EEE dd MMM yyyy hh:mm a", Locale.ENGLISH)
@@ -359,10 +363,68 @@ fun needToShowUploadPrescription(appDate: String?, appTime: String?, btnView: Te
     }
 }
 
+fun needToShowUploadLabReport(appDate: String?, appTime: String?, btnView: View) {
+    val sdf = SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH)
+    val sdf1 = SimpleDateFormat("EEE dd MMM yyyy hh:mm a", Locale.ENGLISH)
+
+    val appDateTimeMilli = if(appDate?.contains(",")==true){
+        sdf.parse("$appDate $appTime")?.time ?: Date().time
+    } else {
+        sdf1.parse("$appDate $appTime")?.time ?: Date().time
+    }
+
+    val appDateTime = Calendar.getInstance()
+    appDateTime.timeInMillis = appDateTimeMilli
+
+    val now = Calendar.getInstance()
+    val diff = now.timeInMillis - appDateTime.timeInMillis
+
+    var diffInMin = (diff / (1000 * 60)) % 60
+    val diffInHour = ((diff / (1000 * 60 * 60)) % 24)*60
+    diffInMin += diffInHour
+    val diffInDays = ((diff / (1000 * 60 * 60 * 24)) % 365) * 24 * 60
+    diffInMin += diffInDays
+
+    try {
+        val yesNo = when {
+                  now.get(Calendar.YEAR) == appDateTime.get(Calendar.YEAR) &&
+                  now.get(Calendar.MONTH) == appDateTime.get(Calendar.MONTH) &&
+                  now.get(Calendar.DATE) >= appDateTime.get(Calendar.DATE) &&
+                  now.get(Calendar.DATE) - appDateTime.get(Calendar.DATE) <= 7 &&
+                  diffInMin >= 0 -> {
+                  btnView.visibility = View.VISIBLE
+                 true
+            }
+            else -> {
+                btnView.visibility = View.GONE
+                false
+            }
+        }
+        Log.wtf("OkHttp", "${now.get(Calendar.DATE) - appDateTime.get(Calendar.DATE)}: - $yesNo")
+
+    } catch (e: ParseException) {
+        btnView.visibility = View.GONE
+        e.printStackTrace()
+    }
+}
+
 fun Activity.openWebLink(webLink: String?) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.data = Uri.parse(webLink)
     val title = "Choose one"
     val chooser = Intent.createChooser(intent, title)
     startActivity(chooser)
+}
+
+fun isSelectedFileSizeNotEligible(filePath: String, mbToCheck:Int = 2) = try {
+        val fileSizeInBytes = File(filePath).length()
+    //  Log.wtf("Size_byte", ": ${fileByteArry.size}")
+    val fileSizeInKB = fileSizeInBytes / 1024
+    // Convert the KB to MegaBytes (1 MB = 1024 KBytes)
+    val fileSizeInMB = fileSizeInKB / 1024
+    // Log.wtf("SizeToCheck", ": $mbToCheck")
+    fileSizeInMB > mbToCheck
+} catch (e:Exception) {
+    println(e)
+    true
 }

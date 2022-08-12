@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.scheduless.ScheduleActivity">
+       >
 
         <include
             android:id="@+id/top_toolbar"
@@ -30,9 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:elevation="@dimen/dp4"
+                android:elevation="@dimen/dp2"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp30"
                 android:clipToPadding="false"
                 android:orientation="vertical">
 
@@ -227,11 +226,11 @@
                         android:gravity="center_vertical"
                         android:hint="@string/select"
                         android:padding="@dimen/dp12"
-                        app:drawableEndCompat="@drawable/ic_dropdown_arrow"
                         android:textColor="@color/txt_dash_heading"
                         android:textColorHint="@color/txt_color_wi"
                         android:textSize="@dimen/dp15"
                         />
+                    <!--   app:drawableEndCompat="@drawable/ic_dropdown_arrow" -->
 
                     <RelativeLayout
                         android:layout_width="match_parent"
