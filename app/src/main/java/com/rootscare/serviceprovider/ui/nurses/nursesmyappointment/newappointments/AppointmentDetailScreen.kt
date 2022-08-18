@@ -84,8 +84,6 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
     private lateinit var managePermissions: ManagePermissions
     private val PermissionsRequestCode = 123
 
-    private val GALLERY = 1
-    private val CAMERA = 2
     val PICKFILE_RESULT_CODE = 4
     private var fileUri: Uri? = null
     private var filePath: String? = null
@@ -122,7 +120,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                 }
             }
             tvhCall.setOnClickListener { openDialer(patientContact) }
-            tvhOpenGmap.setOnClickListener { openGoogleMapWithDirectNavigationStart(mPatientLat,mPatientLng) }
+            tvhOpenGmap.setOnClickListener { openGoogleMapWithDirectNavigationStart(mPatientLat, mPatientLng) }
 
             ivSendOtp.setOnClickListener {
                 val ot = edtOtp.text.toString().trim()
@@ -281,9 +279,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                                  //  btnVideoCall.visibility = View.VISIBLE
                                  //  btnUploadPresc.visibility = View.VISIBLE
                                    val list = listOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-                                   // Initialize a new instance of ManagePermissions class
                                    managePermissions = ManagePermissions(this@AppointmentDetailScreen, list, PermissionsRequestCode)
-                                   //check permissions states
                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                                        managePermissions.checkPermissions()
                                    }
@@ -299,7 +295,10 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                                                initializeDownloadManager()
                                                downloadFile(it.provider_prescription.orEmpty())
                                            }
-                                          tvPrescReUpload.setOnClickListener { showPictureDialog() }
+                                          tvPrescReUpload.setOnClickListener {
+                                              val list = listOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                              managePermissions = ManagePermissions(this@AppointmentDetailScreen, list, PermissionsRequestCode)
+                                              showPictureDialog() }
                                            View.VISIBLE
                                        } else View.GONE
                               }
@@ -400,6 +399,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
             }
             override fun onPickImage() {
                 if (checkAndRequestPermissionsTest()) {
+                    forDoctor = false
                     uplaodCertificate(PICKFILE_RESULT_CODE)
                 }
             }
@@ -559,36 +559,19 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
     }
 
     //IMAGE SELECTION AND GET IMAGE PATH
+    var forDoctor = false
     private fun showPictureDialog() {
-        val pictureDialog = AlertDialog.Builder(this)
-        pictureDialog.setTitle(getString(R.string.select_action))
-        val pictureDialogItems = arrayOf(getString(R.string.select_photo_from_gallary), getString(R.string.capture_photo))
-        pictureDialog.setItems(pictureDialogItems) { _, which ->
-            when (which) {
-                0 -> choosePhotoFromGallery()
-                1 -> takePhotoFromCamera()
-            }
+        if (checkAndRequestPermissionsTest()) {
+            forDoctor = true
+            uplaodCertificate(PICKFILE_RESULT_CODE)
         }
-        pictureDialog.show()
-    }
-
-    private fun choosePhotoFromGallery() {
-        val galleryIntent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        )
-        startActivityForResult(galleryIntent, GALLERY)
-    }
-
-    private fun takePhotoFromCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA)
     }
 
    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
          if (resultCode != Activity.RESULT_CANCELED) {
              if (requestCode == PICKFILE_RESULT_CODE) {
+
                  if (resultCode == -1) {
                      fileUri = data?.data
                      filePath = fileUri?.path
@@ -605,37 +588,7 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
                          e.printStackTrace()
                      }
                  }
-             } else if (requestCode == GALLERY) {
-                if (data != null) {
-                    val contentURI = data.data
-                    try {
-                        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, contentURI)
-                        val path = saveImage(bitmap)
-                         bitmapToFile(bitmap)
-                     //   Toast.makeText(activity, "Image Saved!", Toast.LENGTH_SHORT).show()
-
-//                    fra?.imgRootscareProfileImage?.setImageBitmap(bitmap)
-
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                        Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-
-            } else if (requestCode == CAMERA) {
-
-                try {
-                    val thumbnail = data!!.extras!!.get("data") as Bitmap
-                    //    fragmentProfileBinding?.imgRootscareProfileImage?.setImageBitmap(thumbnail)
-                    saveImage(thumbnail)
-                    bitmapToFile(thumbnail)
-                    Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
-                } catch (e: Exception) {
-                    println("Exception===>$e")
-                }
-
-            }
+             }
         }
 
     }
@@ -667,7 +620,13 @@ class AppointmentDetailScreen : BaseActivity<LayoutNewAppointmentDetailsBinding,
 
     private fun displayCertificateName(fname: String?, fFile: File) {
         Log.wtf(FragmentRegistration.TAG, "displayCertificateName: $fname \n ${fFile.name}")
-        mBsReportsUploading?.updateReports(fFile)
+        if(forDoctor) {
+            imageFile = fFile
+            apiUploadPrescription()
+        } else {
+            mBsReportsUploading?.updateReports(fFile)
+        }
+
     }
 
     private fun saveImage(myBitmap: Bitmap): String {

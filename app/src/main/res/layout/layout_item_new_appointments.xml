@@ -10,16 +10,37 @@
             type="com.rootscare.serviceprovider.ui.nurses.nursesmyappointment.newappointments.ModelAppointmentsListing.Result" />
 
     </data>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdview_appoitment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_doc_hosp_banner_yellow"
+        style="@style/AppTheme.TextMedium"
+        android:layout_gravity="end"
+        android:background="@drawable/square_bg_one_round_yellow"
+        android:paddingHorizontal="@dimen/dp8"
+        android:paddingVertical="@dimen/dp2"
+        android:text="@string/hospital"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp11"
+        app:visibilityWithNullEmptyCheck="@{node.hospital_id}"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp8"
         android:background="@color/white"
-        android:elevation="@dimen/dp2"
-        android:paddingVertical="@dimen/dp10"
-        android:paddingStart="@dimen/dp16" >
-
+        android:paddingVertical="@dimen/dp8"
+        android:paddingStart="@dimen/dp16">
 
         <TextView
             android:id="@+id/tvh_bank"
@@ -34,21 +55,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Doctor" />
 
-        <TextView
-            android:id="@+id/tvh_hospital_"
-            style="@style/AppTheme.TextMedium"
-            android:background="@color/price_bg"
-            android:layout_marginStart="@dimen/dp4"
-            android:paddingHorizontal="@dimen/dp5"
-            android:paddingVertical="@dimen/dp4"
-            android:text="@string/hospital"
-            android:textColor="@color/txt_color"
-            android:textSize="@dimen/dp9"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:visibilityWithNullEmptyCheck="@{node.hospital_id}"
-            app:layout_constraintStart_toEndOf="@+id/tvh_bank"
-            app:layout_constraintTop_toTopOf="@+id/tvh_bank" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvh_hospital_"-->
+<!--            style="@style/AppTheme.TextMedium"-->
+<!--            android:background="@color/price_bg"-->
+<!--            android:layout_marginStart="@dimen/dp4"-->
+<!--            android:paddingHorizontal="@dimen/dp5"-->
+<!--            android:paddingVertical="@dimen/dp4"-->
+<!--            android:text="@string/hospital"-->
+<!--            android:textColor="@color/txt_color"-->
+<!--            android:textSize="@dimen/dp9"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="visible"-->
+<!--            app:visibilityWithNullEmptyCheck="@{node.hospital_id}"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/tvh_bank"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/tvh_bank" />-->
 
 
         <TextView
@@ -362,4 +383,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

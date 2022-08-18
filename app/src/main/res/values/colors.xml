@@ -101,6 +101,6 @@
     <color name="green_off_text">#26720B</color>
     <color name="warm_light">#FFF2D9</color>
     <color name="arrow_bg_light">#F0F3F6</color>
-
+    <color name="yellow_hosp_back">#FFA800</color>
 
 </resources>
